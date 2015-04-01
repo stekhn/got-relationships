@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <meta charset="utf-8">
+
+  <title>GoT Converter</title>
+
+  <script type="text/javascript" src="miso.ds.deps.0.4.1.js"></script>
+  </head>
+
+  <body>
+
+    <script>
+
+      var ds = new Miso.Dataset({
+        importer : Miso.Dataset.Importers.GoogleSpreadsheet,
+        parser : Miso.Dataset.Parsers.GoogleSpreadsheet,
+        key : "1SbMWBGGvdh3iKwWIMRL7lHZzKjWfB8oCqMNwKcq8tIY",
+        worksheet : "1"
+      });
+
+      ds.fetch({ 
+        success : function() {
+          var json = ds.toJSON();
+        },
+        error : function() {
+          console.log("Are you sure you are connected to the internet?");
+        }
+      });
+    </script>
+
+  </body>
+
+</html>
