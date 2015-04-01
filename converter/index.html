@@ -13,21 +13,64 @@
 
     <script>
 
-      var ds = new Miso.Dataset({
-        importer : Miso.Dataset.Importers.GoogleSpreadsheet,
-        parser : Miso.Dataset.Parsers.GoogleSpreadsheet,
-        key : "1SbMWBGGvdh3iKwWIMRL7lHZzKjWfB8oCqMNwKcq8tIY",
-        worksheet : "1"
-      });
+      // var ds = new Miso.Dataset({
+      //   importer : Miso.Dataset.Importers.GoogleSpreadsheet,
+      //   parser : Miso.Dataset.Parsers.GoogleSpreadsheet,
+      //   key : "1SbMWBGGvdh3iKwWIMRL7lHZzKjWfB8oCqMNwKcq8tIY",
+      //   worksheet : "1"
+      // });
 
-      ds.fetch({ 
-        success : function() {
-          var json = ds.toJSON();
-        },
-        error : function() {
-          console.log("Are you sure you are connected to the internet?");
+      // ds.fetch({ 
+      //   success : function() {
+      //     var json = ds.toJSON();
+      //     console.log(JSON.stringify(json));
+      //   },
+      //   error : function() {
+      //     console.log("Are you sure you are connected to the internet?");
+      //   }
+      // });
+
+      var json = [{"_id":8,"name":"Eddard Stark","type":"first appearance","person":null,"start":"1x01","end":"1x09"},{"_id":9,"name":"Eddard Stark","type":"was killed by","person":"Ilyn Payne","start":"1x09","end":"1x09"},{"_id":10,"name":"Eddard Stark","type":"was killed by","person":"Joffrey Baratheon","start":"1x09","end":"1x09"},{"_id":11,"name":"Eddard Stark","type":"is sibling of","person":"Benjen Stark","start":"0x00","end":"1x09"},{"_id":12,"name":"Eddard Stark","type":"is married to","person":"Catelyn Stark","start":"0x00","end":"1x09"},{"_id":13,"name":"Eddard Stark","type":"is allied with","person":"Robert Baratheon","start":"0x00","end":"1x07"},{"_id":14,"name":"Eddard Stark","type":"works for","person":"Robert Baratheon","start":"1x02","end":"1x07"},{"_id":15,"name":"Eddard Stark","type":"is parent of","person":"Rob Stark","start":"0x00","end":"1x09"},{"_id":16,"name":"Eddard Stark","type":"is parent of","person":"Bran Stark","start":"0x00","end":"1x09"},{"_id":17,"name":"Eddard Stark","type":"is parent of","person":"Rickon Stark","start":"0x00","end":"1x09"},{"_id":18,"name":"Eddard Stark","type":"is parent of","person":"Sansa Stark","start":"0x00","end":"1x09"},{"_id":19,"name":"Eddard Stark","type":"is parent of","person":"Arya Stark","start":"0x00","end":"1x09"},{"_id":20,"name":"Eddard Stark","type":"is parent of","person":"Jon Snow","start":"0x00","end":"1x09"},{"_id":21,"name":"Eddard Stark","type":"killed","person":"Lady","start":"1x02","end":"1x02"},{"_id":22,"name":"Eddard Stark","type":"is enemy of","person":"Tyrion Lannister","start":"1x03","end":"1x06"},{"_id":23,"name":"Eddard Stark","type":"is enemy of","person":"Jaime Lannister","start":"1x05","end":"1x09"},{"_id":24,"name":"Eddard Stark","type":"is enemy of","person":"Cersei Lannister","start":"1x05","end":"1x09"},{"_id":25,"name":"Eddard Stark","type":"is allied with","person":"Petyr Baelish","start":"1x03","end":"1x07"},{"_id":26,"name":"Eddard Stark","type":"is allied with","person":"Barristan Selmy","start":"1x05","end":"1x09"},{"_id":27,"name":"Eddard Stark","type":"is allied with","person":"Stannis Baratheon","start":"1x07","end":"1x09"},{"_id":28,"name":"Eddard Stark","type":"is enemy of","person":"Joffrey Baratheon","start":"1x07","end":"1x09"},{"_id":29,"name":"Eddard Stark","type":"is enemy of","person":"Petyr Baelish","start":"1x07","end":"1x09"},{"_id":30,"name":"Eddard Stark","type":"is allied with","person":"Theon Greyjoy","start":"0x00","end":"1x09"},{"_id":31,"name":"Catelyn Stark","type":"first appearance","person":null,"start":"1x01","end":"3x09"},{"_id":32,"name":"Catelyn Stark","type":"was killed by","person":"Walder Frey","start":"3x09","end":"3x09"},{"_id":33,"name":"Catelyn Stark","type":"was killed by","person":"Tywin Lannister","start":"3x09","end":"3x09"},{"_id":34,"name":"Catelyn Stark","type":"is sibling of","person":"Lisa Arryn","start":"0x00","end":"3x09"},{"_id":35,"name":"Catelyn Stark","type":"is parent of","person":"Rob Stark","start":"0x00","end":"3x09"},{"_id":36,"name":"Catelyn Stark","type":"is parent of","person":"Bran Stark","start":"0x00","end":"3x09"},{"_id":37,"name":"Catelyn Stark","type":"is parent of","person":"Rickon Stark","start":"0x00","end":"3x09"},{"_id":38,"name":"Catelyn Stark","type":"is parent of","person":"Sansa Stark","start":"0x00","end":"3x09"},{"_id":39,"name":"Catelyn Stark","type":"is parent of","person":"Arya Stark","start":"0x00","end":"3x09"},{"_id":40,"name":"Catelyn Stark","type":"is married to","person":"Eddard Stark","start":"0x00","end":"1x09"},{"_id":41,"name":"Catelyn Stark","type":"is allied with","person":"Petyr Baelish","start":"1x03","end":"2x04"},{"_id":42,"name":"Catelyn Stark","type":"is enemy of","person":"Tyrion Lannister","start":"1x03","end":"1x06"},{"_id":43,"name":"Catelyn Stark","type":"is enemy of","person":"Jaime Lannister","start":"1x03","end":"2x08"},{"_id":44,"name":"Catelyn Stark","type":"is enemy of","person":"Cersei Lannister","start":"1x03","end":"3x09"},{"_id":45,"name":"Catelyn Stark","type":"is allied with","person":"Walder Frey","start":"1x08","end":"2x10"},{"_id":46,"name":"Catelyn Stark","type":"is allied with","person":"Renly Baratheon","start":"2x03","end":"2x05"},{"_id":47,"name":"Catelyn Stark","type":"is allied with","person":"Brienne of Tarth","start":"2x05","end":"3x09"},{"_id":48,"name":"Catelyn Stark","type":"is allied with","person":"Roose Bolton","start":"2x06","end":"3x02"},{"_id":49,"name":"Catelyn Stark","type":"is allied with","person":"Talisa Maegyr","start":"3x02","end":"3x09"},{"_id":50,"name":"Catelyn Stark","type":"is enemy of","person":"Tywin Lannister","start":"1x07","end":"3x09"},{"_id":51,"name":"Catelyn Stark","type":"is allied with","person":"Walder Frey","start":"3x06","end":"3x09"},{"_id":52,"name":"Rob Stark","type":"first appearance","person":null,"start":"1x01","end":"3x09"},{"_id":53,"name":"Rob Stark","type":"was killed by","person":"Walder Frey","start":"3x09","end":"3x09"},{"_id":54,"name":"Rob Stark","type":"was killed by","person":"Tywin Lannister","start":"3x09","end":"3x09"},{"_id":55,"name":"Rob Stark","type":"is sibling of","person":"Bran Stark","start":"0x00","end":"3x09"},{"_id":56,"name":"Rob Stark","type":"is sibling of","person":"Rickon Stark","start":"0x00","end":"3x09"},{"_id":57,"name":"Rob Stark","type":"is sibling of","person":"Sansa Stark","start":"0x00","end":"3x09"},{"_id":58,"name":"Rob Stark","type":"is sibling of","person":"Arya Stark","start":"0x00","end":"3x09"},{"_id":59,"name":"Rob Stark","type":"is sibling of","person":"Jon Snow","start":"0x00","end":"3x09"},{"_id":60,"name":"Rob Stark","type":"is married to","person":"Talisa Maegyr","start":"2x10","end":"3x09"},{"_id":61,"name":"Rob Stark","type":"is allied with","person":"Theon Greyjoy","start":"0x00","end":"2x06"},{"_id":62,"name":"Rob Stark","type":"is allied with","person":"Greywind","start":"1x01","end":"3x09"},{"_id":63,"name":"Rob Stark","type":"is enemy of","person":"Tyrion Lannister","start":"1x03","end":"1x06"},{"_id":64,"name":"Rob Stark","type":"is enemy of","person":"Jaime Lannister","start":"1x03","end":"2x08"},{"_id":65,"name":"Rob Stark","type":"is enemy of","person":"Cersei Lannister","start":"1x03","end":"3x09"},{"_id":66,"name":"Rob Stark","type":"is enemy of","person":"Tywin Lannister","start":"1x07","end":"3x09"},{"_id":67,"name":"Rob Stark","type":"is allied with","person":"Walder Frey","start":"1x08","end":"2x10"},{"_id":68,"name":"Rob Stark","type":"is allied with","person":"Renly Baratheon","start":"2x03","end":"2x05"},{"_id":69,"name":"Rob Stark","type":"is in love with","person":"Talisa Maegyr","start":"2x04","end":"2x10"},{"_id":70,"name":"Rob Stark","type":"is enemy of","person":"Stannis Baratheon","start":"2x05","end":"3x09"},{"_id":71,"name":"Rob Stark","type":"is enemy of","person":"Theon Greyjoy","start":"2x06","end":"3x09"},{"_id":72,"name":"Rob Stark","type":"is allied with","person":"Roose Bolton","start":"2x06","end":"3x02"},{"_id":73,"name":"Rob Stark","type":"is allied with","person":"Rickard Karstark","start":"1x10","end":"3x02"},{"_id":74,"name":"Rob Stark","type":"is enemy of","person":"Rickard Karstark","start":"3x02","end":"3x05"},{"_id":75,"name":"Rob Stark","type":"is allied with","person":"Walder Frey","start":"3x06","end":"3x09"},{"_id":76,"name":"Rob Stark","type":"is allied with","person":"Edmure Tully","start":"3x03","end":"3x09"},{"_id":77,"name":"Bran Stark","type":"first appearance","person":null,"start":"1x01","end":null},{"_id":78,"name":"Bran Stark","type":"is sibling of","person":"Rob Stark","start":"0x00","end":"3x09"},{"_id":79,"name":"Bran Stark","type":"is sibling of","person":"Rickon Stark","start":"0x00","end":null},{"_id":80,"name":"Bran Stark","type":"is sibling of","person":"Sansa Stark","start":"0x00","end":null},{"_id":81,"name":"Bran Stark","type":"is sibling of","person":"Arya Stark","start":"0x00","end":null},{"_id":82,"name":"Bran Stark","type":"is sibling of","person":"Jon Snow","start":"0x00","end":null},{"_id":83,"name":"Bran Stark","type":"is allied with","person":"Summer","start":"1x01","end":null},{"_id":84,"name":"Bran Stark","type":"was severely injured by","person":"Jaime Lannister","start":"1x01","end":"1x01"},{"_id":85,"name":"Bran Stark","type":"is allied with","person":"Three-eyed raven","start":"1x04","end":null},{"_id":86,"name":"Bran Stark","type":"is allied with","person":"Osha","start":"1x06","end":"3x09"},{"_id":87,"name":"Bran Stark","type":"is allied with","person":"Hodor","start":"1x04","end":null},{"_id":88,"name":"Bran Stark","type":"is enemy of","person":"Theon Greyjoy","start":"2x06","end":null},{"_id":89,"name":"Bran Stark","type":"is allied with","person":"Maester Luwin","start":"1x01","end":"2x10"},{"_id":90,"name":"Bran Stark","type":"is allied with","person":"Jojen Reed","start":"3x02","end":"4x10"},{"_id":91,"name":"Bran Stark","type":"is allied with","person":"Meera Reed","start":"3x02","end":null},{"_id":92,"name":"Bran Stark","type":"is allied with","person":"Samwell Tarly","start":"3x10","end":"3x10"},{"_id":93,"name":"Rickon Stark","type":"first appearance","person":null,"start":"1x01","end":null},{"_id":94,"name":"Rickon Stark","type":"is sibling of","person":"Rob Stark","start":"0x00","end":"3x09"},{"_id":95,"name":"Rickon Stark","type":"is sibling of","person":"Bran Stark","start":"0x00","end":null},{"_id":96,"name":"Rickon Stark","type":"is sibling of","person":"Sansa Stark","start":"0x00","end":null},{"_id":97,"name":"Rickon Stark","type":"is sibling of","person":"Arya Stark","start":"0x00","end":null},{"_id":98,"name":"Rickon Stark","type":"is sibling of","person":"Jon Snow","start":"0x00","end":null},{"_id":99,"name":"Rickon Stark","type":"is allied with","person":"Shaggydog","start":"1x01","end":null},{"_id":100,"name":"Rickon Stark","type":"is allied with","person":"Osha","start":"1x06","end":null},{"_id":101,"name":"Rickon Stark","type":"is allied with","person":"Maester Luwin","start":"1x01","end":"2x10"},{"_id":102,"name":"Sansa Stark","type":"first appearance","person":null,"start":"1x01","end":null},{"_id":103,"name":"Sansa Stark","type":"is sibling of","person":"Rob Stark","start":"0x00","end":"3x09"},{"_id":104,"name":"Sansa Stark","type":"is sibling of","person":"Bran Stark","start":"0x00","end":null},{"_id":105,"name":"Sansa Stark","type":"is sibling of","person":"Rickon Stark","start":"0x00","end":null},{"_id":106,"name":"Sansa Stark","type":"is sibling of","person":"Arya Stark","start":"0x00","end":null},{"_id":107,"name":"Sansa Stark","type":"is sibling of","person":"Jon Snow","start":"0x00","end":null},{"_id":108,"name":"Sansa Stark","type":"is allied with","person":"Lady","start":"1x01","end":"1x02"},{"_id":109,"name":"Sansa Stark","type":"is in love with","person":"Joffrey Baratheon","start":"1x01","end":"1x08"},{"_id":110,"name":"Sansa Stark","type":"is allied with","person":"Cersei Lannister","start":"1x01","end":"1x06"},{"_id":111,"name":"Sansa Stark","type":"is allied with","person":"Sandor Clegane","start":"1x10","end":null},{"_id":112,"name":"Sansa Stark","type":"is enemy of","person":"Joffrey Baratheon","start":"1x09","end":null},{"_id":113,"name":"Sansa Stark","type":"is enemy of","person":"Cersei Lannister","start":"1x10","end":"2x07"},{"_id":114,"name":"Sansa Stark","type":"is allied with","person":"Shae","start":"2x03","end":null}]
+
+      var characters = [];
+
+      _.each(json, function(obj) {
+
+        if (arrayHasProperty(characters, "name", obj.name)) {
+
+        } else {
+          var character = {
+            name: obj.name,
+            relations: []
+          };
+
+          _.each(_.where(json, {name: obj.name}), function(obj) {
+
+            character.relations.push({
+
+              person: obj.person,
+              type: obj.type,
+              start: obj.start,
+              end: obj.end,
+            });
+          });
+
+          characters.push(character);
         }
       });
+
+      console.log(characters);
+
+
+      function arrayHasProperty(arr, key, value) {
+
+        var result = arr.filter(function (obj) {
+
+          return obj[key] == value;
+        });
+
+        return result.length;
+      }
     </script>
 
   </body>
