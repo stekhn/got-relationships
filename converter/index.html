@@ -32,7 +32,8 @@
     }
   </style>
 
-  <script type="text/javascript" src="miso.ds.deps.0.4.1.js"></script>
+  <script type="text/javascript" src="miso.ds.min.js"></script>
+  <script type="text/javascript" src="filesaver.min.js"></script>
   </head>
 
   <body>
@@ -43,6 +44,7 @@
       <p>Get the caracter data from a Google Spreadsheets and convert it, so it can be used with the application.</p>
       <form>
         <button type="button" id="get-data">Get and convert data</button>
+        <button type="button" id="save-file">Download file</button>
       </form>
       <textarea id="result"></textarea>
 
@@ -51,8 +53,10 @@
     <script>
 
       var characters = [];
+      var blob;
       
       document.getElementById("get-data").onclick = getData;
+      document.getElementById("save-file").onclick = saveFile;
 
       function getData() {
 
@@ -110,6 +114,16 @@
       function outputData(string) {
 
         document.getElementById("result").value = string;
+        blob = new Blob([string], {type: "application/json;charset=utf-8"});
+      }
+
+      function saveFile() {
+
+        if (blob) {
+          saveAs(blob, "got-relations.json");
+        } else {
+          getData();
+        }
       }
         
       function arrayHasProperty(arr, key, value) {
