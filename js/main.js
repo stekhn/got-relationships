@@ -27,6 +27,7 @@ function initGraph() {
       node = svg.append("g").selectAll(".node");
 
   d3.json("data/readme-flare-imports.json", function(error, classes) {
+  //d3.json("data/got-relations.json", function(error, classes) {
     var nodes = cluster.nodes(packageHierarchy(classes)),
         links = packageImports(nodes);
 
@@ -78,6 +79,7 @@ function initGraph() {
 
   // Lazily construct the package hierarchy from class names.
   function packageHierarchy(classes) {
+
     var map = {};
 
     function find(name, data) {
