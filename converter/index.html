@@ -56,7 +56,9 @@
 
     <script>
 
-      var characters = [];
+      var key = "1SbMWBGGvdh3iKwWIMRL7lHZzKjWfB8oCqMNwKcq8tIY";
+      var data = {};
+      var loaded = 0;
       var blob;
       
       document.getElementById("get-data").onclick = getData;
@@ -64,19 +66,25 @@
 
       function getData() {
 
+        getSpreadsheet(key, 1, handler);
+        getSpreadsheet(key, 2, handler);
+      }
+
+      function getSpreadsheet(key, worksheet, handler) {
+
         var ds = new Miso.Dataset({
 
           importer : Miso.Dataset.Importers.GoogleSpreadsheet,
           parser : Miso.Dataset.Parsers.GoogleSpreadsheet,
-          key : "1SbMWBGGvdh3iKwWIMRL7lHZzKjWfB8oCqMNwKcq8tIY",
-          worksheet : "1"
+          key : key,
+          worksheet : worksheet
         });
 
         ds.fetch({ 
 
           success : function() {
 
-            convertData(ds.toJSON());
+            handler(ds, worksheet);
           },
           error : function() {
 
@@ -84,12 +92,32 @@
           }
         });
       }
+
+      function handler(ds, worksheet) {
+        
+        loaded += worksheet;
+
+        if (worksheet === 1) {
+
+          // 
+          data.relations = _.filter(ds.toJSON(), function (obj) { return obj.name; });
+        }
+
+        if (worksheet === 2) {
+          data.characters = _.filter(ds.toJSON(), function (obj) { return obj.name; });
+        }
+
+        if (loaded === 3) {
+          outputData(JSON.stringify(data));
+        }
+
+      }
      
       function convertData(json) {
 
         _.each(json, function(obj) {
 
-        if (arrayHasProperty(characters, "name", obj.name)) {
+          if (arrayHasProperty(characters, "name", obj.name)) {
 
           } else {
             var character = {
@@ -124,7 +152,7 @@
       function saveFile() {
 
         if (blob) {
-          saveAs(blob, "got-relations.json");
+          saveAs(blob, "data.json");
         } else {
           getData();
         }
