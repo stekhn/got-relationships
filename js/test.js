@@ -42,14 +42,21 @@ graph = function(id, d) {
     linkLayer = container.append("g");
     nodeLayer = container.append("g");
     
-    var degreeDomain = d3.extent(data.neurons, function(n) { return n.D; });
+    var degreeDomain = d3.extent(data.characters, function(n) {
+        return 15;
+        //n.D;
+    });
+
     nodeRadiusScale = d3.scale.linear().domain(degreeDomain).range([10,25]);
 
-    var weightDomain = d3.extent(data.synapses, function(s) { return s.weight; });
+    var weightDomain = d3.extent(data.relations, function(s) {
+        return 1;
+        //s.weight;
+    });
     linkWeightScale = d3.scale.linear().domain(weightDomain).range([2,6]);
 
-    initNodePos(data.neurons);
-    addNodeRadius(data.neurons);
+    initNodePos(data.characters);
+    addNodeRadius(data.characters);
 
     colors = ["#00ADEF", "#ED008C", "#F5892D", "#afddca", "#f2b1ff", "#ff8cbd", "#bbb"];
 
@@ -96,7 +103,7 @@ graph = function(id, d) {
 
     // Crossfilter
    
-    update(data.neurons, data.synapses);
+    update(data.characters, data.relations);
     
     // Warm-start
     for (i = 0; i < 10; i++)
@@ -136,7 +143,8 @@ update = function(n, l) {
     a.attr("class", "link")
         .classed("junction", function(d) { return (d.type == 'EJ' || d.type == 'NMJ')})
         .classed("hidden", function(d) { return (d.type=='EJ' && !showJunctions) || (d.type!='EJ' && !showSynapses); })
-        .style("stroke-width", function(d) { return linkWeightScale(d.weight); })
+        // @TODO 
+        .style("stroke-width", function(d) {return linkWeightScale(2); })
         .style("stroke", function(d) { return colors[2]; })
         .style("opacity", 0.25)
         .attr("id", function(d) { return d.id; })
@@ -190,7 +198,8 @@ updateLinks = function(l) {
     a.attr("class", "link")
         .classed("junction", function(d) { return (d.type == 'EJ' || d.type == 'NMJ')})
         .classed("hidden", function(d) { return (d.type=='EJ' && !showJunctions) || (d.type!='EJ' && !showSynapses); })
-        .style("stroke-width", function(d) { return linkWeightScale(d.weight); })
+        // @TODO
+        .style("stroke-width", function(d) { return linkWeightScale(2); })
         .style("stroke", function(d) { return colors[1]; })
         .style("opacity", 0.25)
         .attr("id", function(d) { return d.id; })
@@ -382,17 +391,17 @@ function linkMouseOver(d) {
     d3.select(this)
         .style("opacity", 1);
 
-    container.append("text")
-        .attr("class","labelText")
-        .style("font-size", "11px")
-        .style("fill", colors[2])
-        .attr("x", "50")
-        .attr("y", "-20")
-        .attr("dy", "-0.2em")
-        .attr("text-anchor", "start")
-        .append("textPath")
-            .attr("xlink:href", '#' + d.id)
-            .text(d.type + " " + d.weight); 
+    // container.append("text")
+    //     .attr("class","labelText")
+    //     .style("font-size", "11px")
+    //     .style("fill", colors[2])
+    //     .attr("x", "50")
+    //     .attr("y", "-20")
+    //     .attr("dy", "-0.2em")
+    //     .attr("text-anchor", "start")
+    //     .append("textPath")
+    //         .attr("xlink:href", '#' + d.id)
+    //         .text(d.type + " " + d.weight); 
 }
 
 function linkMouseOut(d) {
@@ -437,17 +446,18 @@ function searchNode() {
 }
 
 
-function initNodePos(neurons) {
-    neurons.forEach(function(d) { 
-        if (d.type.indexOf("sensory") > -1)
+function initNodePos(characters) {
+    characters.forEach(function(d) { 
+        if (d.faction.indexOf("House Stark") > -1)
             d.y = 0;
-        else if (d.type.indexOf("inter") > -1)
+        else if (d.faction.indexOf("House Targaryen") > -1)
             d.y = height/2;
-        else if (d.type.indexOf("motor") > -1)
+        else if (d.faction.indexOf("House Lannister") > -1)
             d.y = 3*height/4;
-        else if (d.type.indexOf("muscle") > -1)
+        else if (d.faction.indexOf("House Martell") > -1)
             d.y = height;
 
+        // @TODO
         if (d.name.slice(-2,-1) == "L")
             d.x = 0.25 * width;
         else if (d.name.slice(-1) == "R")
@@ -457,6 +467,26 @@ function initNodePos(neurons) {
         //if (d.name="AVAL")
         //d.fixed = true;        
     });
+
+    // neurons.forEach(function(d) { 
+    //     if (d.type.indexOf("sensory") > -1)
+    //         d.y = 0;
+    //     else if (d.type.indexOf("inter") > -1)
+    //         d.y = height/2;
+    //     else if (d.type.indexOf("motor") > -1)
+    //         d.y = 3*height/4;
+    //     else if (d.type.indexOf("muscle") > -1)
+    //         d.y = height;
+
+    //     if (d.name.slice(-2,-1) == "L")
+    //         d.x = 0.25 * width;
+    //     else if (d.name.slice(-1) == "R")
+    //         d.x = 0.75 * width;
+
+    //     // Fix AVAL and AVAR to the middle
+    //     //if (d.name="AVAL")
+    //     //d.fixed = true;        
+    // });
 }
 
 function addNodeRadius(neurons) {
