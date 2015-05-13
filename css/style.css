@@ -1,47 +1,50 @@
-body {
-  background: aliceblue;
-}
-
-.node {
-  font: 300 11px "Helvetica Neue", Helvetica, Arial, sans-serif;
-  fill: #bbb;
-}
-
-.node:hover {
-  fill: #000;
-}
-
 .link {
-  stroke: steelblue;
-  stroke-opacity: .4;
   fill: none;
+  stroke: #666;
+  stroke-width: 1.5px;
+}
+
+#licensing {
+  fill: green;
+}
+
+.link.allied {
+  stroke: green;
+}
+
+.link.enemy {
+  stroke: red;
+}
+
+.link.killed {
+  stroke: red;
+}
+
+.link.love {
+  stroke: lightblue;
+}
+
+.link.sibling {
+  stroke: lightblue;
+}
+.link.parent {
+  stroke: lightblue;
+}.link.married {
+  stroke: lightblue;
+}
+
+.link.resolved {
+  stroke-dasharray: 0,2 1;
+}
+
+circle {
+  fill: #ccc;
+  stroke: #333;
+  stroke-width: 1.5px;
+}
+
+text {
+  font: 10px sans-serif;
   pointer-events: none;
-}
-
-.node:hover,
-.node--source,
-.node--target {
-  font-weight: 700;
-}
-
-.node--source {
-  fill: #2ca02c;
-}
-
-.node--target {
-  fill: #d62728;
-}
-
-.link--source,
-.link--target {
-  stroke-opacity: 1;
-  stroke-width: 2px;
-}
-
-.link--source {
-  stroke: #d62728;
-}
-
-.link--target {
-  stroke: #2ca02c;
+  text-shadow: 0 1px 0 #fff, 1px 0 0 #fff, 0 -1px 0 #fff, -1px 0 0 #fff;
 }

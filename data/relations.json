@@ -1,0 +1,3564 @@
+[{
+    "_id": 9,
+    "source": "Eddard Stark",
+    "type": "was killed by",
+    "target": "Ilyn Payne",
+    "start": "1x09",
+    "end": null
+}, {
+    "_id": 10,
+    "source": "Eddard Stark",
+    "type": "was killed by",
+    "target": "Joffrey Baratheon",
+    "start": "1x09",
+    "end": null
+}, {
+    "_id": 11,
+    "source": "Eddard Stark",
+    "type": "is sibling of",
+    "target": "Benjen Stark",
+    "start": "0x00",
+    "end": null
+}, {
+    "_id": 12,
+    "source": "Eddard Stark",
+    "type": "is married to",
+    "target": "Catelyn Stark",
+    "start": "1x01",
+    "end": "1x09"
+}, {
+    "_id": 13,
+    "source": "Eddard Stark",
+    "type": "is allied with",
+    "target": "Robert Baratheon",
+    "start": "1x01",
+    "end": "1x07"
+}, {
+    "_id": 14,
+    "source": "Eddard Stark",
+    "type": "is parent of",
+    "target": "Robb Stark",
+    "start": "0x00",
+    "end": null
+}, {
+    "_id": 15,
+    "source": "Eddard Stark",
+    "type": "is parent of",
+    "target": "Bran Stark",
+    "start": "0x00",
+    "end": null
+}, {
+    "_id": 16,
+    "source": "Eddard Stark",
+    "type": "is parent of",
+    "target": "Rickon Stark",
+    "start": "0x00",
+    "end": null
+}, {
+    "_id": 17,
+    "source": "Eddard Stark",
+    "type": "is parent of",
+    "target": "Sansa Stark",
+    "start": "0x00",
+    "end": null
+}, {
+    "_id": 18,
+    "source": "Eddard Stark",
+    "type": "is parent of",
+    "target": "Arya Stark",
+    "start": "0x00",
+    "end": null
+}, {
+    "_id": 19,
+    "source": "Eddard Stark",
+    "type": "is parent of",
+    "target": "Jon Snow",
+    "start": "0x00",
+    "end": null
+}, {
+    "_id": 20,
+    "source": "Eddard Stark",
+    "type": "killed",
+    "target": "Lady",
+    "start": "1x02",
+    "end": null
+}, {
+    "_id": 21,
+    "source": "Eddard Stark",
+    "type": "is enemy of",
+    "target": "Tyrion Lannister",
+    "start": "1x03",
+    "end": "1x06"
+}, {
+    "_id": 22,
+    "source": "Eddard Stark",
+    "type": "is enemy of",
+    "target": "Jaime Lannister",
+    "start": "1x05",
+    "end": "1x09"
+}, {
+    "_id": 23,
+    "source": "Eddard Stark",
+    "type": "is enemy of",
+    "target": "Cersei Lannister",
+    "start": "1x05",
+    "end": "1x09"
+}, {
+    "_id": 24,
+    "source": "Eddard Stark",
+    "type": "is allied with",
+    "target": "Yoren",
+    "start": "1x03",
+    "end": "1x09"
+}, {
+    "_id": 25,
+    "source": "Eddard Stark",
+    "type": "is allied with",
+    "target": "Petyr Baelish",
+    "start": "1x03",
+    "end": "1x07"
+}, {
+    "_id": 26,
+    "source": "Eddard Stark",
+    "type": "is allied with",
+    "target": "Varys",
+    "start": "1x03",
+    "end": "1x09"
+}, {
+    "_id": 27,
+    "source": "Eddard Stark",
+    "type": "is allied with",
+    "target": "Barristan Selmy",
+    "start": "1x05",
+    "end": "1x09"
+}, {
+    "_id": 28,
+    "source": "Eddard Stark",
+    "type": "is allied with",
+    "target": "Stannis Baratheon",
+    "start": "1x07",
+    "end": "1x09"
+}, {
+    "_id": 29,
+    "source": "Eddard Stark",
+    "type": "is enemy of",
+    "target": "Joffrey Baratheon",
+    "start": "1x07",
+    "end": "1x09"
+}, {
+    "_id": 30,
+    "source": "Eddard Stark",
+    "type": "is enemy of",
+    "target": "Petyr Baelish",
+    "start": "1x07",
+    "end": "1x09"
+}, {
+    "_id": 31,
+    "source": "Eddard Stark",
+    "type": "is allied with",
+    "target": "Theon Greyjoy",
+    "start": "1x01",
+    "end": "1x09"
+}, {
+    "_id": 32,
+    "source": "Eddard Stark",
+    "type": "is enemy of",
+    "target": "Janos Slynt",
+    "start": "1x07",
+    "end": "1x09"
+}, {
+    "_id": 34,
+    "source": "Catelyn Stark",
+    "type": "was killed by",
+    "target": "Walder Frey",
+    "start": "3x09",
+    "end": null
+}, {
+    "_id": 35,
+    "source": "Catelyn Stark",
+    "type": "was killed by",
+    "target": "Tywin Lannister",
+    "start": "3x09",
+    "end": null
+}, {
+    "_id": 36,
+    "source": "Catelyn Stark",
+    "type": "is sibling of",
+    "target": "Lysa Arryn",
+    "start": "0x00",
+    "end": null
+}, {
+    "_id": 37,
+    "source": "Catelyn Stark",
+    "type": "is sibling of",
+    "target": "Edmure Tully",
+    "start": "0x00",
+    "end": null
+}, {
+    "_id": 38,
+    "source": "Catelyn Stark",
+    "type": "is parent of",
+    "target": "Robb Stark",
+    "start": "0x00",
+    "end": null
+}, {
+    "_id": 39,
+    "source": "Catelyn Stark",
+    "type": "is parent of",
+    "target": "Bran Stark",
+    "start": "0x00",
+    "end": null
+}, {
+    "_id": 40,
+    "source": "Catelyn Stark",
+    "type": "is parent of",
+    "target": "Rickon Stark",
+    "start": "0x00",
+    "end": null
+}, {
+    "_id": 41,
+    "source": "Catelyn Stark",
+    "type": "is parent of",
+    "target": "Sansa Stark",
+    "start": "0x00",
+    "end": null
+}, {
+    "_id": 42,
+    "source": "Catelyn Stark",
+    "type": "is parent of",
+    "target": "Arya Stark",
+    "start": "0x00",
+    "end": null
+}, {
+    "_id": 43,
+    "source": "Catelyn Stark",
+    "type": "is married to",
+    "target": "Eddard Stark",
+    "start": "1x01",
+    "end": "1x09"
+}, {
+    "_id": 44,
+    "source": "Catelyn Stark",
+    "type": "is allied with",
+    "target": "Petyr Baelish",
+    "start": "1x03",
+    "end": "2x04"
+}, {
+    "_id": 45,
+    "source": "Catelyn Stark",
+    "type": "is enemy of",
+    "target": "Tyrion Lannister",
+    "start": "1x03",
+    "end": "1x06"
+}, {
+    "_id": 46,
+    "source": "Catelyn Stark",
+    "type": "is enemy of",
+    "target": "Jaime Lannister",
+    "start": "1x03",
+    "end": "3x09"
+}, {
+    "_id": 47,
+    "source": "Catelyn Stark",
+    "type": "is enemy of",
+    "target": "Cersei Lannister",
+    "start": "1x03",
+    "end": "3x09"
+}, {
+    "_id": 48,
+    "source": "Catelyn Stark",
+    "type": "is allied with",
+    "target": "Walder Frey",
+    "start": "1x08",
+    "end": "2x10"
+}, {
+    "_id": 49,
+    "source": "Catelyn Stark",
+    "type": "is allied with",
+    "target": "Renly Baratheon",
+    "start": "2x03",
+    "end": "2x05"
+}, {
+    "_id": 50,
+    "source": "Catelyn Stark",
+    "type": "is allied with",
+    "target": "Brienne of Tarth",
+    "start": "2x05",
+    "end": "3x09"
+}, {
+    "_id": 51,
+    "source": "Catelyn Stark",
+    "type": "is allied with",
+    "target": "Roose Bolton",
+    "start": "2x06",
+    "end": "3x02"
+}, {
+    "_id": 52,
+    "source": "Catelyn Stark",
+    "type": "is allied with",
+    "target": "Talisa Maegyr",
+    "start": "3x02",
+    "end": "3x09"
+}, {
+    "_id": 53,
+    "source": "Catelyn Stark",
+    "type": "is enemy of",
+    "target": "Joffrey Baratheon",
+    "start": "1x07",
+    "end": "3x09"
+}, {
+    "_id": 54,
+    "source": "Catelyn Stark",
+    "type": "is enemy of",
+    "target": "Tywin Lannister",
+    "start": "1x07",
+    "end": "3x09"
+}, {
+    "_id": 55,
+    "source": "Catelyn Stark",
+    "type": "is allied with",
+    "target": "Walder Frey",
+    "start": "3x06",
+    "end": "3x09"
+}, {
+    "_id": 57,
+    "source": "Robb Stark",
+    "type": "was killed by",
+    "target": "Walder Frey",
+    "start": "3x09",
+    "end": null
+}, {
+    "_id": 58,
+    "source": "Robb Stark",
+    "type": "was killed by",
+    "target": "Tywin Lannister",
+    "start": "3x09",
+    "end": null
+}, {
+    "_id": 59,
+    "source": "Robb Stark",
+    "type": "is sibling of",
+    "target": "Bran Stark",
+    "start": "0x00",
+    "end": null
+}, {
+    "_id": 60,
+    "source": "Robb Stark",
+    "type": "is sibling of",
+    "target": "Rickon Stark",
+    "start": "0x00",
+    "end": null
+}, {
+    "_id": 61,
+    "source": "Robb Stark",
+    "type": "is sibling of",
+    "target": "Sansa Stark",
+    "start": "0x00",
+    "end": null
+}, {
+    "_id": 62,
+    "source": "Robb Stark",
+    "type": "is sibling of",
+    "target": "Arya Stark",
+    "start": "0x00",
+    "end": null
+}, {
+    "_id": 63,
+    "source": "Robb Stark",
+    "type": "is sibling of",
+    "target": "Jon Snow",
+    "start": "0x00",
+    "end": null
+}, {
+    "_id": 64,
+    "source": "Robb Stark",
+    "type": "is married to",
+    "target": "Talisa Maegyr",
+    "start": "2x10",
+    "end": "3x09"
+}, {
+    "_id": 65,
+    "source": "Robb Stark",
+    "type": "is allied with",
+    "target": "Theon Greyjoy",
+    "start": "1x01",
+    "end": "2x06"
+}, {
+    "_id": 66,
+    "source": "Robb Stark",
+    "type": "is allied with",
+    "target": "Greywind",
+    "start": "1x01",
+    "end": "3x09"
+}, {
+    "_id": 67,
+    "source": "Robb Stark",
+    "type": "is enemy of",
+    "target": "Tyrion Lannister",
+    "start": "1x03",
+    "end": "1x06"
+}, {
+    "_id": 68,
+    "source": "Robb Stark",
+    "type": "is enemy of",
+    "target": "Jaime Lannister",
+    "start": "1x03",
+    "end": "3x09"
+}, {
+    "_id": 69,
+    "source": "Robb Stark",
+    "type": "is enemy of",
+    "target": "Cersei Lannister",
+    "start": "1x03",
+    "end": "3x09"
+}, {
+    "_id": 70,
+    "source": "Robb Stark",
+    "type": "is enemy of",
+    "target": "Tywin Lannister",
+    "start": "1x07",
+    "end": "3x09"
+}, {
+    "_id": 71,
+    "source": "Robb Stark",
+    "type": "is allied with",
+    "target": "Walder Frey",
+    "start": "1x08",
+    "end": "2x10"
+}, {
+    "_id": 72,
+    "source": "Robb Stark",
+    "type": "is allied with",
+    "target": "Renly Baratheon",
+    "start": "2x03",
+    "end": "2x05"
+}, {
+    "_id": 73,
+    "source": "Robb Stark",
+    "type": "is in love with",
+    "target": "Talisa Maegyr",
+    "start": "2x04",
+    "end": "2x10"
+}, {
+    "_id": 74,
+    "source": "Robb Stark",
+    "type": "is enemy of",
+    "target": "Stannis Baratheon",
+    "start": "2x05",
+    "end": "3x09"
+}, {
+    "_id": 75,
+    "source": "Robb Stark",
+    "type": "is enemy of",
+    "target": "Theon Greyjoy",
+    "start": "2x06",
+    "end": "3x09"
+}, {
+    "_id": 76,
+    "source": "Robb Stark",
+    "type": "is allied with",
+    "target": "Roose Bolton",
+    "start": "2x06",
+    "end": "3x02"
+}, {
+    "_id": 77,
+    "source": "Robb Stark",
+    "type": "is enemy of",
+    "target": "Joffrey Baratheon",
+    "start": "1x07",
+    "end": "3x09"
+}, {
+    "_id": 78,
+    "source": "Robb Stark",
+    "type": "is allied with",
+    "target": "Walder Frey",
+    "start": "3x06",
+    "end": "3x09"
+}, {
+    "_id": 79,
+    "source": "Robb Stark",
+    "type": "is allied with",
+    "target": "Edmure Tully",
+    "start": "3x03",
+    "end": "3x09"
+}, {
+    "_id": 81,
+    "source": "Bran Stark",
+    "type": "is sibling of",
+    "target": "Robb Stark",
+    "start": "0x00",
+    "end": null
+}, {
+    "_id": 82,
+    "source": "Bran Stark",
+    "type": "is sibling of",
+    "target": "Rickon Stark",
+    "start": "0x00",
+    "end": null
+}, {
+    "_id": 83,
+    "source": "Bran Stark",
+    "type": "is sibling of",
+    "target": "Sansa Stark",
+    "start": "0x00",
+    "end": null
+}, {
+    "_id": 84,
+    "source": "Bran Stark",
+    "type": "is sibling of",
+    "target": "Arya Stark",
+    "start": "0x00",
+    "end": null
+}, {
+    "_id": 85,
+    "source": "Bran Stark",
+    "type": "is sibling of",
+    "target": "Jon Snow",
+    "start": "0x00",
+    "end": null
+}, {
+    "_id": 86,
+    "source": "Bran Stark",
+    "type": "is allied with",
+    "target": "Summer",
+    "start": "1x01",
+    "end": null
+}, {
+    "_id": 87,
+    "source": "Bran Stark",
+    "type": "was severely injured by",
+    "target": "Jaime Lannister",
+    "start": "1x01",
+    "end": null
+}, {
+    "_id": 88,
+    "source": "Bran Stark",
+    "type": "was severely injured by",
+    "target": "Cersei Lannister",
+    "start": "1x01",
+    "end": null
+}, {
+    "_id": 89,
+    "source": "Bran Stark",
+    "type": "is allied with",
+    "target": "Three-eyed raven",
+    "start": "1x04",
+    "end": null
+}, {
+    "_id": 90,
+    "source": "Bran Stark",
+    "type": "is allied with",
+    "target": "Osha",
+    "start": "1x06",
+    "end": "3x09"
+}, {
+    "_id": 91,
+    "source": "Bran Stark",
+    "type": "is allied with",
+    "target": "Hodor",
+    "start": "1x04",
+    "end": null
+}, {
+    "_id": 92,
+    "source": "Bran Stark",
+    "type": "is enemy of",
+    "target": "Theon Greyjoy",
+    "start": "2x06",
+    "end": null
+}, {
+    "_id": 93,
+    "source": "Bran Stark",
+    "type": "is allied with",
+    "target": "Maester Luwin",
+    "start": "1x01",
+    "end": "2x10"
+}, {
+    "_id": 94,
+    "source": "Bran Stark",
+    "type": "is allied with",
+    "target": "Jojen Reed",
+    "start": "3x02",
+    "end": "4x10"
+}, {
+    "_id": 95,
+    "source": "Bran Stark",
+    "type": "is allied with",
+    "target": "Meera Reed",
+    "start": "3x02",
+    "end": null
+}, {
+    "_id": 96,
+    "source": "Bran Stark",
+    "type": "is allied with",
+    "target": "Samwell Tarly",
+    "start": "3x10",
+    "end": "3x10"
+}, {
+    "_id": 97,
+    "source": "Bran Stark",
+    "type": "killed",
+    "target": "Locke",
+    "start": "4x05",
+    "end": null
+}, {
+    "_id": 99,
+    "source": "Rickon Stark",
+    "type": "is sibling of",
+    "target": "Robb Stark",
+    "start": "0x00",
+    "end": null
+}, {
+    "_id": 100,
+    "source": "Rickon Stark",
+    "type": "is sibling of",
+    "target": "Bran Stark",
+    "start": "0x00",
+    "end": null
+}, {
+    "_id": 101,
+    "source": "Rickon Stark",
+    "type": "is sibling of",
+    "target": "Sansa Stark",
+    "start": "0x00",
+    "end": null
+}, {
+    "_id": 102,
+    "source": "Rickon Stark",
+    "type": "is sibling of",
+    "target": "Arya Stark",
+    "start": "0x00",
+    "end": null
+}, {
+    "_id": 103,
+    "source": "Rickon Stark",
+    "type": "is sibling of",
+    "target": "Jon Snow",
+    "start": "0x00",
+    "end": null
+}, {
+    "_id": 104,
+    "source": "Rickon Stark",
+    "type": "is allied with",
+    "target": "Shaggydog",
+    "start": "1x01",
+    "end": null
+}, {
+    "_id": 105,
+    "source": "Rickon Stark",
+    "type": "is allied with",
+    "target": "Osha",
+    "start": "1x06",
+    "end": null
+}, {
+    "_id": 106,
+    "source": "Rickon Stark",
+    "type": "is allied with",
+    "target": "Maester Luwin",
+    "start": "1x01",
+    "end": "2x10"
+}, {
+    "_id": 108,
+    "source": "Sansa Stark",
+    "type": "is sibling of",
+    "target": "Robb Stark",
+    "start": "0x00",
+    "end": null
+}, {
+    "_id": 109,
+    "source": "Sansa Stark",
+    "type": "is sibling of",
+    "target": "Bran Stark",
+    "start": "0x00",
+    "end": null
+}, {
+    "_id": 110,
+    "source": "Sansa Stark",
+    "type": "is sibling of",
+    "target": "Rickon Stark",
+    "start": "0x00",
+    "end": null
+}, {
+    "_id": 111,
+    "source": "Sansa Stark",
+    "type": "is sibling of",
+    "target": "Arya Stark",
+    "start": "0x00",
+    "end": null
+}, {
+    "_id": 112,
+    "source": "Sansa Stark",
+    "type": "is sibling of",
+    "target": "Jon Snow",
+    "start": "0x00",
+    "end": null
+}, {
+    "_id": 113,
+    "source": "Sansa Stark",
+    "type": "is allied with",
+    "target": "Lady",
+    "start": "1x01",
+    "end": "1x02"
+}, {
+    "_id": 114,
+    "source": "Sansa Stark",
+    "type": "is in love with",
+    "target": "Joffrey Baratheon",
+    "start": "1x01",
+    "end": "1x08"
+}, {
+    "_id": 115,
+    "source": "Sansa Stark",
+    "type": "is allied with",
+    "target": "Cersei Lannister",
+    "start": "1x01",
+    "end": "1x06"
+}, {
+    "_id": 116,
+    "source": "Sansa Stark",
+    "type": "is allied with",
+    "target": "Sandor Clegane",
+    "start": "1x10",
+    "end": null
+}, {
+    "_id": 117,
+    "source": "Sansa Stark",
+    "type": "is enemy of",
+    "target": "Joffrey Baratheon",
+    "start": "1x09",
+    "end": "4x02"
+}, {
+    "_id": 118,
+    "source": "Sansa Stark",
+    "type": "is enemy of",
+    "target": "Cersei Lannister",
+    "start": "1x10",
+    "end": null
+}, {
+    "_id": 119,
+    "source": "Sansa Stark",
+    "type": "is allied with",
+    "target": "Dontos Hollard",
+    "start": "2x01",
+    "end": "4x03"
+}, {
+    "_id": 120,
+    "source": "Sansa Stark",
+    "type": "is allied with",
+    "target": "Shae",
+    "start": "2x03",
+    "end": null
+}, {
+    "_id": 121,
+    "source": "Sansa Stark",
+    "type": "is allied with",
+    "target": "Sandor Clegane",
+    "start": "2x06",
+    "end": null
+}, {
+    "_id": 122,
+    "source": "Sansa Stark",
+    "type": "is allied with",
+    "target": "Petyr Baelish",
+    "start": "2x10",
+    "end": null
+}, {
+    "_id": 123,
+    "source": "Sansa Stark",
+    "type": "is allied with",
+    "target": "Margaery Tyrell",
+    "start": "3x02",
+    "end": null
+}, {
+    "_id": 124,
+    "source": "Sansa Stark",
+    "type": "is allied with",
+    "target": "Olenna Tyrell",
+    "start": "3x02",
+    "end": null
+}, {
+    "_id": 125,
+    "source": "Sansa Stark",
+    "type": "is enemy of",
+    "target": "Tywin Lannister",
+    "start": "3x05",
+    "end": null
+}, {
+    "_id": 126,
+    "source": "Sansa Stark",
+    "type": "is married to",
+    "target": "Tyrion Lannister",
+    "start": "3x08",
+    "end": null
+}, {
+    "_id": 127,
+    "source": "Sansa Stark",
+    "type": "is allied with",
+    "target": "Tyrion Lannister",
+    "start": "3x09",
+    "end": null
+}, {
+    "_id": 128,
+    "source": "Sansa Stark",
+    "type": "is allied with",
+    "target": "Lysa Arryn",
+    "start": "4x05",
+    "end": "4x07"
+}, {
+    "_id": 129,
+    "source": "Sansa Stark",
+    "type": "is enemy of",
+    "target": "Lysa Arryn",
+    "start": "4x07",
+    "end": "4x07"
+}, {
+    "_id": 131,
+    "source": "Arya Stark",
+    "type": "is sibling of",
+    "target": "Robb Stark",
+    "start": "0x00",
+    "end": null
+}, {
+    "_id": 132,
+    "source": "Arya Stark",
+    "type": "is sibling of",
+    "target": "Bran Stark",
+    "start": "0x00",
+    "end": null
+}, {
+    "_id": 133,
+    "source": "Arya Stark",
+    "type": "is sibling of",
+    "target": "Rickon Stark",
+    "start": "0x00",
+    "end": null
+}, {
+    "_id": 134,
+    "source": "Arya Stark",
+    "type": "is sibling of",
+    "target": "Sansa Stark",
+    "start": "0x00",
+    "end": null
+}, {
+    "_id": 135,
+    "source": "Arya Stark",
+    "type": "is sibling of",
+    "target": "Jon Snow",
+    "start": "0x00",
+    "end": null
+}, {
+    "_id": 136,
+    "source": "Arya Stark",
+    "type": "is allied with",
+    "target": "Nymeria",
+    "start": "1x01",
+    "end": "1x02"
+}, {
+    "_id": 137,
+    "source": "Arya Stark",
+    "type": "is enemy of",
+    "target": "Joffrey Baratheon",
+    "start": "1x02",
+    "end": "4x02"
+}, {
+    "_id": 138,
+    "source": "Arya Stark",
+    "type": "is enemy of",
+    "target": "Sandor Clegane",
+    "start": "1x02",
+    "end": "4x04"
+}, {
+    "_id": 139,
+    "source": "Arya Stark",
+    "type": "is allied with",
+    "target": "Yoren",
+    "start": "1x05",
+    "end": "2x03"
+}, {
+    "_id": 140,
+    "source": "Arya Stark",
+    "type": "is allied with",
+    "target": "Syrio Forel",
+    "start": "1x03",
+    "end": "1x08"
+}, {
+    "_id": 141,
+    "source": "Arya Stark",
+    "type": "is enemy of",
+    "target": "Cersei Lannister",
+    "start": "1x08",
+    "end": null
+}, {
+    "_id": 142,
+    "source": "Arya Stark",
+    "type": "is allied with",
+    "target": "Gendry",
+    "start": "1x10",
+    "end": null
+}, {
+    "_id": 143,
+    "source": "Arya Stark",
+    "type": "is allied with",
+    "target": "Hot Pie",
+    "start": "2x02",
+    "end": null
+}, {
+    "_id": 144,
+    "source": "Arya Stark",
+    "type": "is allied with",
+    "target": "Jaqen H'ghar",
+    "start": "2x02",
+    "end": null
+}, {
+    "_id": 145,
+    "source": "Arya Stark",
+    "type": "is enemy of",
+    "target": "Polliver",
+    "start": "2x03",
+    "end": "4x01"
+}, {
+    "_id": 146,
+    "source": "Arya Stark",
+    "type": "killed",
+    "target": "Polliver",
+    "start": "4x01",
+    "end": null
+}, {
+    "_id": 147,
+    "source": "Arya Stark",
+    "type": "is enemy of",
+    "target": "Gregor Clegane",
+    "start": "2x04",
+    "end": null
+}, {
+    "_id": 148,
+    "source": "Arya Stark",
+    "type": "is allied with",
+    "target": "Tywin Lannister",
+    "start": "2x04",
+    "end": "2x06"
+}, {
+    "_id": 149,
+    "source": "Arya Stark",
+    "type": "is enemy of",
+    "target": "Tywin Lannister",
+    "start": "2x06",
+    "end": null
+}, {
+    "_id": 150,
+    "source": "Arya Stark",
+    "type": "is allied with",
+    "target": "Beric Dondarrion",
+    "start": "3x04",
+    "end": "3x07"
+}, {
+    "_id": 151,
+    "source": "Arya Stark",
+    "type": "is allied with",
+    "target": "Thoros of Myr",
+    "start": "3x03",
+    "end": "3x07"
+}, {
+    "_id": 152,
+    "source": "Arya Stark",
+    "type": "is enemy of",
+    "target": "Melisandre",
+    "start": "3x06",
+    "end": null
+}, {
+    "_id": 153,
+    "source": "Arya Stark",
+    "type": "is allied with",
+    "target": "Sandor Clegane",
+    "start": "4x05",
+    "end": "4x10"
+}, {
+    "_id": 154,
+    "source": "Arya Stark",
+    "type": "is enemy of",
+    "target": "Walder Frey",
+    "start": "3x09",
+    "end": null
+}, {
+    "_id": 155,
+    "source": "Arya Stark",
+    "type": "is enemy of",
+    "target": "Roose Bolton",
+    "start": "3x09",
+    "end": null
+}, {
+    "_id": 156,
+    "source": "Arya Stark",
+    "type": "is enemy of",
+    "target": "Meryn Trant",
+    "start": "1x08",
+    "end": null
+}, {
+    "_id": 157,
+    "source": "Arya Stark",
+    "type": "is enemy of",
+    "target": "Ilyn Payne",
+    "start": "1x09",
+    "end": null
+}, {
+    "_id": 159,
+    "source": "Jon Snow",
+    "type": "is sibling of",
+    "target": "Robb Stark",
+    "start": "0x00",
+    "end": null
+}, {
+    "_id": 160,
+    "source": "Jon Snow",
+    "type": "is sibling of",
+    "target": "Bran Stark",
+    "start": "0x00",
+    "end": null
+}, {
+    "_id": 161,
+    "source": "Jon Snow",
+    "type": "is sibling of",
+    "target": "Rickon Stark",
+    "start": "0x00",
+    "end": null
+}, {
+    "_id": 162,
+    "source": "Jon Snow",
+    "type": "is sibling of",
+    "target": "Sansa Stark",
+    "start": "0x00",
+    "end": null
+}, {
+    "_id": 163,
+    "source": "Jon Snow",
+    "type": "is sibling of",
+    "target": "Arya Stark",
+    "start": "0x00",
+    "end": null
+}, {
+    "_id": 164,
+    "source": "Jon Snow",
+    "type": "is allied with",
+    "target": "Ghost",
+    "start": "1x01",
+    "end": null
+}, {
+    "_id": 165,
+    "source": "Jon Snow",
+    "type": "is allied with",
+    "target": "Benjen Stark",
+    "start": "1x01",
+    "end": null
+}, {
+    "_id": 166,
+    "source": "Jon Snow",
+    "type": "is enemy of",
+    "target": "Alliser Thorne",
+    "start": "1x03",
+    "end": null
+}, {
+    "_id": 167,
+    "source": "Jon Snow",
+    "type": "is allied with",
+    "target": "Pypar",
+    "start": "1x03",
+    "end": "4x09"
+}, {
+    "_id": 168,
+    "source": "Jon Snow",
+    "type": "is allied with",
+    "target": "Grenn",
+    "start": "1x03",
+    "end": "4x09"
+}, {
+    "_id": 169,
+    "source": "Jon Snow",
+    "type": "is allied with",
+    "target": "Samwell Tarly",
+    "start": "1x04",
+    "end": null
+}, {
+    "_id": 170,
+    "source": "Jon Snow",
+    "type": "is allied with",
+    "target": "Jeor Mormont",
+    "start": "1x07",
+    "end": null
+}, {
+    "_id": 171,
+    "source": "Jon Snow",
+    "type": "is allied with",
+    "target": "Maester Aemon",
+    "start": "1x09",
+    "end": null
+}, {
+    "_id": 172,
+    "source": "Jon Snow",
+    "type": "is enemy of",
+    "target": "Craster",
+    "start": "2x01",
+    "end": null
+}, {
+    "_id": 173,
+    "source": "Jon Snow",
+    "type": "is allied with",
+    "target": "Gilly",
+    "start": "2x02",
+    "end": null
+}, {
+    "_id": 174,
+    "source": "Jon Snow",
+    "type": "is allied with",
+    "target": "Qhorin Halfhand",
+    "start": "2x05",
+    "end": "2x10"
+}, {
+    "_id": 175,
+    "source": "Jon Snow",
+    "type": "is enemy of",
+    "target": "Ygritte",
+    "start": "2x06",
+    "end": "2x10"
+}, {
+    "_id": 176,
+    "source": "Jon Snow",
+    "type": "killed",
+    "target": "Qhorin Halfhand",
+    "start": "2x10",
+    "end": null
+}, {
+    "_id": 177,
+    "source": "Jon Snow",
+    "type": "is allied with",
+    "target": "Ygritte",
+    "start": "3x01",
+    "end": "3x10"
+}, {
+    "_id": 178,
+    "source": "Jon Snow",
+    "type": "is allied with",
+    "target": "Mance Rayder",
+    "start": "3x01",
+    "end": "3x09"
+}, {
+    "_id": 179,
+    "source": "Jon Snow",
+    "type": "is allied with",
+    "target": "Tormund Giantsbane",
+    "start": "3x01",
+    "end": "3x09"
+}, {
+    "_id": 180,
+    "source": "Jon Snow",
+    "type": "is in love with",
+    "target": "Ygritte",
+    "start": "3x05",
+    "end": "4x09"
+}, {
+    "_id": 181,
+    "source": "Jon Snow",
+    "type": "is enemy of",
+    "target": "Tormund Giantsbane",
+    "start": "3x09",
+    "end": null
+}, {
+    "_id": 182,
+    "source": "Jon Snow",
+    "type": "is enemy of",
+    "target": "Ygritte",
+    "start": "3x10",
+    "end": "4x09"
+}, {
+    "_id": 183,
+    "source": "Jon Snow",
+    "type": "is enemy of",
+    "target": "Mance Rayder",
+    "start": "3x09",
+    "end": "4x10"
+}, {
+    "_id": 184,
+    "source": "Jon Snow",
+    "type": "is enemy of",
+    "target": "Janos Slynt",
+    "start": "4x01",
+    "end": "5x03"
+}, {
+    "_id": 185,
+    "source": "Jon Snow",
+    "type": "killed",
+    "target": "Janos Slynt",
+    "start": "5x03",
+    "end": null
+}, {
+    "_id": 186,
+    "source": "Jon Snow",
+    "type": "is enemy of",
+    "target": "Roose Bolton",
+    "start": "4x01",
+    "end": null
+}, {
+    "_id": 187,
+    "source": "Jon Snow",
+    "type": "is enemy of",
+    "target": "Ramsay Bolton",
+    "start": "4x01",
+    "end": null
+}, {
+    "_id": 188,
+    "source": "Jon Snow",
+    "type": "is enemy of",
+    "target": "Walder Frey",
+    "start": "4x01",
+    "end": null
+}, {
+    "_id": 189,
+    "source": "Jon Snow",
+    "type": "is enemy of",
+    "target": "Locke",
+    "start": "4x02",
+    "end": "4x05"
+}, {
+    "_id": 190,
+    "source": "Jon Snow",
+    "type": "is allied with",
+    "target": "Eddison Tollett",
+    "start": "2x01",
+    "end": null
+}, {
+    "_id": 191,
+    "source": "Jon Snow",
+    "type": "is allied with",
+    "target": "Mance Rayder",
+    "start": "4x10",
+    "end": "5x01"
+}, {
+    "_id": 192,
+    "source": "Jon Snow",
+    "type": "is allied with",
+    "target": "Stannis Baratheon",
+    "start": "4x10",
+    "end": null
+}, {
+    "_id": 193,
+    "source": "Jon Snow",
+    "type": "killed",
+    "target": "Mance Rayder ",
+    "start": "5x01",
+    "end": null
+}, {
+    "_id": 194,
+    "source": "Jon Snow",
+    "type": "is allied with",
+    "target": "Davos Seaworth",
+    "start": "5x01",
+    "end": null
+}, {
+    "_id": 196,
+    "source": "Benjen Stark",
+    "type": "is sibling of",
+    "target": "Eddard Stark",
+    "start": "0x00",
+    "end": null
+}, {
+    "_id": 197,
+    "source": "Benjen Stark",
+    "type": "is allied with",
+    "target": "Jon Snow",
+    "start": "1x01",
+    "end": null
+}, {
+    "_id": 199,
+    "source": "Lysa Arryn",
+    "type": "is sibling of",
+    "target": "Catelyn Stark",
+    "start": "0x00",
+    "end": null
+}, {
+    "_id": 200,
+    "source": "Lysa Arryn",
+    "type": "is sibling of",
+    "target": "Edmure Tully",
+    "start": "0x00",
+    "end": null
+}, {
+    "_id": 201,
+    "source": "Lysa Arryn",
+    "type": "is parent of",
+    "target": "Robin Arryn",
+    "start": "0x00",
+    "end": null
+}, {
+    "_id": 202,
+    "source": "Lysa Arryn",
+    "type": "was killed by",
+    "target": "Petyr Baelish",
+    "start": "4x07",
+    "end": null
+}, {
+    "_id": 203,
+    "source": "Lysa Arryn",
+    "type": "is enemy of",
+    "target": "Tyrion Lannister",
+    "start": "1x05",
+    "end": "4x07"
+}, {
+    "_id": 204,
+    "source": "Lysa Arryn",
+    "type": "is in love with",
+    "target": "Petyr Baelish",
+    "start": "4x05",
+    "end": "4x07"
+}, {
+    "_id": 205,
+    "source": "Lysa Arryn",
+    "type": "is allied with",
+    "target": "Sansa Stark",
+    "start": "4x05",
+    "end": "4x07"
+}, {
+    "_id": 206,
+    "source": "Lysa Arryn",
+    "type": "is enemy of",
+    "target": "Sansa Stark",
+    "start": "4x07",
+    "end": "4x07"
+}, {
+    "_id": 208,
+    "source": "Edmure Tully",
+    "type": "is sibling of",
+    "target": "Catelyn Stark",
+    "start": "0x00",
+    "end": null
+}, {
+    "_id": 209,
+    "source": "Edmure Tully",
+    "type": "is sibling of",
+    "target": "Lysa Arryn",
+    "start": "0x00",
+    "end": null
+}, {
+    "_id": 210,
+    "source": "Edmure Tully",
+    "type": "is allied with",
+    "target": "Robb Stark",
+    "start": "3x03",
+    "end": "3x09"
+}, {
+    "_id": 211,
+    "source": "Edmure Tully",
+    "type": "is married to",
+    "target": "Roslin Frey",
+    "start": "3x09",
+    "end": null
+}, {
+    "_id": 212,
+    "source": "Edmure Tully",
+    "type": "is enemy of",
+    "target": "Walder Frey",
+    "start": "3x09",
+    "end": null
+}, {
+    "_id": 216,
+    "source": "Lady",
+    "type": "was killed by",
+    "target": "Cersei Lannister",
+    "start": "1x02",
+    "end": null
+}, {
+    "_id": 217,
+    "source": "Lady",
+    "type": "was killed by",
+    "target": "Eddard Stark",
+    "start": "1x02",
+    "end": null
+}, {
+    "_id": 218,
+    "source": "Lady",
+    "type": "is allied with",
+    "target": "Sansa Stark",
+    "start": "1x01",
+    "end": "1x02"
+}, {
+    "_id": 220,
+    "source": "Nymeria",
+    "type": "is allied with",
+    "target": "Arya Stark",
+    "start": "1x01",
+    "end": "1x02"
+}, {
+    "_id": 222,
+    "source": "Ghost",
+    "type": "is allied with",
+    "target": "Jon Snow",
+    "start": "1x01",
+    "end": null
+}, {
+    "_id": 223,
+    "source": "Ghost",
+    "type": "is allied with",
+    "target": "Samwell Tarly",
+    "start": "1x04",
+    "end": null
+}, {
+    "_id": 225,
+    "source": "Summer",
+    "type": "is allied with",
+    "target": "Bran Stark",
+    "start": "1x01",
+    "end": null
+}, {
+    "_id": 227,
+    "source": "Shaggydog",
+    "type": "is allied with",
+    "target": "Rickon Stark",
+    "start": "1x01",
+    "end": null
+}, {
+    "_id": 229,
+    "source": "Greywind",
+    "type": "is allied with",
+    "target": "Robb Stark",
+    "start": "1x01",
+    "end": "3x09"
+}, {
+    "_id": 230,
+    "source": "Greywind",
+    "type": "was killed by",
+    "target": "Tywin Lannister",
+    "start": "3x09",
+    "end": null
+}, {
+    "_id": 231,
+    "source": "Greywind",
+    "type": "was killed by",
+    "target": "Walder Frey",
+    "start": "3x09",
+    "end": null
+}, {
+    "_id": 233,
+    "source": "Robert Baratheon",
+    "type": "was killed by",
+    "target": "Lancel Lannister",
+    "start": "1x06",
+    "end": null
+}, {
+    "_id": 234,
+    "source": "Robert Baratheon",
+    "type": "was killed by",
+    "target": "Cersei Lannister",
+    "start": "1x06",
+    "end": null
+}, {
+    "_id": 235,
+    "source": "Robert Baratheon",
+    "type": "is sibling of",
+    "target": "Stannis Baratheon",
+    "start": "0x00",
+    "end": null
+}, {
+    "_id": 236,
+    "source": "Robert Baratheon",
+    "type": "is sibling of",
+    "target": "Renly Baratheon",
+    "start": "0x00",
+    "end": null
+}, {
+    "_id": 237,
+    "source": "Robert Baratheon",
+    "type": "is married to",
+    "target": "Cersei Lannister",
+    "start": "1x01",
+    "end": "1x07"
+}, {
+    "_id": 238,
+    "source": "Robert Baratheon",
+    "type": "is parent of",
+    "target": "Gendry",
+    "start": "0x00",
+    "end": null
+}, {
+    "_id": 239,
+    "source": "Robert Baratheon",
+    "type": "is parent of",
+    "target": "Joffrey Baratheon",
+    "start": "0x00",
+    "end": null
+}, {
+    "_id": 240,
+    "source": "Robert Baratheon",
+    "type": "is parent of",
+    "target": "Tommen Baratheon",
+    "start": "0x00",
+    "end": null
+}, {
+    "_id": 241,
+    "source": "Robert Baratheon",
+    "type": "is parent of",
+    "target": "Myrcella Baratheon",
+    "start": "0x00",
+    "end": null
+}, {
+    "_id": 242,
+    "source": "Robert Baratheon",
+    "type": "is allied with",
+    "target": "Eddard Stark",
+    "start": "1x01",
+    "end": "1x07"
+}, {
+    "_id": 243,
+    "source": "Robert Baratheon",
+    "type": "is enemy of",
+    "target": "Daenerys Targaryen",
+    "start": "1x02",
+    "end": "1x07"
+}, {
+    "_id": 244,
+    "source": "Robert Baratheon",
+    "type": "is enemy of",
+    "target": "Viserys Targaryen",
+    "start": "1x02",
+    "end": "1x06"
+}, {
+    "_id": 245,
+    "source": "Robert Baratheon",
+    "type": "is allied with",
+    "target": "Barristan Selmy",
+    "start": "1x03",
+    "end": "1x07"
+}, {
+    "_id": 246,
+    "source": "Robert Baratheon",
+    "type": "is enemy of",
+    "target": "Jaime Lannister",
+    "start": "1x03",
+    "end": "1x07"
+}, {
+    "_id": 247,
+    "source": "Robert Baratheon",
+    "type": "is enemy of",
+    "target": "Cersei Lannister",
+    "start": "1x06",
+    "end": "1x07"
+}, {
+    "_id": 248,
+    "source": "Robert Baratheon",
+    "type": "is allied with",
+    "target": "Petyr Baelish",
+    "start": "1x03",
+    "end": "1x07"
+}, {
+    "_id": 249,
+    "source": "Robert Baratheon",
+    "type": "is allied with",
+    "target": "Maester Pycelle",
+    "start": "1x03",
+    "end": "1x07"
+}, {
+    "_id": 250,
+    "source": "Robert Baratheon",
+    "type": "is allied with",
+    "target": "Varys",
+    "start": "1x03",
+    "end": "1x07"
+}, {
+    "_id": 252,
+    "source": "Renly Baratheon",
+    "type": "was killed by",
+    "target": "Stannis Baratheon",
+    "start": "2x05",
+    "end": null
+}, {
+    "_id": 253,
+    "source": "Renly Baratheon",
+    "type": "was killed by",
+    "target": "Melisandre",
+    "start": "2x05",
+    "end": null
+}, {
+    "_id": 254,
+    "source": "Renly Baratheon",
+    "type": "is sibling of",
+    "target": "Stannis Baratheon",
+    "start": "0x00",
+    "end": null
+}, {
+    "_id": 255,
+    "source": "Renly Baratheon",
+    "type": "is sibling of",
+    "target": "Robert Baratheon",
+    "start": "0x00",
+    "end": null
+}, {
+    "_id": 256,
+    "source": "Renly Baratheon",
+    "type": "is married to",
+    "target": "Margaery Tyrell",
+    "start": "2x01",
+    "end": "2x05"
+}, {
+    "_id": 257,
+    "source": "Renly Baratheon",
+    "type": "is in love with",
+    "target": "Loras Tyrell",
+    "start": "1x05",
+    "end": "2x05"
+}, {
+    "_id": 258,
+    "source": "Renly Baratheon",
+    "type": "is allied with",
+    "target": "Eddard Stark",
+    "start": "1x03",
+    "end": "1x09"
+}, {
+    "_id": 259,
+    "source": "Renly Baratheon",
+    "type": "is enemy of",
+    "target": "Janos Slynt",
+    "start": "1x04",
+    "end": "2x05"
+}, {
+    "_id": 260,
+    "source": "Renly Baratheon",
+    "type": "is allied with",
+    "target": "Catelyn Stark",
+    "start": "2x03",
+    "end": "2x05"
+}, {
+    "_id": 261,
+    "source": "Renly Baratheon",
+    "type": "is enemy of",
+    "target": "Joffrey Baratheon",
+    "start": "1x07",
+    "end": "2x05"
+}, {
+    "_id": 262,
+    "source": "Renly Baratheon",
+    "type": "is enemy of",
+    "target": "Cersei Lannister",
+    "start": "1x07",
+    "end": "2x05"
+}, {
+    "_id": 263,
+    "source": "Renly Baratheon",
+    "type": "is enemy of",
+    "target": "Tywin Lannister",
+    "start": "1x07",
+    "end": "2x05"
+}, {
+    "_id": 264,
+    "source": "Renly Baratheon",
+    "type": "is enemy of",
+    "target": "Stannis Baratheon",
+    "start": "2x04",
+    "end": "2x05"
+}, {
+    "_id": 265,
+    "source": "Renly Baratheon",
+    "type": "is allied with",
+    "target": "Brienne of Tarth",
+    "start": "2x03",
+    "end": "2x05"
+}, {
+    "_id": 266,
+    "source": "Renly Baratheon",
+    "type": "is allied with",
+    "target": "Petyr Baelish",
+    "start": "2x04",
+    "end": "2x05"
+}, {
+    "_id": 268,
+    "source": "Stannis Baratheon",
+    "type": "is sibling of",
+    "target": "Renly Baratheon",
+    "start": "0x00",
+    "end": null
+}, {
+    "_id": 269,
+    "source": "Stannis Baratheon",
+    "type": "is sibling of",
+    "target": "Robert Baratheon",
+    "start": "0x00",
+    "end": null
+}, {
+    "_id": 270,
+    "source": "Stannis Baratheon",
+    "type": "is parent of",
+    "target": "Shireen Baratheon",
+    "start": "0x00",
+    "end": null
+}, {
+    "_id": 271,
+    "source": "Stannis Baratheon",
+    "type": "is married to",
+    "target": "Selyse Baratheon",
+    "start": "2x01",
+    "end": null
+}, {
+    "_id": 272,
+    "source": "Stannis Baratheon",
+    "type": "is allied with",
+    "target": "Melisandre",
+    "start": "2x01",
+    "end": null
+}, {
+    "_id": 273,
+    "source": "Stannis Baratheon",
+    "type": "is allied with",
+    "target": "Davos Seaworth",
+    "start": "2x01",
+    "end": "3x01"
+}, {
+    "_id": 274,
+    "source": "Stannis Baratheon",
+    "type": "killed",
+    "target": "Renly Baratheon",
+    "start": "2x05",
+    "end": null
+}, {
+    "_id": 275,
+    "source": "Stannis Baratheon",
+    "type": "killed",
+    "target": "Mance Rayder",
+    "start": "5x01",
+    "end": null
+}, {
+    "_id": 276,
+    "source": "Stannis Baratheon",
+    "type": "is enemy of",
+    "target": "Joffrey Baratheon",
+    "start": "2x01",
+    "end": "4x02"
+}, {
+    "_id": 277,
+    "source": "Stannis Baratheon",
+    "type": "is enemy of",
+    "target": "Cersei Lannister",
+    "start": "2x01",
+    "end": null
+}, {
+    "_id": 278,
+    "source": "Stannis Baratheon",
+    "type": "is enemy of",
+    "target": "Tywin Lannister",
+    "start": "2x01",
+    "end": "4x10"
+}, {
+    "_id": 279,
+    "source": "Stannis Baratheon",
+    "type": "is enemy of",
+    "target": "Robb Stark",
+    "start": "2x04",
+    "end": "3x09"
+}, {
+    "_id": 280,
+    "source": "Stannis Baratheon",
+    "type": "is enemy of",
+    "target": "Catelyn Stark",
+    "start": "2x04",
+    "end": "3x09"
+}, {
+    "_id": 281,
+    "source": "Stannis Baratheon",
+    "type": "is enemy of",
+    "target": "Renly Baratheon",
+    "start": "2x04",
+    "end": "2x05"
+}, {
+    "_id": 282,
+    "source": "Stannis Baratheon",
+    "type": "is enemy of",
+    "target": "Tyrion Lannister",
+    "start": "2x01",
+    "end": null
+}, {
+    "_id": 283,
+    "source": "Stannis Baratheon",
+    "type": "is enemy of",
+    "target": "Davos Seaworth",
+    "start": "3x01",
+    "end": "3x08"
+}, {
+    "_id": 284,
+    "source": "Stannis Baratheon",
+    "type": "is allied with",
+    "target": "Davos Seaworth",
+    "start": "3x08",
+    "end": null
+}, {
+    "_id": 285,
+    "source": "Stannis Baratheon",
+    "type": "is enemy of",
+    "target": "Gendry",
+    "start": "3x08",
+    "end": "3x10"
+}, {
+    "_id": 286,
+    "source": "Stannis Baratheon",
+    "type": "is enemy of",
+    "target": "Mance Rayder",
+    "start": "4x10",
+    "end": "5x01"
+}, {
+    "_id": 287,
+    "source": "Stannis Baratheon",
+    "type": "is allied with",
+    "target": "Jon Snow",
+    "start": "4x10",
+    "end": null
+}, {
+    "_id": 288,
+    "source": "Stannis Baratheon",
+    "type": "is enemy of",
+    "target": "Roose Bolton",
+    "start": "5x01",
+    "end": null
+}, {
+    "_id": 290,
+    "source": "Selyse Baratheon",
+    "type": "is parent of",
+    "target": "Shireen Baratheon",
+    "start": "0x00",
+    "end": null
+}, {
+    "_id": 291,
+    "source": "Selyse Baratheon",
+    "type": "is married to",
+    "target": "Stannis Baratheon",
+    "start": "2x01",
+    "end": null
+}, {
+    "_id": 292,
+    "source": "Selyse Baratheon",
+    "type": "is allied with",
+    "target": "Melisandre",
+    "start": "2x01",
+    "end": null
+}, {
+    "_id": 294,
+    "source": "Shireen Baratheon",
+    "type": "is allied with",
+    "target": "Davos Seaworth",
+    "start": "3x05",
+    "end": null
+}, {
+    "_id": 295,
+    "source": "Shireen Baratheon",
+    "type": "is allied with",
+    "target": "Gilly",
+    "start": "5x02",
+    "end": null
+}, {
+    "_id": 297,
+    "source": "Melisandre",
+    "type": "is allied with",
+    "target": "Stannis Baratheon",
+    "start": "2x01",
+    "end": null
+}, {
+    "_id": 298,
+    "source": "Melisandre",
+    "type": "is allied with",
+    "target": "Selyse Baratheon",
+    "start": "2x01",
+    "end": null
+}, {
+    "_id": 299,
+    "source": "Melisandre",
+    "type": "is enemy of",
+    "target": "Renly Baratheon",
+    "start": "2x04",
+    "end": "2x05"
+}, {
+    "_id": 300,
+    "source": "Melisandre",
+    "type": "killed",
+    "target": "Renly Baratheon",
+    "start": "2x05",
+    "end": null
+}, {
+    "_id": 301,
+    "source": "Melisandre",
+    "type": "is enemy of",
+    "target": "Robb Stark",
+    "start": "2x04",
+    "end": "3x09"
+}, {
+    "_id": 302,
+    "source": "Melisandre",
+    "type": "is enemy of",
+    "target": "Catelyn Stark",
+    "start": "2x04",
+    "end": "3x09"
+}, {
+    "_id": 303,
+    "source": "Melisandre",
+    "type": "is enemy of",
+    "target": "Joffrey Baratheon",
+    "start": "2x01",
+    "end": "4x02"
+}, {
+    "_id": 304,
+    "source": "Melisandre",
+    "type": "is enemy of",
+    "target": "Cersei Lannister",
+    "start": "2x01",
+    "end": null
+}, {
+    "_id": 305,
+    "source": "Melisandre",
+    "type": "is enemy of",
+    "target": "Tywin Lannister",
+    "start": "2x01",
+    "end": "4x10"
+}, {
+    "_id": 306,
+    "source": "Melisandre",
+    "type": "is enemy of",
+    "target": "Tyrion Lannister",
+    "start": "2x01",
+    "end": null
+}, {
+    "_id": 307,
+    "source": "Melisandre",
+    "type": "is enemy of",
+    "target": "Davos Seaworth",
+    "start": "3x01",
+    "end": null
+}, {
+    "_id": 308,
+    "source": "Melisandre",
+    "type": "is allied with",
+    "target": "Thoros of Myr",
+    "start": "3x06",
+    "end": null
+}, {
+    "_id": 309,
+    "source": "Melisandre",
+    "type": "is enemy of",
+    "target": "Gendry",
+    "start": "3x08",
+    "end": "3x10"
+}, {
+    "_id": 310,
+    "source": "Melisandre",
+    "type": "killed",
+    "target": "Mance Rayder",
+    "start": "5x01",
+    "end": null
+}, {
+    "_id": 312,
+    "source": "Davos Seaworth",
+    "type": "is allied with",
+    "target": "Stannis Baratheon",
+    "start": "2x01",
+    "end": "3x01"
+}, {
+    "_id": 313,
+    "source": "Davos Seaworth",
+    "type": "is allied with",
+    "target": "Shireen Baratheon",
+    "start": "3x05",
+    "end": null
+}, {
+    "_id": 314,
+    "source": "Davos Seaworth",
+    "type": "is enemy of",
+    "target": "Stannis Baratheon",
+    "start": "3x01",
+    "end": "3x08"
+}, {
+    "_id": 315,
+    "source": "Davos Seaworth",
+    "type": "is allied with",
+    "target": "Stannis Baratheon",
+    "start": "3x08",
+    "end": null
+}, {
+    "_id": 316,
+    "source": "Davos Seaworth",
+    "type": "is enemy of",
+    "target": "Melisandre",
+    "start": "3x01",
+    "end": null
+}, {
+    "_id": 317,
+    "source": "Davos Seaworth",
+    "type": "is allied with",
+    "target": "Jon Snow",
+    "start": "5x01",
+    "end": null
+}, {
+    "_id": 318,
+    "source": "Davos Seaworth",
+    "type": "is allied with",
+    "target": "Gendry",
+    "start": "3x10",
+    "end": null
+}, {
+    "_id": 320,
+    "source": "Jeor Mormont",
+    "type": "is allied with",
+    "target": "Jon Snow",
+    "start": "1x07",
+    "end": "3x04"
+}, {
+    "_id": 321,
+    "source": "Jeor Mormont",
+    "type": "is parent of",
+    "target": "Jorah Mormont",
+    "start": "0x00",
+    "end": null
+}, {
+    "_id": 322,
+    "source": "Jeor Mormont",
+    "type": "is allied with",
+    "target": "Samwell Tarly",
+    "start": "1x08",
+    "end": "3x04"
+}, {
+    "_id": 323,
+    "source": "Jeor Mormont",
+    "type": "is allied with",
+    "target": "Craster",
+    "start": "2x01",
+    "end": "3x04"
+}, {
+    "_id": 324,
+    "source": "Jeor Mormont",
+    "type": "is allied with",
+    "target": "Qhorin Halfhand",
+    "start": "2x05",
+    "end": "2x10"
+}, {
+    "_id": 325,
+    "source": "Jeor Mormont",
+    "type": "is allied with",
+    "target": "Maester Aemon",
+    "start": "1x03",
+    "end": "3x04"
+}, {
+    "_id": 327,
+    "source": "Maester Aemon",
+    "type": "is allied with",
+    "target": "Jeor Mormont",
+    "start": "1x03",
+    "end": "3x04"
+}, {
+    "_id": 328,
+    "source": "Maester Aemon",
+    "type": "is allied with",
+    "target": "Samwell Tarly",
+    "start": "1x07",
+    "end": null
+}, {
+    "_id": 329,
+    "source": "Maester Aemon",
+    "type": "is allied with",
+    "target": "Jon Snow",
+    "start": "1x09",
+    "end": null
+}, {
+    "_id": 330,
+    "source": "Maester Aemon",
+    "type": "is allied with",
+    "target": "Gilly",
+    "start": "3x10",
+    "end": null
+}, {
+    "_id": 331,
+    "source": "Maester Aemon",
+    "type": "is enemy of",
+    "target": "Alliser Thorne",
+    "start": "4x01",
+    "end": null
+}, {
+    "_id": 332,
+    "source": "Maester Aemon",
+    "type": "is enemy of",
+    "target": "Janos Slynt",
+    "start": "4x01",
+    "end": null
+}, {
+    "_id": 334,
+    "source": "Samwell Tarly",
+    "type": "is allied with",
+    "target": "Jon Snow",
+    "start": "1x04",
+    "end": null
+}, {
+    "_id": 335,
+    "source": "Samwell Tarly",
+    "type": "is allied with",
+    "target": "Jeor Mormont",
+    "start": "1x08",
+    "end": "3x04"
+}, {
+    "_id": 336,
+    "source": "Samwell Tarly",
+    "type": "is allied with",
+    "target": "Maester Aemon",
+    "start": "1x07",
+    "end": null
+}, {
+    "_id": 337,
+    "source": "Samwell Tarly",
+    "type": "is enemy of",
+    "target": "Alliser Thorne",
+    "start": "1x04",
+    "end": null
+}, {
+    "_id": 338,
+    "source": "Samwell Tarly",
+    "type": "is allied with",
+    "target": "Pypar",
+    "start": "1x04",
+    "end": null
+}, {
+    "_id": 339,
+    "source": "Samwell Tarly",
+    "type": "is allied with",
+    "target": "Grenn",
+    "start": "1x04",
+    "end": null
+}, {
+    "_id": 340,
+    "source": "Samwell Tarly",
+    "type": "is enemy of",
+    "target": "Craster",
+    "start": "2x02",
+    "end": "3x04"
+}, {
+    "_id": 341,
+    "source": "Samwell Tarly",
+    "type": "is allied with",
+    "target": "Gilly",
+    "start": "2x02",
+    "end": null
+}, {
+    "_id": 342,
+    "source": "Samwell Tarly",
+    "type": "is in love with",
+    "target": "Gilly",
+    "start": "2x03",
+    "end": null
+}, {
+    "_id": 343,
+    "source": "Samwell Tarly",
+    "type": "is allied with",
+    "target": "Eddison Tollett",
+    "start": "2x01",
+    "end": null
+}, {
+    "_id": 344,
+    "source": "Samwell Tarly",
+    "type": "is allied with",
+    "target": "Bran Stark",
+    "start": "3x10",
+    "end": "3x10"
+}, {
+    "_id": 345,
+    "source": "Samwell Tarly",
+    "type": "is allied with",
+    "target": "Hodor",
+    "start": "3x10",
+    "end": "3x10"
+}, {
+    "_id": 346,
+    "source": "Samwell Tarly",
+    "type": "is allied with",
+    "target": "Jojen Reed",
+    "start": "3x10",
+    "end": "3x10"
+}, {
+    "_id": 347,
+    "source": "Samwell Tarly",
+    "type": "is allied with",
+    "target": "Meera Reed",
+    "start": "3x10",
+    "end": "3x10"
+}, {
+    "_id": 348,
+    "source": "Samwell Tarly",
+    "type": "is allied with",
+    "target": "Ghost",
+    "start": "1x04",
+    "end": null
+}, {
+    "_id": 349,
+    "source": "Samwell Tarly",
+    "type": "is enemy of",
+    "target": "Janos Slynt",
+    "start": "5x01",
+    "end": "5x03"
+}, {
+    "_id": 351,
+    "source": "Eddison Tollett",
+    "type": "is allied with",
+    "target": "Jon Snow",
+    "start": "2x01",
+    "end": null
+}, {
+    "_id": 352,
+    "source": "Eddison Tollett",
+    "type": "is allied with",
+    "target": "Samwell Tarly",
+    "start": "2x01",
+    "end": null
+}, {
+    "_id": 353,
+    "source": "Eddison Tollett",
+    "type": "is allied with",
+    "target": "Pypar",
+    "start": "2x01",
+    "end": null
+}, {
+    "_id": 354,
+    "source": "Eddison Tollett",
+    "type": "is allied with",
+    "target": "Grenn",
+    "start": "2x01",
+    "end": null
+}, {
+    "_id": 355,
+    "source": "Eddison Tollett",
+    "type": "is enemy of",
+    "target": "Janos Slynt",
+    "start": "5x01",
+    "end": "5x03"
+}, {
+    "_id": 357,
+    "source": "Pypar",
+    "type": "is allied with",
+    "target": "Jon Snow",
+    "start": "1x04",
+    "end": "4x09"
+}, {
+    "_id": 358,
+    "source": "Pypar",
+    "type": "is allied with",
+    "target": "Samwell Tarly",
+    "start": "1x04",
+    "end": "4x09"
+}, {
+    "_id": 359,
+    "source": "Pypar",
+    "type": "is allied with",
+    "target": "Eddison Tollett",
+    "start": "2x01",
+    "end": "4x09"
+}, {
+    "_id": 360,
+    "source": "Pypar",
+    "type": "is allied with",
+    "target": "Grenn",
+    "start": "1x03",
+    "end": "4x09"
+}, {
+    "_id": 361,
+    "source": "Pypar",
+    "type": "was killed by",
+    "target": "Ygritte",
+    "start": "4x09",
+    "end": null
+}, {
+    "_id": 363,
+    "source": "Grenn",
+    "type": "is allied with",
+    "target": "Jon Snow",
+    "start": "1x04",
+    "end": "4x09"
+}, {
+    "_id": 364,
+    "source": "Grenn",
+    "type": "is allied with",
+    "target": "Samwell Tarly",
+    "start": "1x04",
+    "end": "4x09"
+}, {
+    "_id": 365,
+    "source": "Grenn",
+    "type": "is allied with",
+    "target": "Eddison Tollett",
+    "start": "2x01",
+    "end": "4x09"
+}, {
+    "_id": 366,
+    "source": "Grenn",
+    "type": "is allied with",
+    "target": "Pypar",
+    "start": "1x03",
+    "end": "4x09"
+}, {
+    "_id": 368,
+    "source": "Janos Slynt",
+    "type": "is enemy of",
+    "target": "Renly Baratheon",
+    "start": "1x04",
+    "end": "2x05"
+}, {
+    "_id": 369,
+    "source": "Janos Slynt",
+    "type": "is enemy of",
+    "target": "Eddard Stark",
+    "start": "1x07",
+    "end": "1x09"
+}, {
+    "_id": 370,
+    "source": "Janos Slynt",
+    "type": "is allied with",
+    "target": "Cersei Lannister",
+    "start": "1x07",
+    "end": "5x03"
+}, {
+    "_id": 371,
+    "source": "Janos Slynt",
+    "type": "is allied with",
+    "target": "Alliser Thorne",
+    "start": "4x01",
+    "end": "5x03"
+}, {
+    "_id": 372,
+    "source": "Janos Slynt",
+    "type": "is enemy of",
+    "target": "Gendry",
+    "start": "2x01",
+    "end": "5x03"
+}, {
+    "_id": 373,
+    "source": "Janos Slynt",
+    "type": "is enemy of",
+    "target": "Tyrion Lannister",
+    "start": "2x02",
+    "end": "5x03"
+}, {
+    "_id": 374,
+    "source": "Janos Slynt",
+    "type": "is enemy of",
+    "target": "Jon Snow",
+    "start": "4x01",
+    "end": "5x03"
+}, {
+    "_id": 375,
+    "source": "Janos Slynt",
+    "type": "is enemy of",
+    "target": "Maester Aemon",
+    "start": "4x01",
+    "end": "5x03"
+}, {
+    "_id": 376,
+    "source": "Janos Slynt",
+    "type": "is enemy of",
+    "target": "Samwell Tarly",
+    "start": "5x01",
+    "end": "5x03"
+}, {
+    "_id": 377,
+    "source": "Janos Slynt",
+    "type": "is enemy of",
+    "target": "Eddison Tollett",
+    "start": "5x01",
+    "end": "5x03"
+}, {
+    "_id": 378,
+    "source": "Janos Slynt",
+    "type": "was killed by",
+    "target": "Jon Snow",
+    "start": "5x03",
+    "end": null
+}, {
+    "_id": 380,
+    "source": "Alliser Thorne",
+    "type": "is allied with",
+    "target": "Janos Slynt",
+    "start": "4x01",
+    "end": "5x03"
+}, {
+    "_id": 381,
+    "source": "Alliser Thorne",
+    "type": "is enemy of",
+    "target": "Alliser Thorne",
+    "start": "1x03",
+    "end": null
+}, {
+    "_id": 382,
+    "source": "Alliser Thorne",
+    "type": "is enemy of",
+    "target": "Samwell Tarly",
+    "start": "1x04",
+    "end": null
+}, {
+    "_id": 383,
+    "source": "Alliser Thorne",
+    "type": "is enemy of",
+    "target": "Maester Aemon",
+    "start": "4x01",
+    "end": null
+}, {
+    "_id": 385,
+    "source": "Qhorin Halfhand",
+    "type": "is allied with",
+    "target": "Jon Snow",
+    "start": "2x05",
+    "end": "2x10"
+}, {
+    "_id": 386,
+    "source": "Qhorin Halfhand",
+    "type": "is allied with",
+    "target": "Jeor Mormont",
+    "start": "2x05",
+    "end": "2x10"
+}, {
+    "_id": 387,
+    "source": "Qhorin Halfhand",
+    "type": "was killed by",
+    "target": "Jon Snow",
+    "start": "2x10",
+    "end": null
+}, {
+    "_id": 389,
+    "source": "Tyrion Lannister",
+    "type": "is sibling of",
+    "target": "Jaime Lannister",
+    "start": "0x00",
+    "end": null
+}, {
+    "_id": 390,
+    "source": "Tyrion Lannister",
+    "type": "is sibling of",
+    "target": "Cersei Lannister",
+    "start": "0x00",
+    "end": null
+}, {
+    "_id": 391,
+    "source": "Tyrion Lannister",
+    "type": "is married to",
+    "target": "Sansa Stark",
+    "start": "3x08",
+    "end": null
+}, {
+    "_id": 392,
+    "source": "Tyrion Lannister",
+    "type": "is enemy of",
+    "target": "Eddard Stark",
+    "start": "1x03",
+    "end": "1x06"
+}, {
+    "_id": 393,
+    "source": "Tyrion Lannister",
+    "type": "is enemy of",
+    "target": "Catelyn Stark",
+    "start": "1x03",
+    "end": "1x06"
+}, {
+    "_id": 394,
+    "source": "Tyrion Lannister",
+    "type": "is enemy of",
+    "target": "Robb Stark",
+    "start": "1x03",
+    "end": "1x06"
+}, {
+    "_id": 395,
+    "source": "Tyrion Lannister",
+    "type": "is allied with",
+    "target": "Sansa Stark",
+    "start": "3x09",
+    "end": null
+}, {
+    "_id": 396,
+    "source": "Tyrion Lannister",
+    "type": "is enemy of",
+    "target": "Lysa Arryn",
+    "start": "1x05",
+    "end": "4x07"
+}, {
+    "_id": 397,
+    "source": "Tyrion Lannister",
+    "type": "is enemy of",
+    "target": "Stannis Baratheon",
+    "start": "2x01",
+    "end": null
+}, {
+    "_id": 398,
+    "source": "Tyrion Lannister",
+    "type": "is enemy of",
+    "target": "Melisandre",
+    "start": "2x01",
+    "end": null
+}, {
+    "_id": 399,
+    "source": "Tyrion Lannister",
+    "type": "is enemy of",
+    "target": "Janos Slynt",
+    "start": "2x02",
+    "end": "5x03"
+}, {
+    "_id": 400,
+    "source": "Tyrion Lannister",
+    "type": "is allied with",
+    "target": "Yoren",
+    "start": "1x03",
+    "end": null
+}, {
+    "_id": 401,
+    "source": "Tyrion Lannister",
+    "type": "is allied with",
+    "target": "Bronn",
+    "start": "1x06",
+    "end": "4x07"
+}, {
+    "_id": 402,
+    "source": "Tyrion Lannister",
+    "type": "is allied with",
+    "target": "Shae",
+    "start": "1x09",
+    "end": "4x02"
+}, {
+    "_id": 403,
+    "source": "Tyrion Lannister",
+    "type": "is in love with",
+    "target": "Shae",
+    "start": "2x01",
+    "end": "4x06"
+}, {
+    "_id": 404,
+    "source": "Tyrion Lannister",
+    "type": "is allied with",
+    "target": "Varys",
+    "start": "2x02",
+    "end": "4x06"
+}, {
+    "_id": 405,
+    "source": "Tyrion Lannister",
+    "type": "is enemy of",
+    "target": "Maester Pycelle",
+    "start": "2x03",
+    "end": null
+}, {
+    "_id": 406,
+    "source": "Tyrion Lannister",
+    "type": "is enemy of",
+    "target": "Cersei Lannister",
+    "start": "2x03",
+    "end": null
+}, {
+    "_id": 407,
+    "source": "Tyrion Lannister",
+    "type": "is enemy of",
+    "target": "Joffrey Lannister",
+    "start": "2x04",
+    "end": "4x02"
+}, {
+    "_id": 408,
+    "source": "Tyrion Lannister",
+    "type": "is allied with",
+    "target": "Lancel Lannister",
+    "start": "2x04",
+    "end": "2x05"
+}, {
+    "_id": 409,
+    "source": "Tyrion Lannister",
+    "type": "is enemy of",
+    "target": "Meryn Trant",
+    "start": "2x06",
+    "end": null
+}, {
+    "_id": 410,
+    "source": "Tyrion Lannister",
+    "type": "was severely injured by",
+    "target": "Cersei Lannister",
+    "start": "2x09",
+    "end": null
+}, {
+    "_id": 411,
+    "source": "Tyrion Lannister",
+    "type": "is allied with",
+    "target": "Podrick Payne",
+    "start": "2x09",
+    "end": null
+}, {
+    "_id": 412,
+    "source": "Tyrion Lannister",
+    "type": "is allied with",
+    "target": "Olenna Tyrell",
+    "start": "3x05",
+    "end": null
+}, {
+    "_id": 413,
+    "source": "Tyrion Lannister",
+    "type": "is enemy of",
+    "target": "Oberyn Martell",
+    "start": "4x01",
+    "end": "4x06"
+}, {
+    "_id": 414,
+    "source": "Tyrion Lannister",
+    "type": "is allied with",
+    "target": "Jaime Lannister",
+    "start": "4x04",
+    "end": null
+}, {
+    "_id": 415,
+    "source": "Tyrion Lannister",
+    "type": "is enemy of",
+    "target": "Tywin Lannister",
+    "start": "4x06",
+    "end": "4x10"
+}, {
+    "_id": 416,
+    "source": "Tyrion Lannister",
+    "type": "is enemy of",
+    "target": "Shae",
+    "start": "4x06",
+    "end": "4x10"
+}, {
+    "_id": 417,
+    "source": "Tyrion Lannister",
+    "type": "is allied with",
+    "target": "Oberyn Martell",
+    "start": "4x07",
+    "end": "4x08"
+}, {
+    "_id": 418,
+    "source": "Tyrion Lannister",
+    "type": "is allied with",
+    "target": "Varys",
+    "start": "4x10",
+    "end": null
+}, {
+    "_id": 419,
+    "source": "Tyrion Lannister",
+    "type": "killed",
+    "target": "Tywin Lannister",
+    "start": "4x10",
+    "end": null
+}, {
+    "_id": 420,
+    "source": "Tyrion Lannister",
+    "type": "killed",
+    "target": "Shae",
+    "start": "4x10",
+    "end": null
+}, {
+    "_id": 422,
+    "source": "Jaime Lannister",
+    "type": "is sibling of",
+    "target": "Tyrion Lannister",
+    "start": "0x00",
+    "end": null
+}, {
+    "_id": 423,
+    "source": "Jaime Lannister",
+    "type": "is sibling of",
+    "target": "Cersei Lannister",
+    "start": "0x00",
+    "end": null
+}, {
+    "_id": 424,
+    "source": "Jaime Lannister",
+    "type": "is parent of",
+    "target": "Joffrey Baratheon",
+    "start": "0x00",
+    "end": null
+}, {
+    "_id": 425,
+    "source": "Jaime Lannister",
+    "type": "is parent of",
+    "target": "Tommen Baratheon",
+    "start": "0x00",
+    "end": null
+}, {
+    "_id": 426,
+    "source": "Jaime Lannister",
+    "type": "is parent of",
+    "target": "Myrcella Baratheon",
+    "start": "0x00",
+    "end": null
+}, {
+    "_id": 427,
+    "source": "Jaime Lannister",
+    "type": "was severely injured by",
+    "target": "Locke",
+    "start": "3x03",
+    "end": null
+}, {
+    "_id": 428,
+    "source": "Jaime Lannister",
+    "type": "is in love with",
+    "target": "Cersei Lannister",
+    "start": "1x01",
+    "end": "4x03"
+}, {
+    "_id": 429,
+    "source": "Jaime Lannister",
+    "type": "is enemy of",
+    "target": "Eddard Stark",
+    "start": "1x05",
+    "end": "1x09"
+}, {
+    "_id": 430,
+    "source": "Jaime Lannister",
+    "type": "is enemy of",
+    "target": "Catelyn Stark",
+    "start": "1x03",
+    "end": "3x09"
+}, {
+    "_id": 431,
+    "source": "Jaime Lannister",
+    "type": "is enemy of",
+    "target": "Robb Stark",
+    "start": "1x03",
+    "end": "3x09"
+}, {
+    "_id": 432,
+    "source": "Jaime Lannister",
+    "type": "is allied with",
+    "target": "Tyrion Lannister",
+    "start": "4x04",
+    "end": null
+}, {
+    "_id": 433,
+    "source": "Jaime Lannister",
+    "type": "is allied with",
+    "target": "Cersei Lannister",
+    "start": "1x01",
+    "end": "5x01"
+}, {
+    "_id": 434,
+    "source": "Jaime Lannister",
+    "type": "is enemy of",
+    "target": "Robert Baratheon",
+    "start": "1x03",
+    "end": "1x07"
+}, {
+    "_id": 435,
+    "source": "Jaime Lannister",
+    "type": "is enemy of",
+    "target": "Locke",
+    "start": "3x02",
+    "end": null
+}, {
+    "_id": 436,
+    "source": "Jaime Lannister",
+    "type": "is allied with",
+    "target": "Brienne of Tarth",
+    "start": "3x03",
+    "end": null
+}, {
+    "_id": 437,
+    "source": "Jaime Lannister",
+    "type": "is allied with",
+    "target": "Qyburn",
+    "start": "3x07",
+    "end": null
+}, {
+    "_id": 438,
+    "source": "Jaime Lannister",
+    "type": "is enemy of",
+    "target": "Loras Tyrell",
+    "start": "4x02",
+    "end": null
+}, {
+    "_id": 439,
+    "source": "Jaime Lannister",
+    "type": "is allied with",
+    "target": "Bronn",
+    "start": "4x02",
+    "end": null
+}, {
+    "_id": 441,
+    "source": "Cersei Lannister",
+    "type": "is sibling of",
+    "target": "Tyrion Lannister",
+    "start": "0x00",
+    "end": null
+}, {
+    "_id": 442,
+    "source": "Cersei Lannister",
+    "type": "is sibling of",
+    "target": "Jaime Lannister",
+    "start": "0x00",
+    "end": null
+}, {
+    "_id": 443,
+    "source": "Cersei Lannister",
+    "type": "is parent of",
+    "target": "Joffrey Baratheon",
+    "start": "0x00",
+    "end": null
+}, {
+    "_id": 444,
+    "source": "Cersei Lannister",
+    "type": "is parent of",
+    "target": "Tommen Baratheon",
+    "start": "0x00",
+    "end": null
+}, {
+    "_id": 445,
+    "source": "Cersei Lannister",
+    "type": "is parent of",
+    "target": "Myrcella Baratheon",
+    "start": "0x00",
+    "end": null
+}, {
+    "_id": 446,
+    "source": "Cersei Lannister",
+    "type": "is in love with",
+    "target": "Jaime Lannister",
+    "start": "1x01",
+    "end": "4x03"
+}, {
+    "_id": 447,
+    "source": "Cersei Lannister",
+    "type": "is allied with",
+    "target": "Jaime Lannister",
+    "start": "1x01",
+    "end": "5x01"
+}, {
+    "_id": 448,
+    "source": "Cersei Lannister",
+    "type": "is enemy of",
+    "target": "Eddard Stark",
+    "start": "1x05",
+    "end": "1x09"
+}, {
+    "_id": 449,
+    "source": "Cersei Lannister",
+    "type": "is enemy of",
+    "target": "Catelyn Stark",
+    "start": "1x03",
+    "end": "3x09"
+}, {
+    "_id": 450,
+    "source": "Cersei Lannister",
+    "type": "is enemy of",
+    "target": "Robb Stark",
+    "start": "1x03",
+    "end": "3x09"
+}, {
+    "_id": 451,
+    "source": "Cersei Lannister",
+    "type": "is allied with",
+    "target": "Sansa Stark",
+    "start": "1x01",
+    "end": "1x06"
+}, {
+    "_id": 452,
+    "source": "Cersei Lannister",
+    "type": "is enemy of",
+    "target": "Sansa Stark",
+    "start": "1x10",
+    "end": null
+}, {
+    "_id": 453,
+    "source": "Cersei Lannister",
+    "type": "is enemy of",
+    "target": "Arya Stark",
+    "start": "1x08",
+    "end": null
+}, {
+    "_id": 454,
+    "source": "Cersei Lannister",
+    "type": "killed",
+    "target": "Robert Baratheon",
+    "start": "1x06",
+    "end": null
+}, {
+    "_id": 455,
+    "source": "Cersei Lannister",
+    "type": "is married to",
+    "target": "Robert Baratheon",
+    "start": "1x01",
+    "end": "1x07"
+}, {
+    "_id": 456,
+    "source": "Cersei Lannister",
+    "type": "is enemy of",
+    "target": "Robert Baratheon",
+    "start": "1x06",
+    "end": "1x07"
+}, {
+    "_id": 457,
+    "source": "Cersei Lannister",
+    "type": "is enemy of",
+    "target": "Renly Baratheon",
+    "start": "1x07",
+    "end": "2x05"
+}, {
+    "_id": 458,
+    "source": "Cersei Lannister",
+    "type": "is enemy of",
+    "target": "Stannis Baratheon",
+    "start": "2x01",
+    "end": null
+}, {
+    "_id": 459,
+    "source": "Cersei Lannister",
+    "type": "is enemy of",
+    "target": "Melisandre",
+    "start": "2x01",
+    "end": null
+}, {
+    "_id": 460,
+    "source": "Cersei Lannister",
+    "type": "is allied with",
+    "target": "Janos Slynt",
+    "start": "1x07",
+    "end": "5x03"
+}, {
+    "_id": 461,
+    "source": "Cersei Lannister",
+    "type": "is enemy of",
+    "target": "Tyrion Lannister",
+    "start": "2x03",
+    "end": null
+}, {
+    "_id": 462,
+    "source": "Cersei Lannister",
+    "type": "killed",
+    "target": "Lady",
+    "start": "1x02",
+    "end": null
+}, {
+    "_id": 463,
+    "source": "Cersei Lannister",
+    "type": "is allied with",
+    "target": "Lancel Lannister",
+    "start": "1x03",
+    "end": "2x09"
+}, {
+    "_id": 464,
+    "source": "Cersei Lannister",
+    "type": "is allied with",
+    "target": "Petyr Baelish",
+    "start": "1x07",
+    "end": "2x01"
+}, {
+    "_id": 465,
+    "source": "Cersei Lannister",
+    "type": "is allied with",
+    "target": "Maester Pycelle",
+    "start": "1x03",
+    "end": null
+}, {
+    "_id": 466,
+    "source": "Cersei Lannister",
+    "type": "is enemy of",
+    "target": "Margaery Tyrell",
+    "start": "3x08",
+    "end": null
+}, {
+    "_id": 467,
+    "source": "Cersei Lannister",
+    "type": "is allied with",
+    "target": "Qyburn",
+    "start": "4x01",
+    "end": null
+}, {
+    "_id": 468,
+    "source": "Cersei Lannister",
+    "type": "is enemy of",
+    "target": "Oberyn Martell",
+    "start": "4x02",
+    "end": "4x08"
+}, {
+    "_id": 469,
+    "source": "Cersei Lannister",
+    "type": "is allied with",
+    "target": "Gregor Clegane",
+    "start": "4x07",
+    "end": null
+}, {
+    "_id": 470,
+    "source": "Cersei Lannister",
+    "type": "is allied with",
+    "target": "Meryn Trant",
+    "start": "1x10",
+    "end": null
+}, {
+    "_id": 472,
+    "source": "Tywin Lannister",
+    "type": "is parent of",
+    "target": "Jaime Lannister",
+    "start": "0x00",
+    "end": null
+}, {
+    "_id": 473,
+    "source": "Tywin Lannister",
+    "type": "is parent of",
+    "target": "Cersei Lannister",
+    "start": "0x00",
+    "end": null
+}, {
+    "_id": 474,
+    "source": "Tywin Lannister",
+    "type": "is parent of",
+    "target": "Tyrion Lannister",
+    "start": "0x00",
+    "end": null
+}, {
+    "_id": 475,
+    "source": "Tywin Lannister",
+    "type": "was killed by",
+    "target": "Tyrion Lannister",
+    "start": "4x10",
+    "end": null
+}, {
+    "_id": 476,
+    "source": "Tywin Lannister",
+    "type": "killed",
+    "target": "Catelyn Stark",
+    "start": "3x09",
+    "end": null
+}, {
+    "_id": 477,
+    "source": "Tywin Lannister",
+    "type": "is enemy of",
+    "target": "Catelyn Stark",
+    "start": "1x07",
+    "end": "3x09"
+}, {
+    "_id": 478,
+    "source": "Tywin Lannister",
+    "type": "was killed by",
+    "target": "Robb Stark",
+    "start": "3x09",
+    "end": null
+}, {
+    "_id": 479,
+    "source": "Tywin Lannister",
+    "type": "is enemy of",
+    "target": "Robb Stark",
+    "start": "1x07",
+    "end": "3x09"
+}, {
+    "_id": 480,
+    "source": "Tywin Lannister",
+    "type": "is enemy of",
+    "target": "Sansa Stark",
+    "start": "3x05",
+    "end": null
+}, {
+    "_id": 481,
+    "source": "Tywin Lannister",
+    "type": "is allied with",
+    "target": "Arya Stark",
+    "start": "2x04",
+    "end": "2x06"
+}, {
+    "_id": 482,
+    "source": "Tywin Lannister",
+    "type": "is enemy of",
+    "target": "Arya Stark",
+    "start": "2x06",
+    "end": null
+}, {
+    "_id": 483,
+    "source": "Tywin Lannister",
+    "type": "was killed by",
+    "target": "Greywind",
+    "start": "3x09",
+    "end": null
+}, {
+    "_id": 484,
+    "source": "Tywin Lannister",
+    "type": "is enemy of",
+    "target": "Renly Baratheon",
+    "start": "1x07",
+    "end": "2x05"
+}, {
+    "_id": 485,
+    "source": "Tywin Lannister",
+    "type": "is enemy of",
+    "target": "Stannis Baratheon",
+    "start": "2x01",
+    "end": "4x10"
+}, {
+    "_id": 486,
+    "source": "Tywin Lannister",
+    "type": "is enemy of",
+    "target": "Melisandre",
+    "start": "2x01",
+    "end": "4x10"
+}, {
+    "_id": 487,
+    "source": "Tywin Lannister",
+    "type": "is enemy of",
+    "target": "Tyrion Lannister",
+    "start": "4x06",
+    "end": "4x10"
+}, {
+    "_id": 488,
+    "source": "Tywin Lannister",
+    "type": "is allied with",
+    "target": "Gregor Clegane",
+    "start": "2x04",
+    "end": "4x10"
+}, {
+    "_id": 489,
+    "source": "Tywin Lannister",
+    "type": "is enemy of",
+    "target": "Olenna Tyrell",
+    "start": "3x06",
+    "end": null
+}, {
+    "_id": 490,
+    "source": "Tywin Lannister",
+    "type": "is allied with",
+    "target": "Walder Frey",
+    "start": "3x09",
+    "end": null
+}, {
+    "_id": 491,
+    "source": "Tywin Lannister",
+    "type": "is enemy of",
+    "target": "Daenerys Targaryen",
+    "start": "3x07",
+    "end": "4x10"
+}, {
+    "_id": 492,
+    "source": "Tywin Lannister",
+    "type": "is enemy of",
+    "target": "Oberyn Martell",
+    "start": "4x01",
+    "end": "4x08"
+}, {
+    "_id": 493,
+    "source": "Tywin Lannister",
+    "type": "is enemy of",
+    "target": "Ellaria Sand",
+    "start": "4x01",
+    "end": "4x10"
+}, {
+    "_id": 494,
+    "source": "Tywin Lannister",
+    "type": "is enemy of",
+    "target": "Sandor Clegane",
+    "start": "2x09",
+    "end": null
+}, {
+    "_id": 496,
+    "source": "Lancel Lannister",
+    "type": "killed",
+    "target": "Robert Baratheon",
+    "start": "1x06",
+    "end": null
+}, {
+    "_id": 497,
+    "source": "Lancel Lannister",
+    "type": "is allied with",
+    "target": "Cersei Lannister",
+    "start": "1x03",
+    "end": "2x09"
+}, {
+    "_id": 498,
+    "source": "Lancel Lannister",
+    "type": "is allied with",
+    "target": "Tyrion Lannister",
+    "start": "2x04",
+    "end": "2x05"
+}, {
+    "_id": 499,
+    "source": "Lancel Lannister",
+    "type": "is enemy of",
+    "target": "Petyr Baelish",
+    "start": "5x03",
+    "end": null
+}, {
+    "_id": 501,
+    "source": "Joffrey Baratheon",
+    "type": "is sibling of",
+    "target": "Tommen Baratheon",
+    "start": "0x00",
+    "end": null
+}, {
+    "_id": 502,
+    "source": "Joffrey Baratheon",
+    "type": "is sibling of",
+    "target": "Myrcella Baratheon",
+    "start": "0x00",
+    "end": null
+}, {
+    "_id": 503,
+    "source": "Joffrey Baratheon",
+    "type": "killed",
+    "target": "Eddard Stark",
+    "start": "1x09",
+    "end": null
+}, {
+    "_id": 504,
+    "source": "Joffrey Baratheon",
+    "type": "is enemy of",
+    "target": "Eddard Stark",
+    "start": "1x07",
+    "end": "1x09"
+}, {
+    "_id": 505,
+    "source": "Joffrey Baratheon",
+    "type": "is in love with",
+    "target": "Sansa Stark",
+    "start": "1x01",
+    "end": "1x08"
+}, {
+    "_id": 506,
+    "source": "Joffrey Baratheon",
+    "type": "is enemy of",
+    "target": "Sansa Stark",
+    "start": "1x09",
+    "end": "4x02"
+}, {
+    "_id": 507,
+    "source": "Joffrey Baratheon",
+    "type": "is enemy of",
+    "target": "Arya Stark",
+    "start": "1x02",
+    "end": "4x02"
+}, {
+    "_id": 508,
+    "source": "Joffrey Baratheon",
+    "type": "is enemy of",
+    "target": "Renly Baratheon",
+    "start": "1x07",
+    "end": "2x05"
+}, {
+    "_id": 509,
+    "source": "Joffrey Baratheon",
+    "type": "is enemy of",
+    "target": "Stannis Baratheon",
+    "start": "2x01",
+    "end": "4x02"
+}, {
+    "_id": 510,
+    "source": "Joffrey Baratheon",
+    "type": "is enemy of",
+    "target": "Melisandre",
+    "start": "2x01",
+    "end": "4x02"
+}, {
+    "_id": 511,
+    "source": "Joffrey Baratheon",
+    "type": "is enemy of",
+    "target": "Tyrion Lannister",
+    "start": "2x04",
+    "end": "4x02"
+}, {
+    "_id": 512,
+    "source": "Joffrey Baratheon",
+    "type": "is allied with",
+    "target": "Meryn Trant",
+    "start": "1x10",
+    "end": "4x02"
+}, {
+    "_id": 513,
+    "source": "Joffrey Baratheon",
+    "type": "is enemy of",
+    "target": "Catelyn Stark",
+    "start": "1x07",
+    "end": "3x09"
+}, {
+    "_id": 514,
+    "source": "Joffrey Baratheon",
+    "type": "is enemy of",
+    "target": "Robb Stark",
+    "start": "1x07",
+    "end": "3x09"
+}, {
+    "_id": 515,
+    "source": "Joffrey Baratheon",
+    "type": "is enemy of",
+    "target": "Sandor Clegane",
+    "start": "2x09",
+    "end": "4x02"
+}, {
+    "_id": 516,
+    "source": "Joffrey Baratheon",
+    "type": "is allied with",
+    "target": "Margaery Tyrell",
+    "start": "2x10",
+    "end": "4x02"
+}, {
+    "_id": 517,
+    "source": "Joffrey Baratheon",
+    "type": "is married to",
+    "target": "Margaery Tyrell",
+    "start": "4x02",
+    "end": "4x02"
+}, {
+    "_id": 518,
+    "source": "Joffrey Baratheon",
+    "type": "is enemy of",
+    "target": "Dontos Hollard",
+    "start": "2x01",
+    "end": "4x02"
+}, {
+    "_id": 519,
+    "source": "Joffrey Baratheon",
+    "type": "was killed by",
+    "target": "Dontos Hollard",
+    "start": "4x02",
+    "end": null
+}, {
+    "_id": 520,
+    "source": "Joffrey Baratheon",
+    "type": "was killed by",
+    "target": "Olenna Tyrell",
+    "start": "4x02",
+    "end": null
+}, {
+    "_id": 521,
+    "source": "Joffrey Baratheon",
+    "type": "was killed by",
+    "target": "Petyr Baelish",
+    "start": "4x02",
+    "end": null
+}, {
+    "_id": 523,
+    "source": "Tommen Baratheon",
+    "type": "is sibling of",
+    "target": "Joffrey Baratheon",
+    "start": "0x00",
+    "end": null
+}, {
+    "_id": 524,
+    "source": "Tommen Baratheon",
+    "type": "is sibling of",
+    "target": "Myrcella Baratheon",
+    "start": "0x00",
+    "end": null
+}, {
+    "_id": 525,
+    "source": "Tommen Baratheon",
+    "type": "is in love with",
+    "target": "Margaery Tyrell",
+    "start": "4x04",
+    "end": null
+}, {
+    "_id": 526,
+    "source": "Tommen Baratheon",
+    "type": "is married to",
+    "target": "Margaery Tyrell",
+    "start": "5x03",
+    "end": null
+}, {
+    "_id": 528,
+    "source": "Myrcella Baratheon",
+    "type": "is sibling of",
+    "target": "Joffrey Baratheon",
+    "start": "0x00",
+    "end": null
+}, {
+    "_id": 529,
+    "source": "Myrcella Baratheon",
+    "type": "is sibling of",
+    "target": "Tommen Baratheon",
+    "start": "0x00",
+    "end": null
+}, {
+    "_id": 530,
+    "source": "Myrcella Baratheon",
+    "type": "is allied with",
+    "target": "Trystane Martell",
+    "start": "5x02",
+    "end": null
+}, {
+    "_id": 531,
+    "source": "Myrcella Baratheon",
+    "type": "is enemy of",
+    "target": "Ellaria Sand",
+    "start": "5x02",
+    "end": null
+}, {
+    "_id": 533,
+    "source": "Talisa Maegyr",
+    "type": "is allied with",
+    "target": "Catelyn Stark",
+    "start": "3x02",
+    "end": "3x09"
+}, {
+    "_id": 534,
+    "source": "Talisa Maegyr",
+    "type": "is married to",
+    "target": "Robb Stark",
+    "start": "2x10",
+    "end": "3x09"
+}, {
+    "_id": 535,
+    "source": "Talisa Maegyr",
+    "type": "is in love with",
+    "target": "Robb Stark",
+    "start": "2x04",
+    "end": "3x09"
+}, {
+    "_id": 536,
+    "source": "Talisa Maegyr",
+    "type": "was killed by",
+    "target": "Walder Frey",
+    "start": "3x09",
+    "end": null
+}, {
+    "_id": 538,
+    "source": "Hodor",
+    "type": "is allied with",
+    "target": "Bran Stark",
+    "start": "1x04",
+    "end": null
+}, {
+    "_id": 539,
+    "source": "Hodor",
+    "type": "is allied with",
+    "target": "Samwell Tarly",
+    "start": "3x10",
+    "end": "3x10"
+}, {
+    "_id": 540,
+    "source": "Hodor",
+    "type": "is allied with",
+    "target": "Osha",
+    "start": "2x06",
+    "end": "3x09"
+}, {
+    "_id": 541,
+    "source": "Hodor",
+    "type": "is allied with",
+    "target": "Jojen Reed",
+    "start": "3x02",
+    "end": "4x10"
+}, {
+    "_id": 542,
+    "source": "Hodor",
+    "type": "is allied with",
+    "target": "Meera Reed",
+    "start": "3x02",
+    "end": null
+}, {
+    "_id": 544,
+    "source": "Maester Luwin",
+    "type": "is allied with",
+    "target": "Bran Stark",
+    "start": "1x01",
+    "end": "2x10"
+}, {
+    "_id": 545,
+    "source": "Maester Luwin",
+    "type": "is allied with",
+    "target": "Rickon Stark",
+    "start": "1x01",
+    "end": "2x10"
+}, {
+    "_id": 546,
+    "source": "Maester Luwin",
+    "type": "was killed by",
+    "target": "Theon Greyjoy",
+    "start": "2x10",
+    "end": null
+}, {
+    "_id": 547,
+    "source": "Maester Luwin",
+    "type": "is allied with",
+    "target": "Osha",
+    "start": "1x07",
+    "end": "2x10"
+}, {
+    "_id": 548,
+    "source": "Walder Frey",
+    "type": "first appearance",
+    "target": null,
+    "start": null,
+    "end": null
+}, {
+    "_id": 549,
+    "source": "Walder Frey",
+    "type": "is parent of",
+    "target": "Roslin Frey",
+    "start": "0x00",
+    "end": null
+}, {
+    "_id": 550,
+    "source": "Walder Frey",
+    "type": "killed",
+    "target": "Catelyn Stark",
+    "start": "3x09",
+    "end": null
+}, {
+    "_id": 551,
+    "source": "Walder Frey",
+    "type": "is allied with",
+    "target": "Catelyn Stark",
+    "start": "1x08",
+    "end": "2x10"
+}, {
+    "_id": 552,
+    "source": "Walder Frey",
+    "type": "is allied with",
+    "target": "Catelyn Stark",
+    "start": "3x06",
+    "end": "3x09"
+}, {
+    "_id": 553,
+    "source": "Walder Frey",
+    "type": "killed",
+    "target": "Robb Stark",
+    "start": "3x09",
+    "end": null
+}, {
+    "_id": 554,
+    "source": "Walder Frey",
+    "type": "is allied with",
+    "target": "Robb Stark",
+    "start": "1x08",
+    "end": "2x10"
+}, {
+    "_id": 555,
+    "source": "Walder Frey",
+    "type": "is allied with",
+    "target": "Robb Stark",
+    "start": "3x06",
+    "end": "3x09"
+}, {
+    "_id": 556,
+    "source": "Walder Frey",
+    "type": "is enemy of",
+    "target": "Arya Stark",
+    "start": "3x09",
+    "end": null
+}, {
+    "_id": 557,
+    "source": "Walder Frey",
+    "type": "is enemy of",
+    "target": "Jon Snow",
+    "start": "4x01",
+    "end": null
+}, {
+    "_id": 558,
+    "source": "Walder Frey",
+    "type": "is enemy of",
+    "target": "Edmure Tully",
+    "start": "3x09",
+    "end": null
+}, {
+    "_id": 559,
+    "source": "Walder Frey",
+    "type": "was killed by",
+    "target": "Greywind",
+    "start": "3x09",
+    "end": null
+}, {
+    "_id": 560,
+    "source": "Walder Frey",
+    "type": "is allied with",
+    "target": "Tywin Lannister",
+    "start": "3x09",
+    "end": null
+}, {
+    "_id": 561,
+    "source": "Walder Frey",
+    "type": "was killed by",
+    "target": "Talisa Maegyr",
+    "start": "3x09",
+    "end": null
+}, {
+    "_id": 562,
+    "source": "Walder Frey",
+    "type": "is allied with",
+    "target": "Roose Bolton",
+    "start": "3x09",
+    "end": null
+}]
