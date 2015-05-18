@@ -112,9 +112,12 @@ graph = function(id, d) {
 }
 
 function buildAdjacency() {
-    linked = {}
+    linked = {};
     nodes.forEach(function (d) { linked[d.id + "," + d.id] = true; });
-    links.forEach(function (d) { linked[d.from + "," + d.to] = true; });
+    links.forEach(function (d) {
+        console.log(d.source + "," + d.target);
+        linked[d.source + "," + d.target] = true;
+    });
 }
 
 function neighboring(a, b) {
@@ -165,7 +168,10 @@ update = function(n, l) {
         .call(drag);
 
     nodeEnter.append("circle")
-        .attr("r", function(d) { return d.r; })
+        .attr("r", function(d) {
+            // return d.r;
+            return 10;
+        })
         .style("fill", function(d) { return colors[2]; });
 
     nodeEnter.append("text")
@@ -215,16 +221,16 @@ tick = function() {
         var k = 75 * e.alpha;
         nodes.forEach(function(n, i) {
             if(! n.fixed) {
-                if (n.type.indexOf("muscle") > -1)// && n.y > 400) 
-                    n.y += 2*k;
-                else if (n.type.indexOf("sensory") > -1)// && n.y > 400) 
-                    n.y -= k;
-                else if (n.type.indexOf("motor") > -1)// && n.y < 600) 
-                    n.y += k;
-                if (n.name.slice(-1) == "L")// && n.x > 400)
-                    n.x -= k
-                else if (n.name.slice(-1) == "R")// && n.x < 600)
-                    n.x += k;
+                // if (n.type.indexOf("muscle") > -1)// && n.y > 400) 
+                //     n.y += 2*k;
+                // else if (n.type.indexOf("sensory") > -1)// && n.y > 400) 
+                //     n.y -= k;
+                // else if (n.type.indexOf("motor") > -1)// && n.y < 600) 
+                //     n.y += k;
+                // if (n.name.slice(-1) == "L")// && n.x > 400)
+                //     n.x -= k
+                // else if (n.name.slice(-1) == "R")// && n.x < 600)
+                //     n.x += k;
             }
         });
         
@@ -341,7 +347,9 @@ collide = function(alpha) {
     
     var quadtree = d3.geom.quadtree(nodes);
     return function(d) {
-        var radius = nodeRadiusScale(d.D);
+        //@TODO
+        //var radius = nodeRadiusScale(d.D);
+        var radius = nodeRadiusScale(20);
         var rb = 2*radius + padding,
         nx1 = d.x - rb,
         nx2 = d.x + rb,
@@ -448,20 +456,23 @@ function searchNode() {
 
 function initNodePos(characters) {
     characters.forEach(function(d) { 
-        if (d.faction.indexOf("House Stark") > -1)
-            d.y = 0;
-        else if (d.faction.indexOf("House Targaryen") > -1)
-            d.y = height/2;
-        else if (d.faction.indexOf("House Lannister") > -1)
-            d.y = 3*height/4;
-        else if (d.faction.indexOf("House Martell") > -1)
-            d.y = height;
+        // if (d.faction.indexOf("House Stark") > -1)
+        //     d.y = 0;
+        // else if (d.faction.indexOf("House Targaryen") > -1)
+        //     d.y = height/2;
+        // else if (d.faction.indexOf("House Lannister") > -1)
+        //     d.y = 3*height/4;
+        // else if (d.faction.indexOf("House Martell") > -1)
+        //     d.y = height;
 
-        // @TODO
-        if (d.name.slice(-2,-1) == "L")
-            d.x = 0.25 * width;
-        else if (d.name.slice(-1) == "R")
-            d.x = 0.75 * width;
+        // // @TODO
+        // if (d.name.slice(-2,-1) == "L")
+        //     d.x = 0.25 * width;
+        // else if (d.name.slice(-1) == "R")
+        //     d.x = 0.75 * width;
+
+        d.y = height;
+        d.x = 0.5 * width;
 
         // Fix AVAL and AVAR to the middle
         //if (d.name="AVAL")

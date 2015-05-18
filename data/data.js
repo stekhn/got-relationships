@@ -1,5 +1,5 @@
 var test = {
-    "neurons": [{
+    "characters": [{
         "SomaPosition": 0.21,
         "type": "inter",
         "ky": 0.0059028,
@@ -4467,7 +4467,7 @@ var test = {
         "D": 11,
         "AYNbr": 279
     }],
-    "synapses": [{
+    "relations": [{
         "type": "S",
         "source": 0,
         "target": 225,
