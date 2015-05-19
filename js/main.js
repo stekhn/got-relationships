@@ -82,10 +82,11 @@ function drawGraph(links) {
       .attr("class", function(d) { return "link " + d.type; })
       .attr("marker-end", function(d) { return "url(#" + d.type + ")"; });
 
-  var circle = svg.append("svg:g").selectAll("circle")
+
+  var node = svg.selectAll(".node")
       .data(force.nodes())
-    .enter().append("svg:circle")
-      .attr("r", 10)
+    .enter().append("g")
+      .attr("class", "node")
       .call(force.drag)
       .on("mouseover", function(d) {
         connectedNodes(d);
@@ -94,18 +95,10 @@ function drawGraph(links) {
         connectedNodes(null);
       });
 
-  var text = svg.append("svg:g").selectAll("g")
-      .data(force.nodes())
-    .enter().append("svg:g");
+  var circle = node.append("svg:circle")
+      .attr("r", 10);
 
-  // A copy of the text with a thick white stroke for legibility.
-  text.append("svg:text")
-      .attr("x", 8)
-      .attr("y", ".31em")
-      .attr("class", "shadow")
-      .text(function(d) { return d.name; });
-
-  text.append("svg:text")
+  var text = node.append("svg:text")
       .attr("x", 8)
       .attr("y", ".31em")
       .text(function(d) { return d.name; });
@@ -154,6 +147,8 @@ function connectedNodes(d) {
 
     return linked[a.name + "," + b.name];
   }
+
+  console.log();
 
 
 }
