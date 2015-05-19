@@ -1,5 +1,3 @@
-var links, node, linked;
-linked = {};
 
 d3.json("data/data.json", function(error, data) {
 
@@ -25,6 +23,7 @@ function drawGraph(links) {
           else {return 0;}
       }
   });
+
   //any links with duplicate source and target get an incremented 'linknum'
   for (var i=0; i<links.length; i++) {
       if (i != 0 &&
@@ -35,19 +34,20 @@ function drawGraph(links) {
       else {links[i].linknum = 1;}
   }
 
-  var nodes = {};
-
   // Compute the distinct nodes from the links.
+  var nodes = {};
+  var linked = {};
+
   links.forEach(function(link) {
     link.source = nodes[link.source] || (nodes[link.source] = {name: link.source});
     link.target = nodes[link.target] || (nodes[link.target] = {name: link.target});
     linked[link.source.name + "," + link.target.name] = true;
   });
 
-  var graph = d3.select("#graph");
+  var container = d3.select("#container");
 
-  var width = parseInt(graph.style('width')),
-      height = parseInt(graph.style('height'));
+  var width = parseInt(container.style('width')),
+      height = parseInt(container.style('height'));
 
   var force = d3.layout.force()
       .nodes(d3.values(nodes))
@@ -58,44 +58,31 @@ function drawGraph(links) {
       .on("tick", tick)
       .start();
 
-  var svg = graph.append("svg:svg")
+  var svg = container.append("svg:svg")
       .attr("width", width)
       .attr("height", height);
 
   // Per-type markers, as they don't inherit styles.
   svg.append("svg:defs").selectAll("marker")
       .data(["suit", "licensing", "resolved"])
-    .enter().append("svg:marker")
-      .attr("id", String)
-      .attr("viewBox", "0 -5 10 10")
-      .attr("refX", 15)
-      .attr("refY", -1.5)
-      .attr("markerWidth", 6)
-      .attr("markerHeight", 6)
-      .attr("orient", "auto")
+    .enter()
     .append("svg:path")
       .attr("d", "M0,-5L10,0L0,5");
 
-  var path = svg.append("svg:g").selectAll("path")
+  var link = svg.append("svg:g").selectAll("path")
       .data(force.links())
     .enter().append("svg:path")
-      .attr("class", function(d) { return "link " + d.type; })
-      .attr("marker-end", function(d) { return "url(#" + d.type + ")"; });
-
+      .attr("class", function(d) { return "link " + d.type; });
 
   var node = svg.selectAll(".node")
       .data(force.nodes())
     .enter().append("g")
       .attr("class", "node")
-      .call(force.drag)
-      .on("mouseover", function(d) {
-        connectedNodes(d);
-      })
-      .on("mouseout", function(d) {
-        connectedNodes(null);
-      });
+      .on("mouseover", function(d) { connectedNodes(d); })
+      .on("mouseout", function(d) { connectedNodes(null); })
+      .call(force.drag);
 
-  var circle = node.append("svg:circle")
+  var marker = node.append("svg:circle")
       .attr("r", 10);
 
   var text = node.append("svg:text")
@@ -104,11 +91,9 @@ function drawGraph(links) {
       .text(function(d) { return d.name; });
 
   // Use elliptical arc path segments to doubly-encode directionality.
-
   function tick() {
-    path.attr("d", linkArc);
-    circle.attr("transform", transform);
-    text.attr("transform", transform);
+    link.attr("d", linkArc);
+    node.attr("transform", transform);
   }
 
   function linkArc(d) {
@@ -122,16 +107,10 @@ function drawGraph(links) {
     return "translate(" + d.x + "," + d.y + ")";
   }
 
-function connectedNodes(d) {
-
-    var link = path.data(force.links(), function(d) { return d.id; });
-    var node = circle.data(force.nodes(), function(d) { return d.name; });
-    //link.exit().remove();
-
+  function connectedNodes(d) {
     if (d != null) {
       //Reduce the opacity of all but the neighbouring nodes
       node.style("opacity", function (o) {
-        
         return neighboring(d, o) | neighboring(o, d) ? 1 : 0.1;
       });
       link.style("opacity", function (o) {
@@ -144,11 +123,7 @@ function connectedNodes(d) {
   }
 
   function neighboring(a, b) {
-
     return linked[a.name + "," + b.name];
   }
-
-  console.log();
-
 
 }
