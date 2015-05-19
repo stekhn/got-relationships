@@ -1,17 +1,12 @@
-
 d3.json("data/data.json", function(error, data) {
-
   if(error) {
-
     console.log(error);
   } else {
-
-    drawGraph(data.relations);
+    drawGraph(data.relations, data.characters);
   }
 });
 
-
-function drawGraph(links) {
+function drawGraph(links, persons) {
 
   //sort links by source, then target
   links.sort(function(a,b) {
@@ -23,6 +18,12 @@ function drawGraph(links) {
           else {return 0;}
       }
   });
+
+  function getFirstObjectByValue(obj, prop, value) {
+    return obj.filter(function (o) {
+      return o[prop] == value;
+    })[0];
+  }
 
   //any links with duplicate source and target get an incremented 'linknum'
   for (var i=0; i<links.length; i++) {
@@ -50,7 +51,9 @@ function drawGraph(links) {
       height = parseInt(container.style('height'));
 
   var force = d3.layout.force()
-      .nodes(d3.values(nodes))
+      .nodes((function () {
+        return d3.values(nodes);
+      })())
       .links(links)
       .size([width, height])
       .linkDistance(150)
@@ -62,27 +65,28 @@ function drawGraph(links) {
       .attr("width", width)
       .attr("height", height);
 
-  // Per-type markers, as they don't inherit styles.
-  svg.append("svg:defs").selectAll("marker")
-      .data(["suit", "licensing", "resolved"])
-    .enter()
-    .append("svg:path")
-      .attr("d", "M0,-5L10,0L0,5");
-
   var link = svg.append("svg:g").selectAll("path")
       .data(force.links())
     .enter().append("svg:path")
-      .attr("class", function(d) { return "link " + d.type; });
+      .attr("class", function(d) { return "link " + d.type; })
+      .style("opacity", 0.25);
 
   var node = svg.selectAll(".node")
       .data(force.nodes())
     .enter().append("g")
       .attr("class", "node")
+      .style("opacity", 1)
       .on("mouseover", function(d) { connectedNodes(d); })
       .on("mouseout", function(d) { connectedNodes(null); })
       .call(force.drag);
 
   var marker = node.append("svg:circle")
+      .attr("class", function(d) {
+        d.person = getFirstObjectByValue(persons, "source", d.name);
+        if (d.person) {
+          return d.person.faction;
+        }
+      })
       .attr("r", 10);
 
   var text = node.append("svg:text")
@@ -109,9 +113,9 @@ function drawGraph(links) {
 
   function connectedNodes(d) {
     if (d != null) {
-      //Reduce the opacity of all but the neighbouring nodes
+      //Reduce the opacity of all but the neighbouring nodes and the source node
       node.style("opacity", function (o) {
-        return neighboring(d, o) | neighboring(o, d) ? 1 : 0.1;
+        return d.name==o.name | neighboring(d, o) | neighboring(o, d) ? 1 : 0.1;
       });
       link.style("opacity", function (o) {
         return d.name==o.target.name | d.name==o.source.name ? 1 : 0.05;

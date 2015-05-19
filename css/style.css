@@ -8,36 +8,14 @@ html, body, #container {
   stroke-width: 1.5px;
 }
 
-#licensing {
-  fill: green;
-}
-
-.link.allied {
-  stroke: green;
-}
-
-.link.enemy {
-  stroke: red;
-}
-
+.link.allied { stroke: green; }
+.link.enemy { stroke: red; }
+.link.love { stroke: gold; }
+.link.sibling { stroke: gold; }
+.link.parent { stroke: gold; }
+.link.married { stroke: gold; }
 .link.killed {
-  stroke: red;
-}
-
-.link.love {
-  stroke: lightblue;
-}
-
-.link.sibling {
-  stroke: lightblue;
-}
-.link.parent {
-  stroke: lightblue;
-}.link.married {
-  stroke: lightblue;
-}
-
-.link.resolved {
+  stroke: black;
   stroke-dasharray: 0,2 1;
 }
 
@@ -46,6 +24,18 @@ circle {
   stroke: #333;
   stroke-width: 1.5px;
 }
+
+.Stark { fill: #A4C0F7; } 
+.Targaryen { fill: #A81800; } 
+.Baratheon { fill: #FFE791; } 
+.Lannister { fill: #E26462; } 
+.Tyrell { fill: #90C677; } 
+.Martell { fill: #E79220; } 
+.Greyjoy { fill: #245008; } 
+.Lesser { fill: #C479A1; } 
+.Watch { fill: #333333; } 
+.Folk { fill: #D0E0E3; } 
+.Others { fill: #EBD0DC
 
 text {
   font: 10px sans-serif;
