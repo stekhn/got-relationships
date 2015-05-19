@@ -56,6 +56,7 @@ function drawGraph(links, persons) {
       })())
       .links(links)
       .size([width, height])
+      .gravity(0.3)
       .linkDistance(150)
       .charge(-2000)
       .on("tick", tick)
@@ -90,7 +91,13 @@ function drawGraph(links, persons) {
       .attr("r", 10);
 
   var text = node.append("svg:text")
-      .attr("x", 8)
+      .attr("x", 12)
+      .attr("y", ".31em")
+      .attr("class", "shadow") 
+      .text(function(d) { return d.name; });
+
+  var shadow = node.append("svg:text")
+      .attr("x", 12)
       .attr("y", ".31em")
       .text(function(d) { return d.name; });
 

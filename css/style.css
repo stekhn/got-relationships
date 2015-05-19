@@ -2,6 +2,17 @@ html, body, #container {
   height: 100%
 }
 
+text {
+  font: 12px sans-serif;
+  pointer-events: none;
+}
+
+text.shadow {
+  stroke: white;
+  stroke-width: 2.5px;
+  opacity: 0.9;
+}
+
 .link {
   fill: none;
   stroke: #666;
@@ -37,8 +48,3 @@ circle {
 .Folk { fill: #D0E0E3; } 
 .Others { fill: #EBD0DC
 
-text {
-  font: 10px sans-serif;
-  pointer-events: none;
-  text-shadow: 0 1px 0 #fff, 1px 0 0 #fff, 0 -1px 0 #fff, -1px 0 0 #fff;
-}
