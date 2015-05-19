@@ -41,7 +41,7 @@ function drawGraph(links) {
   links.forEach(function(link) {
     link.source = nodes[link.source] || (nodes[link.source] = {name: link.source});
     link.target = nodes[link.target] || (nodes[link.target] = {name: link.target});
-    linked["\"" + link.source.name + "," + link.target.name + "\""] = true;
+    linked[link.source.name + "," + link.target.name] = true;
   });
 
   var graph = d3.select("#graph");
@@ -151,7 +151,8 @@ function connectedNodes(d) {
   }
 
   function neighboring(a, b) {
-    return linked[a.id + "," + b.id];
+
+    return linked[a.name + "," + b.name];
   }
 
 
