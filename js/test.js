@@ -101,7 +101,33 @@ graph = function(id, d) {
         d3.event.stopPropagation();
     });  
 
-    // Crossfilter
+    
+    links.sort(function(a,b) {
+        if (a.source > b.source) {return 1;}
+        else if (a.source < b.source) {return -1;}
+        else {
+            if (a.target > b.target) {return 1;}
+            if (a.target < b.target) {return -1;}
+            else {return 0;}
+        }
+    });
+    //any links with duplicate source and target get an incremented 'linknum'
+    for (var i=0; i<links.length; i++) {
+        if (i != 0 &&
+            links[i].source == links[i-1].source &&
+            links[i].target == links[i-1].target) {
+                links[i].linknum = links[i-1].linknum + 1;
+            }
+        else {links[i].linknum = 1;};
+    };
+
+    var nodes = {};
+
+    // Compute the distinct nodes from the links.
+    links.forEach(function(link) {
+      link.source = nodes[link.source] || (nodes[link.source] = {name: link.source});
+      link.target = nodes[link.target] || (nodes[link.target] = {name: link.target});
+    });
    
     update(data.characters, data.relations);
     
