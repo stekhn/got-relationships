@@ -1,3 +1,7 @@
+html, body, #graph {
+  height: 100%
+}
+
 .link {
   fill: none;
   stroke: #666;

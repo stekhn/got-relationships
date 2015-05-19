@@ -1,115 +1,117 @@
-//https://gist.github.com/mbostock/1153292
+var links, node, linked;
+linked = {};
 
-var links = [
-  {source: "Microsoft", target: "Amazon", type: "licensing"},
-  {source: "Microsoft", target: "HTC", type: "licensing"},
-  {source: "Samsung", target: "Apple", type: "suit"},
-  {source: "Motorola", target: "Apple", type: "suit"},
-  {source: "Nokia", target: "Apple", type: "resolved"},
-  {source: "HTC", target: "Apple", type: "suit"},
-  {source: "Kodak", target: "Apple", type: "suit"},
-  {source: "Microsoft", target: "Barnes & Noble", type: "suit"},
-  {source: "Microsoft", target: "Foxconn", type: "suit"},
-  {source: "Oracle", target: "Google", type: "suit"},
-  {source: "Apple", target: "HTC", type: "suit"},
-  {source: "Microsoft", target: "Inventec", type: "suit"},
-  {source: "Samsung", target: "Kodak", type: "resolved"},
-  {source: "LG", target: "Kodak", type: "resolved"},
-  {source: "RIM", target: "Kodak", type: "suit"},
-  {source: "Sony", target: "LG", type: "suit"},
-  {source: "Kodak", target: "LG", type: "resolved"},
-  {source: "Apple", target: "Nokia", type: "resolved"},
-  {source: "Qualcomm", target: "Nokia", type: "resolved"},
-  {source: "Apple", target: "Motorola", type: "suit"},
-  {source: "Microsoft", target: "Motorola", type: "suit"},
-  {source: "Motorola", target: "Microsoft", type: "suit"},
-  {source: "Huawei", target: "ZTE", type: "suit"},
-  {source: "Ericsson", target: "ZTE", type: "suit"},
-  {source: "Kodak", target: "Samsung", type: "resolved"},
-  {source: "Apple", target: "Samsung", type: "suit"},
-  {source: "Kodak", target: "RIM", type: "suit"},
-  {source: "Nokia", target: "Qualcomm", type: "suit"}
-];
+d3.json("data/data.json", function(error, data) {
 
-function init() {
+  if(error) {
 
-  d3.json("data/relations.json", function(error, data) {
+    console.log(error);
+  } else {
 
-    if(error) {
+    drawGraph(data.relations);
+  }
+});
 
-      console.log(error);
-    } else {
 
-      drawGraph(data);
-    }
+function drawGraph(links) {
+
+  //sort links by source, then target
+  links.sort(function(a,b) {
+      if (a.source > b.source) {return 1;}
+      else if (a.source < b.source) {return -1;}
+      else {
+          if (a.target > b.target) {return 1;}
+          if (a.target < b.target) {return -1;}
+          else {return 0;}
+      }
   });
-}
-
-function drawGraph(data) {
+  //any links with duplicate source and target get an incremented 'linknum'
+  for (var i=0; i<links.length; i++) {
+      if (i != 0 &&
+          links[i].source == links[i-1].source &&
+          links[i].target == links[i-1].target) {
+              links[i].linknum = links[i-1].linknum + 1;
+          }
+      else {links[i].linknum = 1;}
+  }
 
   var nodes = {};
 
   // Compute the distinct nodes from the links.
-  data.forEach(function(link) {
-
+  links.forEach(function(link) {
     link.source = nodes[link.source] || (nodes[link.source] = {name: link.source});
     link.target = nodes[link.target] || (nodes[link.target] = {name: link.target});
+    linked["\"" + link.source.name + "," + link.target.name + "\""] = true;
   });
 
-  var width = 1600,
-      height = 1200;
+  var graph = d3.select("#graph");
+
+  var width = parseInt(graph.style('width')),
+      height = parseInt(graph.style('height'));
 
   var force = d3.layout.force()
       .nodes(d3.values(nodes))
-      .links(data)
+      .links(links)
       .size([width, height])
-      .linkDistance(200)
-      .charge(-200)
+      .linkDistance(150)
+      .charge(-2000)
       .on("tick", tick)
       .start();
 
-  var svg = d3.select("body").append("svg")
+  var svg = graph.append("svg:svg")
       .attr("width", width)
       .attr("height", height);
 
   // Per-type markers, as they don't inherit styles.
-  svg.append("defs").selectAll("marker")
+  svg.append("svg:defs").selectAll("marker")
       .data(["suit", "licensing", "resolved"])
-    .enter().append("marker")
-      .attr("id", function(d) { return d; })
+    .enter().append("svg:marker")
+      .attr("id", String)
       .attr("viewBox", "0 -5 10 10")
       .attr("refX", 15)
       .attr("refY", -1.5)
       .attr("markerWidth", 6)
       .attr("markerHeight", 6)
       .attr("orient", "auto")
-    .append("path")
+    .append("svg:path")
       .attr("d", "M0,-5L10,0L0,5");
 
-  var path = svg.append("g").selectAll("path")
+  var path = svg.append("svg:g").selectAll("path")
       .data(force.links())
-    .enter().append("path")
+    .enter().append("svg:path")
       .attr("class", function(d) { return "link " + d.type; })
       .attr("marker-end", function(d) { return "url(#" + d.type + ")"; });
 
-  var circle = svg.append("g").selectAll("circle")
+  var circle = svg.append("svg:g").selectAll("circle")
       .data(force.nodes())
-    .enter().append("circle")
-      .attr("r", 6)
+    .enter().append("svg:circle")
+      .attr("r", 10)
       .call(force.drag)
       .on("mouseover", function(d) {
-          connectedNodes(d);
+        connectedNodes(d);
+      })
+      .on("mouseout", function(d) {
+        connectedNodes(null);
       });
 
-  var text = svg.append("g").selectAll("text")
+  var text = svg.append("svg:g").selectAll("g")
       .data(force.nodes())
-    .enter().append("text")
+    .enter().append("svg:g");
+
+  // A copy of the text with a thick white stroke for legibility.
+  text.append("svg:text")
       .attr("x", 8)
       .attr("y", ".31em")
-      .style("font-size","14px")
+      .attr("class", "shadow")
+      .text(function(d) { return d.name; });
+
+  text.append("svg:text")
+      .attr("x", 8)
+      .attr("y", ".31em")
       .text(function(d) { return d.name; });
 
   // Use elliptical arc path segments to doubly-encode directionality.
+
   function tick() {
     path.attr("d", linkArc);
     circle.attr("transform", transform);
@@ -123,27 +125,34 @@ function drawGraph(data) {
     return "M" + d.source.x + "," + d.source.y + "A" + dr + "," + dr + " 0 0,1 " + d.target.x + "," + d.target.y;
   }
 
-  function connectedNodes(d) {
-    if (d != null) {
-        //Reduce the opacity of all but the neighbouring nodes
-        node.style("opacity", function (o) {
-            return neighboring(d, o) | neighboring(o, d) ? 1 : 0.1;
-        });
-        link.style("opacity", function (o) {
-            return d.id==o.from | d.id==o.to ? 1 : 0.05;
-        });
-    } else {     
-        node.style("opacity", 1);
-        link.style("opacity", 0.25);
-    }
-}
-
   function transform(d) {
     return "translate(" + d.x + "," + d.y + ")";
   }
 
-  function neighboring(a, b) {
-      return linked[a.id + "," + b.id];
-  }
-}
+function connectedNodes(d) {
 
+    var link = path.data(force.links(), function(d) { return d.id; });
+    var node = circle.data(force.nodes(), function(d) { return d.name; });
+    //link.exit().remove();
+
+    if (d != null) {
+      //Reduce the opacity of all but the neighbouring nodes
+      node.style("opacity", function (o) {
+        
+        return neighboring(d, o) | neighboring(o, d) ? 1 : 0.1;
+      });
+      link.style("opacity", function (o) {
+        return d.name==o.target.name | d.name==o.source.name ? 1 : 0.05;
+      });
+    } else {   
+      node.style("opacity", 1);
+      link.style("opacity", 0.25);
+    }
+  }
+
+  function neighboring(a, b) {
+    return linked[a.id + "," + b.id];
+  }
+
+
+}
