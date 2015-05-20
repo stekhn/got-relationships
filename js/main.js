@@ -104,7 +104,9 @@ function drawGraph(links, persons) {
           return d.person.faction;
         }
       })
-      .attr("r", 10);
+      .attr("r", function (d) {
+        return (d.weight - 2) * 0.1 + 7;
+      });
 
   var text = node.append("svg:text")
       .attr("x", 14)
