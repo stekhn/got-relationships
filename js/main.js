@@ -67,10 +67,25 @@ function drawGraph(links, persons) {
       .attr("width", width)
       .attr("height", height);
 
+  // var marker = svg.append("defs").selectAll("marker")
+  //     .data(["end"])
+  //   .enter().append("marker")
+  //     .attr("id", function(d) { return d; })
+  //     .attr("viewBox", "0 -5 10 10")
+  //     .attr("refX", 15)
+  //     .attr("refY", -1.5)
+  //     .attr("markerWidth", 6)
+  //     .attr("markerHeight", 6)
+  //     .attr("orient", "auto")
+  //   .append("path")
+  //     .attr("d", "M0,-5L10,0L0,5");
+
+
   var link = svg.append("svg:g").selectAll("path")
       .data(force.links())
     .enter().append("svg:path")
       .attr("class", function(d) { return "link " + d.type; })
+      // .attr("marker-end", "url(#end)")
       .style("opacity", 0.25);
 
   var node = svg.selectAll(".node")

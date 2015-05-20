@@ -27,7 +27,7 @@ text.shadow {
 .link.married { stroke: gold; }
 .link.killed {
   stroke: black;
-  stroke-dasharray: 0,2 1;
+  /*stroke-dasharray: 0,2 1;*/
 }
 
 circle {
