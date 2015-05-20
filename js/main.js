@@ -1,3 +1,6 @@
+var r = 6,
+    z = d3.scale.category20c();
+
 d3.json("data/data.json", function(error, data) {
   if(error) {
     console.log(error);
@@ -51,12 +54,10 @@ function drawGraph(links, persons) {
       height = parseInt(container.style('height'));
 
   var force = d3.layout.force()
-      .nodes((function () {
-        return d3.values(nodes);
-      })())
+      .nodes(d3.values(nodes))
       .links(links)
       .size([width, height])
-      .gravity(0.3)
+      .gravity(0.1)
       .linkDistance(150)
       .charge(-2000)
       .on("tick", tick)
@@ -91,14 +92,14 @@ function drawGraph(links, persons) {
       .attr("r", 10);
 
   var text = node.append("svg:text")
-      .attr("x", 12)
-      .attr("y", ".31em")
+      .attr("x", 14)
+      .attr("y", ".35em")
       .attr("class", "shadow") 
       .text(function(d) { return d.name; });
 
   var shadow = node.append("svg:text")
-      .attr("x", 12)
-      .attr("y", ".31em")
+      .attr("x", 14)
+      .attr("y", ".4em")
       .text(function(d) { return d.name; });
 
   // Use elliptical arc path segments to doubly-encode directionality.
