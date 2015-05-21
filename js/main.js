@@ -80,7 +80,6 @@ function drawGraph(links, persons) {
   //   .append("path")
   //     .attr("d", "M0,-5L10,0L0,5");
 
-
   var link = svg.append("svg:g").selectAll("path")
       .data(force.links())
     .enter().append("svg:path")
@@ -99,7 +98,7 @@ function drawGraph(links, persons) {
 
   var marker = node.append("svg:circle")
       .attr("class", function(d) {
-        d.person = getFirstObjectByValue(persons, "source", d.name);
+        d.person = getFirstObjectByValue(persons, "name", d.name);
         if (d.person) {
           return d.person.faction;
         }
