@@ -1,6 +1,3 @@
-var r = 6,
-    z = d3.scale.category20c();
-
 d3.json('data/data.json', function(error, data) {
   if(error) {
     console.log(error);
@@ -50,6 +47,7 @@ function drawGraph(links, persons) {
 
   var container = d3.select('#container');
   var info = d3.select('#info');
+  var relations = d3.select('#relations');
 
   var width = parseInt(container.style('width')),
       height = parseInt(container.style('height'));
@@ -96,10 +94,10 @@ function drawGraph(links, persons) {
       .on('mouseover', function(d) {
         connectedNodes(d);
         displayInfo(d);
+        displayRelations(d);
       })
       .on('mouseout', function(d) {
         connectedNodes(null);
-        displayInfo(d);
       })
       .call(force.drag);
 
@@ -167,7 +165,18 @@ function drawGraph(links, persons) {
       '<p>' + d.person.faction + '<br>' +
       (d.person["first-appearance"] ? "first appearance in " + d.person["first-appearance"] : "&nbsp") + '<br>' +
       (d.person.killed ? "killed in " + d.person.killed : "&nbsp") + '</p>'
-      );
+    );
+  }
+
+  function displayRelations(d) {
+    var str = "<p>";
+    var rels = links.filter(function (o) {
+      return o.source.name == d.name;
+    });
+    for (var i = 0; i < rels.length; i++) {
+      str += '<span class="' + rels[i].type + '">' + rels[i].source.name + ' ' + rels[i].type + ' ' + rels[i].target.name + '</span><br>';
+    }
+    relations.html(str + '</p>');
   }
 
 }

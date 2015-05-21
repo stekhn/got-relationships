@@ -21,16 +21,13 @@ text.shadow {
   stroke-width: 1.5px;
 }
 
-.link.allied { stroke: green; }
-.link.enemy { stroke: red; }
-.link.love { stroke: gold; }
-.link.sibling { stroke: gold; }
-.link.parent { stroke: gold; }
-.link.married { stroke: gold; }
-.link.killed {
-  stroke: black;
-  /*stroke-dasharray: 0,2 1;*/
-}
+span.allied, .link.allied { stroke: green; color: green; }
+span.enemy, .link.enemy { stroke: red; color: red; }
+span.love, .link.love { stroke: gold; color: gold; }
+span.sibling, .link.sibling { stroke: gold; color: gold; }
+span.parent, .link.parent { stroke: gold; color: gold; }
+span.married, .link.married { stroke: gold; color: gold; }
+span.killed, .link.killed { stroke: black; color: black; }
 
 circle {
   fill: #ccc;
@@ -57,3 +54,12 @@ circle {
   padding: 2em;
   background-color: rgba(255,255,255,0.7);
 }
+
+#relations {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  padding: 2em;
+  background-color: rgba(255,255,255,0.7);
+}
+
