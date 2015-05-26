@@ -48,6 +48,8 @@ function drawGraph(links, persons) {
   var container = d3.select('#container');
   var info = d3.select('#info');
   var relations = d3.select('#relations');
+  var input = d3.select('#input');
+  var episode = d3.select('#episode');
 
   var width = parseInt(container.style('width')),
       height = parseInt(container.style('height'));
@@ -147,7 +149,11 @@ function drawGraph(links, persons) {
         return d.name==o.name | neighboring(d, o) | neighboring(o, d) ? 1 : 0.1;
       });
       link.style('opacity', function (o) {
+
+        // Highlight incoming and outgoing relations
         // return d.name==o.target.name | d.name==o.source.name ? 1 : 0.05;
+        
+        // Highlight outgoing relations
         return d.name==o.target.name ? 1 : 0.05;
       });
     } else {   
@@ -180,4 +186,12 @@ function drawGraph(links, persons) {
     relations.html(str + '</p>');
   }
 
+  input.on('input', function() {
+    console.log(this.value);
+    episode.text(this.value);
+  });
+
 }
+
+
+
