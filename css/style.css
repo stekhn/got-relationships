@@ -74,15 +74,15 @@ circle {
   top: 0;
   left: 0;
   right: 0;
-  margin: 1em auto;
+  margin: 0 auto;
+  padding: 1em 0;
   text-align: center;
-}
-
-#slider input {
-  width: 75%;
+  background-color: rgba(255,255,255,0.7);
 }
 
 #slider .input-range {
+  width: 75%;
+
   -webkit-appearance: none;
   height: 10px;
   border-radius: 5px;
@@ -92,21 +92,22 @@ circle {
 
 #slider .input-range::-webkit-slider-thumb {
   -webkit-appearance: none;
-  width: 20px;
-  height: 20px;
+  width: 30px;
+  height: 30px;
   border-radius: 50%;
-  background: #353535;
+  border: 1px solid white;
+  background: #333;
   cursor: pointer;
   -webkit-transition: background 0.15s ease-in-out;
   transition: background 0.15s ease-in-out;
 }
 
 #slider .input-range::-webkit-slider-thumb:hover {
-  background: #e06161;
+  background: #A4C0F7;
 }
 
 #slider .input-range:active::-webkit-slider-thumb {
-  background: #e06161;
+  background: #A4C0F7;
 }
 
 #slider .input-range::-moz-range-thumb {
@@ -114,18 +115,18 @@ circle {
   height: 20px;
   border: 0;
   border-radius: 50%;
-  background: #353535;
+  background: #333;
   cursor: pointer;
   -webkit-transition: background 0.15s ease-in-out;
   transition: background 0.15s ease-in-out;
 }
 
 #slider .input-range::-moz-range-thumb:hover {
-  background: #e06161;
+  background: #A4C0F7;
 }
 
 #slider .input-range:active::-moz-range-thumb {
-  background: #e06161;
+  background: #A4C0F7;
 }
 
 #slider .range-value {
@@ -137,7 +138,7 @@ circle {
   line-height: 20px;
   text-align: center;
   border-radius: 3px;
-  background: #353535;
+  background: #333;
   padding: 5px 10px;
   margin-left: 7px;
 }
@@ -149,7 +150,7 @@ circle {
   width: 0;
   height: 0;
   border-top: 7px solid transparent;
-  border-right: 7px solid #353535;
+  border-right: 7px solid #333;
   border-bottom: 7px solid transparent;
   content: '';
 }

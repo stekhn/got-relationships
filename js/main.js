@@ -187,8 +187,8 @@ function drawGraph(links, persons) {
   }
 
   input.on('input', function() {
-    console.log(this.value);
-    episode.text(this.value);
+    var arr = this.value.split('');
+    episode.text(arr[0] + 'x' + (parseInt(arr[1]) + 1));
   });
 
 }
