@@ -147,7 +147,8 @@ function drawGraph(links, persons) {
         return d.name==o.name | neighboring(d, o) | neighboring(o, d) ? 1 : 0.1;
       });
       link.style('opacity', function (o) {
-        return d.name==o.target.name | d.name==o.source.name ? 1 : 0.05;
+        // return d.name==o.target.name | d.name==o.source.name ? 1 : 0.05;
+        return d.name==o.target.name ? 1 : 0.05;
       });
     } else {   
       node.style('opacity', 1);
