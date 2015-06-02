@@ -7,7 +7,6 @@
 html, body, #container {
   height: 100%;
   font: 1em/1.2em sans-serif;
-  line-height: 
 }
 
 text {
@@ -103,11 +102,11 @@ circle {
 }
 
 #slider .input-range::-webkit-slider-thumb:hover {
-  background: #A4C0F7;
+  background: #A81800;
 }
 
 #slider .input-range:active::-webkit-slider-thumb {
-  background: #A4C0F7;
+  background: #A81800;
 }
 
 #slider .input-range::-moz-range-thumb {
@@ -122,11 +121,11 @@ circle {
 }
 
 #slider .input-range::-moz-range-thumb:hover {
-  background: #A4C0F7;
+  background: #A81800;
 }
 
 #slider .input-range:active::-moz-range-thumb {
-  background: #A4C0F7;
+  background: #A81800;
 }
 
 #slider .range-value {
