@@ -50,6 +50,9 @@ function sortData(links, persons, episode) {
     linked[link.source.name + ',' + link.target.name] = true;
   });
 
+  console.log(links);
+  console.log(persons);
+
   update(links, persons);
 }
 
@@ -131,6 +134,7 @@ function update(links, persons) {
   input.on('input', function() {
     var arr = this.value.split('');
     episode.text(arr[0] + 'x' + (parseInt(arr[1]) + 1));
+    console.log(this.value);
   });
 
   // Use elliptical arc path segments to doubly-encode directionality.
@@ -158,7 +162,7 @@ function connectedNodes(d) {
 
     //Reduce the opacity of all but the neighbouring nodes and the source node
     node.style('opacity', function (o) {
-      
+
       // Highlight incoming and outgoing relations
       // return d.name==o.name | neighboring(d, o) | neighboring(o, d) ? 1 : 0.1;
 
@@ -209,5 +213,9 @@ function getFirstObjectByValue(obj, prop, value) {
   })[0];
 }
 
-
-
+// Converts epsiode 1x10 to integer 19
+function convertEpisodeFormat(episode) {
+  var arr = episode.split("x");
+  console.log(parseInt(arr[0] + (arr[1] - 1)));
+  return parseInt(arr[0] + (arr[1] - 1));
+}
