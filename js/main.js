@@ -155,9 +155,15 @@ function transform(d) {
 
 function connectedNodes(d) {
   if (d != null) {
+
     //Reduce the opacity of all but the neighbouring nodes and the source node
     node.style('opacity', function (o) {
-      return d.name==o.name | neighboring(d, o) | neighboring(o, d) ? 1 : 0.1;
+      
+      // Highlight incoming and outgoing relations
+      // return d.name==o.name | neighboring(d, o) | neighboring(o, d) ? 1 : 0.1;
+
+      // Highlight outgoing relations
+      return d.name==o.name | neighboring(d, o)  ? 1 : 0.1;
     });
     link.style('opacity', function (o) {
 
