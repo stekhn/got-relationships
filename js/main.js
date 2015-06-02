@@ -1,13 +1,27 @@
+var node, link, marker, text, shadow, force, svg;
+var nodes = {};
+var linked = {};
+
+var container = d3.select('#container');
+var info = d3.select('#info');
+var relations = d3.select('#relations');
+var input = d3.select('#input');
+var episode = d3.select('#episode');
+
+var width = parseInt(container.style('width')),
+    height = parseInt(container.style('height'));
+
+
+// Load data from JSON and initialize the app
 d3.json('data/data.json', function(error, data) {
   if(error) {
     console.log(error);
   } else {
-    drawGraph(data.relations, data.characters);
+    sortData(data.relations, data.characters);
   }
 });
 
-function drawGraph(links, persons) {
-
+function sortData(links, persons, episode) {
   //sort links by source, then target
   links.sort(function(a,b) {
       if (a.source > b.source) {return 1;}
@@ -18,12 +32,6 @@ function drawGraph(links, persons) {
           else {return 0;}
       }
   });
-
-  function getFirstObjectByValue(obj, prop, value) {
-    return obj.filter(function (o) {
-      return o[prop] == value;
-    })[0];
-  }
 
   //any links with duplicate source and target get an incremented 'linknum'
   for (var i=0; i<links.length; i++) {
@@ -36,25 +44,19 @@ function drawGraph(links, persons) {
   }
 
   // Compute the distinct nodes from the links.
-  var nodes = {};
-  var linked = {};
-
   links.forEach(function(link) {
     link.source = nodes[link.source] || (nodes[link.source] = {name: link.source});
     link.target = nodes[link.target] || (nodes[link.target] = {name: link.target});
     linked[link.source.name + ',' + link.target.name] = true;
   });
 
-  var container = d3.select('#container');
-  var info = d3.select('#info');
-  var relations = d3.select('#relations');
-  var input = d3.select('#input');
-  var episode = d3.select('#episode');
+  update(links, persons);
+}
 
-  var width = parseInt(container.style('width')),
-      height = parseInt(container.style('height'));
 
-  var force = d3.layout.force()
+function update(links, persons) {
+
+  force = d3.layout.force()
       .nodes(d3.values(nodes))
       .links(links)
       .size([width, height])
@@ -64,7 +66,7 @@ function drawGraph(links, persons) {
       .on('tick', tick)
       .start();
 
-  var svg = container.append('svg:svg')
+  svg = container.append('svg:svg')
       .attr('width', width)
       .attr('height', height);
 
@@ -81,14 +83,14 @@ function drawGraph(links, persons) {
   //   .append('path')
   //     .attr('d', 'M0,-5L10,0L0,5');
 
-  var link = svg.append('svg:g').selectAll('path')
+  link = svg.append('svg:g').selectAll('path')
       .data(force.links())
     .enter().append('svg:path')
       .attr('class', function(d) { return 'link ' + d.type; })
       // .attr('marker-end', 'url(#end)')
       .style('opacity', 0.25);
 
-  var node = svg.selectAll('.node')
+  node = svg.selectAll('.node')
       .data(force.nodes())
     .enter().append('g')
       .attr('class', 'node')
@@ -96,14 +98,14 @@ function drawGraph(links, persons) {
       .on('mouseover', function(d) {
         connectedNodes(d);
         displayInfo(d);
-        displayRelations(d);
+        displayRelations(d, links);
       })
       .on('mouseout', function(d) {
         connectedNodes(null);
       })
       .call(force.drag);
 
-  var marker = node.append('svg:circle')
+  marker = node.append('svg:circle')
       .attr('class', function(d) {
         d.person = getFirstObjectByValue(persons, 'name', d.name);
         if (d.person) {
@@ -114,83 +116,91 @@ function drawGraph(links, persons) {
         return (d.weight - 2) * 0.1 + 7;
       });
 
-  var text = node.append('svg:text')
+  text = node.append('svg:text')
       .attr('x', 14)
       .attr('y', '.35em')
       .attr('class', 'shadow') 
       .text(function(d) { return d.name; });
 
-  var shadow = node.append('svg:text')
+  shadow = node.append('svg:text')
       .attr('x', 14)
       .attr('y', '.4em')
       .text(function(d) { return d.name; });
 
-  // Use elliptical arc path segments to doubly-encode directionality.
-  function tick() {
-    link.attr('d', linkArc);
-    node.attr('transform', transform);
-  }
-
-  function linkArc(d) {
-    var dx = d.target.x - d.source.x,
-        dy = d.target.y - d.source.y,
-        dr = Math.sqrt(dx * dx + dy * dy);
-    return 'M' + d.source.x + ',' + d.source.y + 'A' + dr + ',' + dr + ' 0 0,1 ' + d.target.x + ',' + d.target.y;
-  }
-
-  function transform(d) {
-    return 'translate(' + d.x + ',' + d.y + ')';
-  }
-
-  function connectedNodes(d) {
-    if (d != null) {
-      //Reduce the opacity of all but the neighbouring nodes and the source node
-      node.style('opacity', function (o) {
-        return d.name==o.name | neighboring(d, o) | neighboring(o, d) ? 1 : 0.1;
-      });
-      link.style('opacity', function (o) {
-
-        // Highlight incoming and outgoing relations
-        // return d.name==o.target.name | d.name==o.source.name ? 1 : 0.05;
-        
-        // Highlight outgoing relations
-        return d.name==o.target.name ? 1 : 0.05;
-      });
-    } else {   
-      node.style('opacity', 1);
-      link.style('opacity', 0.25);
-    }
-  }
-
-  function neighboring(a, b) {
-    return linked[a.name + ',' + b.name];
-  }
-
-  function displayInfo(d) {
-    info.html(
-      '<h2 class="' + d.person.faction + '">' + d.name + '</h2>' + 
-      '<p>' + d.person.faction + '<br>' +
-      (d.person["first-appearance"] ? "first appearance in " + d.person["first-appearance"] : "&nbsp") + '<br>' +
-      (d.person.killed ? "killed in " + d.person.killed : "&nbsp") + '</p>'
-    );
-  }
-
-  function displayRelations(d) {
-    var str = "<p>";
-    var rels = links.filter(function (o) {
-      return o.source.name == d.name;
-    });
-    for (var i = 0; i < rels.length; i++) {
-      str += '<span class="' + rels[i].type + '">' + rels[i].source.name + ' ' + rels[i].type + ' ' + rels[i].target.name + '</span><br>';
-    }
-    relations.html(str + '</p>');
-  }
-
+  //@TODO Remove from update function;
   input.on('input', function() {
     var arr = this.value.split('');
     episode.text(arr[0] + 'x' + (parseInt(arr[1]) + 1));
   });
 
+  // Use elliptical arc path segments to doubly-encode directionality.
+}
+
+function tick() {
+  link.attr('d', linkArc);
+  node.attr('transform', transform);
+}
+
+
+function linkArc(d) {
+  var dx = d.target.x - d.source.x,
+      dy = d.target.y - d.source.y,
+      dr = Math.sqrt(dx * dx + dy * dy);
+  return 'M' + d.source.x + ',' + d.source.y + 'A' + dr + ',' + dr + ' 0 0,1 ' + d.target.x + ',' + d.target.y;
+}
+
+function transform(d) {
+  return 'translate(' + d.x + ',' + d.y + ')';
+}
+
+function connectedNodes(d) {
+  if (d != null) {
+    //Reduce the opacity of all but the neighbouring nodes and the source node
+    node.style('opacity', function (o) {
+      return d.name==o.name | neighboring(d, o) | neighboring(o, d) ? 1 : 0.1;
+    });
+    link.style('opacity', function (o) {
+
+      // Highlight incoming and outgoing relations
+      // return d.name==o.target.name | d.name==o.source.name ? 1 : 0.05;
+      
+      // Highlight outgoing relations
+      return d.name==o.target.name ? 1 : 0.05;
+    });
+  } else {   
+    node.style('opacity', 1);
+    link.style('opacity', 0.25);
+  }
+}
+
+function neighboring(a, b) {
+  return linked[a.name + ',' + b.name];
+}
+
+function displayInfo(d) {
+  info.html(
+    '<h2 class="' + d.person.faction + '">' + d.name + '</h2>' + 
+    '<p>' + d.person.faction + '<br>' +
+    (d.person["first-appearance"] ? "first appearance in " + d.person["first-appearance"] : "&nbsp") + '<br>' +
+    (d.person.killed ? "killed in " + d.person.killed : "&nbsp") + '</p>'
+  );
+}
+
+function displayRelations(d, links) {
+  var str = "<p>";
+  var rels = links.filter(function (o) {
+    return o.source.name == d.name;
+  });
+  for (var i = 0; i < rels.length; i++) {
+    str += '<span class="' + rels[i].type + '">' + rels[i].source.name + ' ' + rels[i].type + ' ' + rels[i].target.name + '</span><br>';
+  }
+  relations.html(str + '</p>');
+}
+
+function getFirstObjectByValue(obj, prop, value) {
+  return obj.filter(function (o) {
+    return o[prop] == value;
+  })[0];
 }
 
 
