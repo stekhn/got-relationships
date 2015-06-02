@@ -4,6 +4,7 @@ var node, link, marker, text, shadow, force, svg;
 var nodes = {};
 var linked = {};
 
+var model;
 var characters;
 var relations;
 
@@ -22,6 +23,7 @@ d3.json('data/data.json', function(error, data) {
   if(error) {
     console.log(error);
   } else {
+    model = data;
     relations = data.relations;
     characters = data.characters;
     // sortData(relations, characters);
@@ -31,19 +33,18 @@ d3.json('data/data.json', function(error, data) {
 
 function sortData() {
 
-    console.log(relations, characters);
+    // Filter out all relations which are not related to the current episode
+    relations = copyObject(model.relations)
+      .filter(function (rel) {
+         return convertEpisodeFormat(rel.end) >= currentEpisode &&
+          convertEpisodeFormat(rel.start) <= currentEpisode;
+      });
 
-    relations = relations.filter(function (rel) {
-      return convertEpisodeFormat(rel.start) >= currentEpisode;
-    });
+    // characters = copyObject(model.characters)
+    //   .filter(function (p) {
+    //     return convertEpisodeFormat(p.killed) >= currentEpisode;  
+    //   });
 
-    characters = characters.filter(function (p) {
-      if(p['first-appearance']) {
-        return convertEpisodeFormat(p['first-appearance']) <= currentEpisode;
-      } else {
-        return true;
-      }
-    });
 
   // Sort relations by source, then target. Speeds up inital drawing.
   relations.sort(function(a,b) {
@@ -73,11 +74,14 @@ function sortData() {
     linked[link.source.name + ',' + link.target.name] = true;
   });
 
-  update(relations, characters);
+  console.log("episode: ", currentEpisode, "n-characters: ", characters.length, "n-relation: ", relations.length);
+
+  update();
+  tick();
 }
 
 
-function update(relations, characters) {
+function update() {
 
   force = d3.layout.force()
     .nodes(d3.values(nodes))
@@ -154,6 +158,9 @@ function update(relations, characters) {
   input.on('input', function() {
     var arr = this.value.split('');
     episode.text(arr[0] + 'x' + (parseInt(arr[1]) + 1));
+
+    currentEpisode = parseInt(this.value);
+    sortData();
   });
 
   // Use elliptical arc path segments to doubly-encode directionality.
@@ -199,7 +206,7 @@ function connectedNodes(d) {
 }
 
 function displayInfo(d) {
-    console.log(d);
+  console.log(d);
   info.html(
     '<h2 class="' + d.person.faction + '">' + d.name + '</h2>' + 
     '<p>' + d.person.faction + '<br>' +
@@ -221,6 +228,7 @@ function displayRelations(d) {
 
 // Converts epsiode 1x10 to integer 19
 function convertEpisodeFormat(episode) {
+  if (!episode) {return true;}
   var arr = episode.split("x");
   return parseInt(arr[0] + (arr[1] - 1));
 }
@@ -229,6 +237,15 @@ function getFirstObjectByValue(obj, prop, value) {
   return obj.filter(function (o) {
     return o[prop] == value;
   })[0];
+}
+
+function copyObject(obj) {
+    if (null === obj || "object" != typeof obj) return obj;
+    var copy = obj.constructor();
+    for (var attr in obj) {
+        if (obj.hasOwnProperty(attr)) copy[attr] = obj[attr];
+    }
+    return copy;
 }
 
 function neighboring(a, b) {
