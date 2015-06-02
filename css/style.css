@@ -60,7 +60,7 @@ circle {
   background-color: rgba(255,255,255,0.7);
 }
 
-#relations {
+#sidebar {
   position: fixed;
   bottom: 0;
   right: 0;

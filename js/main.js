@@ -1,10 +1,15 @@
+var currentEpisode = 10;
+
 var node, link, marker, text, shadow, force, svg;
 var nodes = {};
 var linked = {};
 
+var characters;
+var relations;
+
 var container = d3.select('#container');
 var info = d3.select('#info');
-var relations = d3.select('#relations');
+var sidebar = d3.select('#sidebar');
 var input = d3.select('#input');
 var episode = d3.select('#episode');
 
@@ -17,61 +22,76 @@ d3.json('data/data.json', function(error, data) {
   if(error) {
     console.log(error);
   } else {
-    sortData(data.relations, data.characters);
+    relations = data.relations;
+    characters = data.characters;
+    // sortData(relations, characters);
+    sortData();
   }
 });
 
-function sortData(links, persons, episode) {
-  //sort links by source, then target
-  links.sort(function(a,b) {
+function sortData() {
+
+    console.log(relations, characters);
+
+    relations = relations.filter(function (rel) {
+      return convertEpisodeFormat(rel.start) >= currentEpisode;
+    });
+
+    characters = characters.filter(function (p) {
+      if(p['first-appearance']) {
+        return convertEpisodeFormat(p['first-appearance']) <= currentEpisode;
+      } else {
+        return true;
+      }
+    });
+
+  // Sort relations by source, then target. Speeds up inital drawing.
+  relations.sort(function(a,b) {
       if (a.source > b.source) {return 1;}
       else if (a.source < b.source) {return -1;}
       else {
-          if (a.target > b.target) {return 1;}
-          if (a.target < b.target) {return -1;}
-          else {return 0;}
+        if (a.target > b.target) {return 1;}
+        if (a.target < b.target) {return -1;}
+        else {return 0;}
       }
   });
 
-  //any links with duplicate source and target get an incremented 'linknum'
-  for (var i=0; i<links.length; i++) {
-      if (i != 0 &&
-          links[i].source == links[i-1].source &&
-          links[i].target == links[i-1].target) {
-              links[i].linknum = links[i-1].linknum + 1;
-          }
-      else {links[i].linknum = 1;}
+  // Any relations with duplicate source and target get an incremented 'linknum'
+  for (var i=0; i<relations.length; i++) {
+    if (i !== 0 &&
+      relations[i].source == relations[i-1].source &&
+      relations[i].target == relations[i-1].target) {
+          relations[i].linknum = relations[i-1].linknum + 1;
+      }
+    else {relations[i].linknum = 1;}
   }
 
-  // Compute the distinct nodes from the links.
-  links.forEach(function(link) {
+  // Compute the distinct nodes from the relations.
+  relations.forEach(function(link) {
     link.source = nodes[link.source] || (nodes[link.source] = {name: link.source});
     link.target = nodes[link.target] || (nodes[link.target] = {name: link.target});
     linked[link.source.name + ',' + link.target.name] = true;
   });
 
-  console.log(links);
-  console.log(persons);
-
-  update(links, persons);
+  update(relations, characters);
 }
 
 
-function update(links, persons) {
+function update(relations, characters) {
 
   force = d3.layout.force()
-      .nodes(d3.values(nodes))
-      .links(links)
-      .size([width, height])
-      .gravity(0.1)
-      .linkDistance(150)
-      .charge(-2000)
-      .on('tick', tick)
-      .start();
+    .nodes(d3.values(nodes))
+    .links(relations)
+    .size([width, height])
+    .gravity(0.1)
+    .linkDistance(150)
+    .charge(-2000)
+    .on('tick', tick)
+    .start();
 
   svg = container.append('svg:svg')
-      .attr('width', width)
-      .attr('height', height);
+    .attr('width', width)
+    .attr('height', height);
 
   // var marker = svg.append('defs').selectAll('marker')
   //     .data(['end'])
@@ -101,7 +121,7 @@ function update(links, persons) {
       .on('mouseover', function(d) {
         connectedNodes(d);
         displayInfo(d);
-        displayRelations(d, links);
+        displayRelations(d, relations);
       })
       .on('mouseout', function(d) {
         connectedNodes(null);
@@ -110,7 +130,7 @@ function update(links, persons) {
 
   marker = node.append('svg:circle')
       .attr('class', function(d) {
-        d.person = getFirstObjectByValue(persons, 'name', d.name);
+        d.person = getFirstObjectByValue(characters, 'name', d.name);
         if (d.person) {
           return d.person.faction;
         }
@@ -134,7 +154,6 @@ function update(links, persons) {
   input.on('input', function() {
     var arr = this.value.split('');
     episode.text(arr[0] + 'x' + (parseInt(arr[1]) + 1));
-    console.log(this.value);
   });
 
   // Use elliptical arc path segments to doubly-encode directionality.
@@ -151,10 +170,6 @@ function linkArc(d) {
       dy = d.target.y - d.source.y,
       dr = Math.sqrt(dx * dx + dy * dy);
   return 'M' + d.source.x + ',' + d.source.y + 'A' + dr + ',' + dr + ' 0 0,1 ' + d.target.x + ',' + d.target.y;
-}
-
-function transform(d) {
-  return 'translate(' + d.x + ',' + d.y + ')';
 }
 
 function connectedNodes(d) {
@@ -175,7 +190,7 @@ function connectedNodes(d) {
       // return d.name==o.target.name | d.name==o.source.name ? 1 : 0.05;
       
       // Highlight outgoing relations
-      return d.name==o.target.name ? 1 : 0.05;
+      return d.name==o.source.name ? 1 : 0.05;
     });
   } else {   
     node.style('opacity', 1);
@@ -183,11 +198,8 @@ function connectedNodes(d) {
   }
 }
 
-function neighboring(a, b) {
-  return linked[a.name + ',' + b.name];
-}
-
 function displayInfo(d) {
+    console.log(d);
   info.html(
     '<h2 class="' + d.person.faction + '">' + d.name + '</h2>' + 
     '<p>' + d.person.faction + '<br>' +
@@ -196,15 +208,21 @@ function displayInfo(d) {
   );
 }
 
-function displayRelations(d, links) {
+function displayRelations(d) {
   var str = "<p>";
-  var rels = links.filter(function (o) {
+  var rels = relations.filter(function (o) {
     return o.source.name == d.name;
   });
   for (var i = 0; i < rels.length; i++) {
     str += '<span class="' + rels[i].type + '">' + rels[i].source.name + ' ' + rels[i].type + ' ' + rels[i].target.name + '</span><br>';
   }
-  relations.html(str + '</p>');
+  sidebar.html(str + '</p>');
+}
+
+// Converts epsiode 1x10 to integer 19
+function convertEpisodeFormat(episode) {
+  var arr = episode.split("x");
+  return parseInt(arr[0] + (arr[1] - 1));
 }
 
 function getFirstObjectByValue(obj, prop, value) {
@@ -213,9 +231,11 @@ function getFirstObjectByValue(obj, prop, value) {
   })[0];
 }
 
-// Converts epsiode 1x10 to integer 19
-function convertEpisodeFormat(episode) {
-  var arr = episode.split("x");
-  console.log(parseInt(arr[0] + (arr[1] - 1)));
-  return parseInt(arr[0] + (arr[1] - 1));
+function neighboring(a, b) {
+  return linked[a.name + ',' + b.name];
 }
+
+function transform(d) {
+  return 'translate(' + d.x + ',' + d.y + ')';
+}
+
