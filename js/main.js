@@ -11,7 +11,7 @@ var relations;
 var container = d3.select('#container');
 var info = d3.select('#info');
 var sidebar = d3.select('#sidebar');
-var input = d3.select('#input');
+var slider = d3.select('#slider');
 var episode = d3.select('#episode');
 
 var width = parseInt(container.style('width')),
@@ -31,30 +31,38 @@ d3.json('data/data.json', function(error, data) {
   }
 });
 
+// Update graph on slider events
+slider.on('input', function() {
+  var arr = this.value.split('');
+  episode.text(arr[0] + 'x' + (parseInt(arr[1]) + 1));
+
+  currentEpisode = parseInt(this.value);
+  sortData();
+});
+
 function sortData() {
 
-    // Filter out all relations which are not related to the current episode
-    relations = copyObject(model.relations)
-      .filter(function (rel) {
-         return convertEpisodeFormat(rel.end) >= currentEpisode &&
-          convertEpisodeFormat(rel.start) <= currentEpisode;
-      });
+  // Filter out all relations which are not related to the current episode
+  relations = copyObject(model.relations)
+    .filter(function (rel) {
+      return convertEpisodeFormat(rel.end) >= currentEpisode &&
+        convertEpisodeFormat(rel.start) <= currentEpisode;
+    });
 
-    // characters = copyObject(model.characters)
-    //   .filter(function (p) {
-    //     return convertEpisodeFormat(p.killed) >= currentEpisode;  
-    //   });
-
+  // characters = copyObject(model.characters)
+  //   .filter(function (p) {
+  //     return convertEpisodeFormat(p.killed) >= currentEpisode;  
+  //   });
 
   // Sort relations by source, then target. Speeds up inital drawing.
   relations.sort(function(a,b) {
-      if (a.source > b.source) {return 1;}
-      else if (a.source < b.source) {return -1;}
-      else {
-        if (a.target > b.target) {return 1;}
-        if (a.target < b.target) {return -1;}
-        else {return 0;}
-      }
+    if (a.source > b.source) {return 1;}
+    else if (a.source < b.source) {return -1;}
+    else {
+      if (a.target > b.target) {return 1;}
+      if (a.target < b.target) {return -1;}
+      else {return 0;}
+    }
   });
 
   // Any relations with duplicate source and target get an incremented 'linknum'
@@ -77,7 +85,6 @@ function sortData() {
   console.log("episode: ", currentEpisode, "n-characters: ", characters.length, "n-relation: ", relations.length);
 
   update();
-  tick();
 }
 
 
@@ -153,17 +160,6 @@ function update() {
       .attr('x', 14)
       .attr('y', '.4em')
       .text(function(d) { return d.name; });
-
-  //@TODO Remove from update function;
-  input.on('input', function() {
-    var arr = this.value.split('');
-    episode.text(arr[0] + 'x' + (parseInt(arr[1]) + 1));
-
-    currentEpisode = parseInt(this.value);
-    sortData();
-  });
-
-  // Use elliptical arc path segments to doubly-encode directionality.
 }
 
 function tick() {
@@ -171,7 +167,7 @@ function tick() {
   node.attr('transform', transform);
 }
 
-
+// Use elliptical arc path segments to doubly-encode directionality.
 function linkArc(d) {
   var dx = d.target.x - d.source.x,
       dy = d.target.y - d.source.y,
