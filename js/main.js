@@ -96,7 +96,7 @@ function update() {
     .size([width, height])
     .gravity(0.1)
     .linkDistance(150)
-    .charge(-2000)
+    .charge(-500)
     .on('tick', tick)
     .start();
 
@@ -204,10 +204,13 @@ function connectedNodes(d) {
 function displayInfo(d) {
   console.log(d);
   info.html(
-    '<h2 class="' + d.person.faction + '">' + d.name + '</h2>' + 
-    '<p>' + d.person.faction + '<br>' +
-    (d.person["first-appearance"] ? "first appearance in " + d.person["first-appearance"] : "&nbsp") + '<br>' +
-    (d.person.killed ? "killed in " + d.person.killed : "&nbsp") + '</p>'
+    '<img src="img/' + toDashCase(d.name) + '.jpg" alt="' + d.name + '">' +
+    '<div>' +
+      '<h2 class="' + d.person.faction + '">' + d.name + '</h2>' + 
+      '<p>' + d.person.faction + '<br>' +
+      (d.person["first-appearance"] ? "first appearance in " + d.person["first-appearance"] : "&nbsp") + '<br>' +
+      (d.person.killed ? "killed in " + d.person.killed : "&nbsp") + '</p>' +
+    '</div>'
   );
 }
 
@@ -227,6 +230,10 @@ function convertEpisodeFormat(episode) {
   if (!episode) {return true;}
   var arr = episode.split("x");
   return parseInt(arr[0] + (arr[1] - 1));
+}
+
+function toDashCase(str) {
+  return str.replace(/\s+/g, '-');
 }
 
 function getFirstObjectByValue(obj, prop, value) {

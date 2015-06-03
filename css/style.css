@@ -26,6 +26,14 @@ text.shadow {
   stroke-width: 1.5px;
 }
 
+circle {
+  cursor: pointer;
+  fill: #ccc;
+  stroke: #333;
+  stroke-width: 1.5px;
+}
+
+
 span.allied, .link.allied { stroke: green; color: green; }
 span.enemy, .link.enemy { stroke: red; color: red; }
 span.love, .link.love { stroke: gold; color: gold; }
@@ -33,12 +41,6 @@ span.sibling, .link.sibling { stroke: gold; color: gold; }
 span.parent, .link.parent { stroke: gold; color: gold; }
 span.married, .link.married { stroke: gold; color: gold; }
 span.killed, .link.killed { stroke: black; color: black; }
-
-circle {
-  fill: #ccc;
-  stroke: #333;
-  stroke-width: 1.5px;
-}
 
 .Stark { fill: #A4C0F7; color: #A4C0F7; } 
 .Targaryen { fill: #A81800; color: #A81800; } 
@@ -58,6 +60,16 @@ circle {
   left: 0;
   padding: 2em;
   background-color: rgba(255,255,255,0.7);
+}
+
+#info img {
+  width: 120px;
+  margin-right: 1em;
+  vertical-align: bottom;
+}
+
+#info div {
+  display: inline-block;
 }
 
 #sidebar {
@@ -107,7 +119,6 @@ circle {
 
 .input-range {
   width: 75%;
-
   -webkit-appearance: none;
   height: 10px;
   border-radius: 5px;
