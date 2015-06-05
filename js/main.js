@@ -42,16 +42,11 @@ slider.on('input', function() {
 
 function sortData() {
 
-  // Filter out all relations which are not related to the current episode
-  relations = copyObject(model.relations)
-    .filter(function (rel) {
-      return convertEpisodeFormat(rel.end) >= currentEpisode &&
-        convertEpisodeFormat(rel.start) <= currentEpisode;
-    });
-
-  // characters = copyObject(model.characters)
-  //   .filter(function (p) {
-  //     return convertEpisodeFormat(p.killed) >= currentEpisode;  
+  //Filter out all relations which are not related to the current episode
+  // relations = copyObject(model.relations)
+  //   .filter(function (rel) {
+  //     return convertEpisodeFormat(rel.end) >= currentEpisode &&
+  //       convertEpisodeFormat(rel.start) <= currentEpisode;
   //   });
 
   // Sort relations by source, then target. Speeds up inital drawing.
@@ -77,8 +72,20 @@ function sortData() {
 
   // Compute the distinct nodes from the relations.
   relations.forEach(function(link) {
-    link.source = nodes[link.source] || (nodes[link.source] = {name: link.source});
-    link.target = nodes[link.target] || (nodes[link.target] = {name: link.target});
+    if (nodes[link.source]) {
+      link.source = nodes[link.source];
+    } else {
+      nodes[link.source] = {name: link.source};
+      link.source = nodes[link.source];
+    }
+
+    if(nodes[link.target]) {
+      link.target = nodes[link.target];
+    } else {
+      nodes[link.target] = {name: link.target};
+      link.target = nodes[link.target];
+    }
+
     linked[link.source.name + ',' + link.target.name] = true;
   });
 
@@ -240,6 +247,18 @@ function getFirstObjectByValue(obj, prop, value) {
   return obj.filter(function (o) {
     return o[prop] == value;
   })[0];
+}
+
+function filterObject (obj, predicate) {
+    var result = {}, key;
+
+    for (key in obj) {
+        if (obj.hasOwnProperty(key) && !predicate(obj[key])) {
+            result[key] = obj[key];
+        }
+    }
+
+    return result;
 }
 
 function copyObject(obj) {
