@@ -24,9 +24,6 @@ d3.json('data/data.json', function(error, data) {
     console.log(error);
   } else {
     model = data;
-    relations = data.relations;
-    characters = data.characters;
-    // sortData(relations, characters);
     sortData();
   }
 });
@@ -42,15 +39,11 @@ slider.on('input', function() {
 
 function sortData() {
 
-  //Filter out all relations which are not related to the current episode
-  // relations = copyObject(model.relations)
-  //   .filter(function (rel) {
-  //     return convertEpisodeFormat(rel.end) >= currentEpisode &&
-  //       convertEpisodeFormat(rel.start) <= currentEpisode;
-  //   });
+  relations = copyObject(model.relations);
+  characters = copyObject(model.characters);
 
   // Sort relations by source, then target. Speeds up inital drawing.
-  relations.sort(function(a,b) {
+  relations.sort(function (a, b) {
     if (a.source > b.source) {return 1;}
     else if (a.source < b.source) {return -1;}
     else {
@@ -60,36 +53,46 @@ function sortData() {
     }
   });
 
-  // Any relations with duplicate source and target get an incremented 'linknum'
-  for (var i=0; i<relations.length; i++) {
-    if (i !== 0 &&
-      relations[i].source == relations[i-1].source &&
-      relations[i].target == relations[i-1].target) {
-          relations[i].linknum = relations[i-1].linknum + 1;
-      }
-    else {relations[i].linknum = 1;}
-  }
+  // Filter out all relations which are not related to the current episode
+  relations = relations.filter(function (rel) {
 
-  // Compute the distinct nodes from the relations.
-  relations.forEach(function(link) {
-    if (nodes[link.source]) {
-      link.source = nodes[link.source];
-    } else {
-      nodes[link.source] = {name: link.source};
-      link.source = nodes[link.source];
-    }
+    var source = getFirstObjectByValue(characters, 'name', rel.source);
+    var target = getFirstObjectByValue(characters, 'name', rel.target);
 
-    if(nodes[link.target]) {
-      link.target = nodes[link.target];
-    } else {
-      nodes[link.target] = {name: link.target};
-      link.target = nodes[link.target];
-    }
-
-    linked[link.source.name + ',' + link.target.name] = true;
+    return convertEpisodeFormat(source['first-appearance']) <= currentEpisode &&
+      (convertEpisodeFormat(source.killed) || Infinity) >= currentEpisode &&
+      convertEpisodeFormat(target['first-appearance']) <= currentEpisode &&
+      (convertEpisodeFormat(target.killed) || Infinity) >= currentEpisode;
   });
+  
+  relations.forEach(function (relation, i) {
 
-  console.log("episode: ", currentEpisode, "n-characters: ", characters.length, "n-relation: ", relations.length);
+    // Any relations with duplicate source and target get an incremented 'linknum'
+    if (i !== 0 &&
+      relation.source == relations[i-1].source &&
+      relation.target == relations[i-1].target) {
+          relation.linknum = relations[i-1].linknum + 1;
+    } else {
+      relation.linknum = 1;
+    }
+
+    // Compute the distinct nodes from the relations.
+    if (nodes[relation.source]) {
+      relation.source = nodes[relation.source];
+    } else {
+      nodes[relation.source] = {name: relation.source};
+      relation.source = nodes[relation.source];
+    }
+
+    if(nodes[relation.target]) {
+      relation.target = nodes[relation.target];
+    } else {
+      nodes[relation.target] = {name: relation.target};
+      relation.target = nodes[relation.target];
+    }
+
+    linked[relation.source.name + ',' + relation.target.name] = true;
+  });
 
   update();
 }
@@ -209,7 +212,6 @@ function connectedNodes(d) {
 }
 
 function displayInfo(d) {
-  console.log(d);
   info.html(
     '<img src="img/' + toDashCase(d.name) + '.jpg" alt="' + d.name + '">' +
     '<div>' +
@@ -234,7 +236,7 @@ function displayRelations(d) {
 
 // Converts epsiode 1x10 to integer 19
 function convertEpisodeFormat(episode) {
-  if (!episode) {return true;}
+  if (!episode) { return false; }
   var arr = episode.split("x");
   return parseInt(arr[0] + (arr[1] - 1));
 }
