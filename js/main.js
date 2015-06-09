@@ -34,6 +34,8 @@ slider.on('input', function() {
   episode.text(arr[0] + 'x' + (parseInt(arr[1]) + 1));
 
   currentEpisode = parseInt(this.value);
+  clearNodes();
+  svg.selectAll('g').remove();
   sortData();
 });
 
@@ -55,9 +57,16 @@ function sortData() {
 
   // Filter out all relations which are not related to the current episode
   relations = relations.filter(function (rel) {
+    var source, target;
 
-    var source = getFirstObjectByValue(characters, 'name', rel.source);
-    var target = getFirstObjectByValue(characters, 'name', rel.target);
+    if (typeof rel.source === 'object') {
+      source = rel.source.person;
+      target = rel.target.person;
+    } else {
+      source = getFirstObjectByValue(characters, 'name', rel.source);
+      target = getFirstObjectByValue(characters, 'name', rel.target);
+    }
+    
 
     return convertEpisodeFormat(source['first-appearance']) <= currentEpisode &&
       (convertEpisodeFormat(source.killed) || Infinity) >= currentEpisode &&
@@ -239,6 +248,13 @@ function convertEpisodeFormat(episode) {
   if (!episode) { return false; }
   var arr = episode.split("x");
   return parseInt(arr[0] + (arr[1] - 1));
+}
+
+function clearNodes() {
+    node = {};
+    link = [];
+    force.start();
+    d3.timer(force.resume);
 }
 
 function toDashCase(str) {
