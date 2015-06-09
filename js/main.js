@@ -40,9 +40,19 @@ slider.on('input', function() {
 });
 
 function sortData() {
+  relations = clone(model.relations);
+  characters = clone(model.characters);
 
-  relations = copyObject(model.relations);
-  characters = copyObject(model.characters);
+  // Filter out all relations which are not related to the current episode
+  relations = relations.filter(function (rel, index) {
+    var source = getFirstObjectByValue(characters, 'name', rel.source);
+    var target = getFirstObjectByValue(characters, 'name', rel.target);
+
+    return convertEpisodeFormat(source['first-appearance']) <= currentEpisode &&
+      (convertEpisodeFormat(source.killed) || Infinity) >= currentEpisode &&
+      convertEpisodeFormat(target['first-appearance']) <= currentEpisode &&
+      (convertEpisodeFormat(target.killed) || Infinity) >= currentEpisode;
+  });
 
   // Sort relations by source, then target. Speeds up inital drawing.
   relations.sort(function (a, b) {
@@ -55,25 +65,6 @@ function sortData() {
     }
   });
 
-  // Filter out all relations which are not related to the current episode
-  relations = relations.filter(function (rel) {
-    var source, target;
-
-    if (typeof rel.source === 'object') {
-      source = rel.source.person;
-      target = rel.target.person;
-    } else {
-      source = getFirstObjectByValue(characters, 'name', rel.source);
-      target = getFirstObjectByValue(characters, 'name', rel.target);
-    }
-    
-
-    return convertEpisodeFormat(source['first-appearance']) <= currentEpisode &&
-      (convertEpisodeFormat(source.killed) || Infinity) >= currentEpisode &&
-      convertEpisodeFormat(target['first-appearance']) <= currentEpisode &&
-      (convertEpisodeFormat(target.killed) || Infinity) >= currentEpisode;
-  });
-  
   relations.forEach(function (relation, i) {
 
     // Any relations with duplicate source and target get an incremented 'linknum'
@@ -102,6 +93,8 @@ function sortData() {
 
     linked[relation.source.name + ',' + relation.target.name] = true;
   });
+
+  console.log(relations.length, characters.length, Object.keys(nodes).length, linked);
 
   update();
 }
@@ -253,6 +246,9 @@ function convertEpisodeFormat(episode) {
 function clearNodes() {
     node = {};
     link = [];
+    linked = [];
+    characters = [];
+    relations = [];
     force.start();
     d3.timer(force.resume);
 }
@@ -279,13 +275,34 @@ function filterObject (obj, predicate) {
     return result;
 }
 
-function copyObject(obj) {
-    if (null === obj || "object" != typeof obj) return obj;
-    var copy = obj.constructor();
-    for (var attr in obj) {
-        if (obj.hasOwnProperty(attr)) copy[attr] = obj[attr];
+function clone(obj) {
+    var copy;
+
+    if (null == obj || "object" != typeof obj) return obj;
+
+    if (obj instanceof Date) {
+        copy = new Date();
+        copy.setTime(obj.getTime());
+        return copy;
     }
-    return copy;
+
+    if (obj instanceof Array) {
+        copy = [];
+        for (var i = 0, len = obj.length; i < len; i++) {
+            copy[i] = clone(obj[i]);
+        }
+        return copy;
+    }
+
+    if (obj instanceof Object) {
+        copy = {};
+        for (var attr in obj) {
+            if (obj.hasOwnProperty(attr)) copy[attr] = clone(obj[attr]);
+        }
+        return copy;
+    }
+
+    throw new Error();
 }
 
 function neighboring(a, b) {
