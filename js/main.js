@@ -79,11 +79,11 @@ function sortData() {
   });
 
   relations.forEach(function (relation, i) {
-
+  
     // Any relations with duplicate source and target get an incremented 'linknum'
     if (i !== 0 &&
-      relation.source == relations[i-1].source &&
-      relation.target == relations[i-1].target) {
+      relation.source == relations[i-1].source.name &&
+      relation.target == relations[i-1].target.name) {
           relation.linknum = relations[i-1].linknum + 1;
     } else {
       relation.linknum = 1;
@@ -200,6 +200,7 @@ function tick() {
 
 // Use elliptical arc path segments to doubly-encode directionality.
 function linkArc(d) {
+
   var dx = d.target.x - d.source.x,
       dy = d.target.y - d.source.y,
       dr = Math.sqrt(dx * dx + dy * dy);
