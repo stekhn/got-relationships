@@ -64,7 +64,8 @@ function sortData() {
       convertToNumber(target['first-appearance']) <= currentEpisode &&
       (convertToNumber(target.killed) || Infinity) >= currentEpisode &&
       convertToNumber(rel.start) <= currentEpisode &&
-      (convertToNumber(rel.end) || Infinity) >= currentEpisode;
+      (convertToNumber(rel.end) || Infinity) >= currentEpisode
+      //&& source.name == 'Cersei Lannister';
   });
 
   // Sort relations by source, then target. Speeds up inital drawing.
@@ -200,10 +201,10 @@ function tick() {
 
 // Use elliptical arc path segments to doubly-encode directionality.
 function linkArc(d) {
-
   var dx = d.target.x - d.source.x,
       dy = d.target.y - d.source.y,
       dr = Math.sqrt(dx * dx + dy * dy);
+
   return 'M' + d.source.x + ',' + d.source.y + 'A' + dr + ',' + dr + ' 0 0,1 ' + d.target.x + ',' + d.target.y;
 }
 
@@ -278,6 +279,7 @@ function getEpisodeFromURL() {
   if (location.hash) {
     var hashEpisode = convertToNumber(location.hash.replace('#', '')) || 10;
     slider.property('value', hashEpisode || 10);
+    episode.text(convertToString(hashEpisode));
   }
 }
 
