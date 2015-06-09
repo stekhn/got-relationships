@@ -19,23 +19,21 @@ var isDragging = false;
 var width = parseInt(container.style('width')),
     height = parseInt(container.style('height'));
 
-
 // Load data from JSON and initialize the app
 d3.json('data/data.json', function(error, data) {
   if(error) {
     console.log(error);
   } else {
     model = data;
+    getEpisodeFromURL();
     sortData();
   }
 });
 
 // Update graph on slider events
 slider.on('input', function() {
-  var arr = this.value.split('');
-  episode.text(arr[0] + 'x' + (parseInt(arr[1]) + 1));
-
-  currentEpisode = parseInt(this.value);
+  
+  setEpisode(this.value);
 
   svg.remove();
   node = {};
@@ -53,18 +51,18 @@ slider.on('input', function() {
 });
 
 function sortData() {
-  relations = clone(model.relations);
-  characters = clone(model.characters);
+  relations = cloneObject(model.relations);
+  characters = cloneObject(model.characters);
 
   // Filter out all relations which are not related to the current episode
   relations = relations.filter(function (rel, index) {
     var source = getFirstObjectByValue(characters, 'name', rel.source);
     var target = getFirstObjectByValue(characters, 'name', rel.target);
 
-    return convertEpisodeFormat(source['first-appearance']) <= currentEpisode &&
-      (convertEpisodeFormat(source.killed) || Infinity) >= currentEpisode &&
-      convertEpisodeFormat(target['first-appearance']) <= currentEpisode &&
-      (convertEpisodeFormat(target.killed) || Infinity) >= currentEpisode;
+    return convertToNumberFormat(source['first-appearance']) <= currentEpisode &&
+      (convertToNumberFormat(source.killed) || Infinity) >= currentEpisode &&
+      convertToNumberFormat(target['first-appearance']) <= currentEpisode &&
+      (convertToNumberFormat(target.killed) || Infinity) >= currentEpisode;
   });
 
   // Sort relations by source, then target. Speeds up inital drawing.
@@ -248,21 +246,44 @@ function displayInfo(d) {
 
 function displayRelations(d) {
   var str = "<p>";
-  var rels = relations.filter(function (o) {
-    return o.source.name == d.name;
+  var rels = relations.filter(function (rel) {
+    return rel.source.name == d.name && convertToNumberFormat(rel.start) <= currentEpisode;
   });
   for (var i = 0; i < rels.length; i++) {
-    str += '<span class="' + rels[i].type + '">' + rels[i].source.name + ' ' + rels[i].type + ' ' + rels[i].target.name + '</span><br>';
+    str += '<span class="' + rels[i].type + '">' +
+      rels[i].source.name + ' ' + rels[i].type + ' ' +
+      rels[i].target.name + '</span><br>';
   }
   sidebar.html(str + '</p>');
 }
 
 // Converts epsiode 1x10 to integer 19
-function convertEpisodeFormat(episode) {
+function convertToNumberFormat(episode) {
   if (!episode) { return false; }
-  var arr = episode.split("x");
+  var arr = episode.toString().split("x");
   return parseInt(arr[0] + (arr[1] - 1));
 }
+
+// Converts integer 19 to epsiode 1x10 
+function convertToStringFormat(number) {
+  var arr = number.toString().split('');
+  return arr[0] + 'x' + (parseInt(arr[1]) + 1);
+}
+
+function getEpisodeFromURL() {
+  if (location.hash) {
+    var hashEpisode = convertToNumberFormat(location.hash.replace('#', '')) || 10;
+    slider.property('value', hashEpisode || 10);
+  }
+}
+
+function setEpisode(value) {
+  console.log(value);
+  currentEpisode = convertToNumberFormat(value);
+  location.hash = convertToStringFormat(currentEpisode);
+  episode.text(convertToStringFormat(currentEpisode));
+}
+
 
 function toDashCase(str) {
   return str.replace(/\s+/g, '-');
@@ -286,33 +307,28 @@ function filterObject (obj, predicate) {
     return result;
 }
 
-function clone(obj) {
+function cloneObject(obj) {
     var copy;
-
     if (null == obj || "object" != typeof obj) return obj;
-
     if (obj instanceof Date) {
         copy = new Date();
         copy.setTime(obj.getTime());
         return copy;
     }
-
     if (obj instanceof Array) {
         copy = [];
         for (var i = 0, len = obj.length; i < len; i++) {
-            copy[i] = clone(obj[i]);
+            copy[i] = cloneObject(obj[i]);
         }
         return copy;
     }
-
     if (obj instanceof Object) {
         copy = {};
         for (var attr in obj) {
-            if (obj.hasOwnProperty(attr)) copy[attr] = clone(obj[attr]);
+            if (obj.hasOwnProperty(attr)) copy[attr] = cloneObject(obj[attr]);
         }
         return copy;
     }
-
     throw new Error();
 }
 
@@ -323,4 +339,3 @@ function neighboring(a, b) {
 function transform(d) {
   return 'translate(' + d.x + ',' + d.y + ')';
 }
-
