@@ -1,6 +1,6 @@
 var currentEpisode = 10;
 
-var node, link, marker, text, shadow, force, svg;
+var node, link, marker, text, shadow, force, drag, svg;
 var nodes = {};
 var linked = {};
 
@@ -13,6 +13,8 @@ var info = d3.select('#info');
 var sidebar = d3.select('#sidebar');
 var slider = d3.select('#slider');
 var episode = d3.select('#episode');
+
+var isDragging = false;
 
 var width = parseInt(container.style('width')),
     height = parseInt(container.style('height'));
@@ -40,7 +42,7 @@ slider.on('input', function() {
   link = [];
   linked = [];
 
-  //@TODO Rather remove the nodes manually
+  //@TODO Rather remove single nodes manually
   nodes = [];
   characters = [];
   relations = [];
@@ -121,6 +123,14 @@ function update() {
     .on('tick', tick)
     .start();
 
+  drag = force.drag()
+    .on("dragstart", function () {
+      isDragging = true;
+    })
+    .on("dragend", function () {
+      isDragging = false;
+    });
+
   svg = container.append('svg:svg')
     .attr('width', width)
     .attr('height', height);
@@ -158,7 +168,7 @@ function update() {
       .on('mouseout', function(d) {
         connectedNodes(null);
       })
-      .call(force.drag);
+      .call(drag);
 
   marker = node.append('svg:circle')
       .attr('class', function(d) {
@@ -197,7 +207,7 @@ function linkArc(d) {
 }
 
 function connectedNodes(d) {
-  if (d != null) {
+  if (d != null && !isDragging) {
 
     //Reduce the opacity of all but the neighbouring nodes and the source node
     node.style('opacity', function (o) {
@@ -223,15 +233,17 @@ function connectedNodes(d) {
 }
 
 function displayInfo(d) {
-  info.html(
-    '<img src="img/' + toDashCase(d.name) + '.jpg" alt="' + d.name + '">' +
-    '<div>' +
-      '<h2 class="' + d.person.faction + '">' + d.name + '</h2>' + 
-      '<p>' + d.person.faction + '<br>' +
-      (d.person["first-appearance"] ? "first appearance in " + d.person["first-appearance"] : "&nbsp") + '<br>' +
-      (d.person.killed ? "killed in " + d.person.killed : "&nbsp") + '</p>' +
-    '</div>'
-  );
+  if (!isDragging) {
+    info.html(
+      '<img src="img/' + toDashCase(d.name) + '.jpg" alt="' + d.name + '">' +
+      '<div>' +
+        '<h2 class="' + d.person.faction + '">' + d.name + '</h2>' + 
+        '<p>' + d.person.faction + '<br>' +
+        (d.person["first-appearance"] ? "first appearance in " + d.person["first-appearance"] : "&nbsp") + '<br>' +
+        (d.person.killed ? "killed in " + d.person.killed : "&nbsp") + '</p>' +
+      '</div>'
+    );
+  }
 }
 
 function displayRelations(d) {
