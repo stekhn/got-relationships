@@ -286,7 +286,7 @@ function setEpisode(value) {
 
 
 function toDashCase(str) {
-  return str.replace(/\s+/g, '-');
+  return str.replace(/\s+/g, '-').toLowerCase();
 }
 
 function getFirstObjectByValue(obj, prop, value) {
