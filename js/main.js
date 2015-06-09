@@ -34,8 +34,19 @@ slider.on('input', function() {
   episode.text(arr[0] + 'x' + (parseInt(arr[1]) + 1));
 
   currentEpisode = parseInt(this.value);
-  clearNodes();
-  svg.selectAll('g').remove();
+
+  svg.remove();
+  node = {};
+  link = [];
+  linked = [];
+
+  //@TODO Rather remove the nodes manually
+  nodes = [];
+  characters = [];
+  relations = [];
+  force.start();
+  d3.timer(force.resume);
+
   sortData();
 });
 
@@ -93,8 +104,6 @@ function sortData() {
 
     linked[relation.source.name + ',' + relation.target.name] = true;
   });
-
-  console.log(relations.length, characters.length, Object.keys(nodes).length, linked);
 
   update();
 }
@@ -241,16 +250,6 @@ function convertEpisodeFormat(episode) {
   if (!episode) { return false; }
   var arr = episode.split("x");
   return parseInt(arr[0] + (arr[1] - 1));
-}
-
-function clearNodes() {
-    node = {};
-    link = [];
-    linked = [];
-    characters = [];
-    relations = [];
-    force.start();
-    d3.timer(force.resume);
 }
 
 function toDashCase(str) {
