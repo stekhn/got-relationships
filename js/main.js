@@ -59,10 +59,12 @@ function sortData() {
     var source = getFirstObjectByValue(characters, 'name', rel.source);
     var target = getFirstObjectByValue(characters, 'name', rel.target);
 
-    return convertToNumberFormat(source['first-appearance']) <= currentEpisode &&
-      (convertToNumberFormat(source.killed) || Infinity) >= currentEpisode &&
-      convertToNumberFormat(target['first-appearance']) <= currentEpisode &&
-      (convertToNumberFormat(target.killed) || Infinity) >= currentEpisode;
+    return convertToNumber(source['first-appearance']) <= currentEpisode &&
+      (convertToNumber(source.killed) || Infinity) >= currentEpisode &&
+      convertToNumber(target['first-appearance']) <= currentEpisode &&
+      (convertToNumber(target.killed) || Infinity) >= currentEpisode &&
+      convertToNumber(rel.start) <= currentEpisode &&
+      (convertToNumber(rel.end) || Infinity) >= currentEpisode;
   });
 
   // Sort relations by source, then target. Speeds up inital drawing.
@@ -247,7 +249,8 @@ function displayInfo(d) {
 function displayRelations(d) {
   var str = "<p>";
   var rels = relations.filter(function (rel) {
-    return rel.source.name == d.name && convertToNumberFormat(rel.start) <= currentEpisode;
+    return rel.source.name == d.name;
+    //return rel.source.name == d.name && convertToNumber(rel.start) <= currentEpisode;
   });
   for (var i = 0; i < rels.length; i++) {
     str += '<span class="' + rels[i].type + '">' +
@@ -258,30 +261,29 @@ function displayRelations(d) {
 }
 
 // Converts epsiode 1x10 to integer 19
-function convertToNumberFormat(episode) {
+function convertToNumber(episode) {
   if (!episode) { return false; }
   var arr = episode.toString().split("x");
   return parseInt(arr[0] + (arr[1] - 1));
 }
 
 // Converts integer 19 to epsiode 1x10 
-function convertToStringFormat(number) {
+function convertToString(number) {
   var arr = number.toString().split('');
   return arr[0] + 'x' + (parseInt(arr[1]) + 1);
 }
 
 function getEpisodeFromURL() {
   if (location.hash) {
-    var hashEpisode = convertToNumberFormat(location.hash.replace('#', '')) || 10;
+    var hashEpisode = convertToNumber(location.hash.replace('#', '')) || 10;
     slider.property('value', hashEpisode || 10);
   }
 }
 
 function setEpisode(value) {
-  console.log(value);
-  currentEpisode = convertToNumberFormat(value);
-  location.hash = convertToStringFormat(currentEpisode);
-  episode.text(convertToStringFormat(currentEpisode));
+  currentEpisode = convertToNumber(value);
+  location.hash = convertToString(currentEpisode);
+  episode.text(convertToString(currentEpisode));
 }
 
 
