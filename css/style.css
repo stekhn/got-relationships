@@ -39,6 +39,7 @@ span.enemy, .link.enemy { stroke: red; color: red; }
 span.love, .link.love { stroke: gold; color: gold; }
 span.sibling, .link.sibling { stroke: gold; color: gold; }
 span.parent, .link.parent { stroke: gold; color: gold; }
+span.child, .link.child { stroke: gold; color: gold; }
 span.married, .link.married { stroke: gold; color: gold; }
 span.killed, .link.killed { stroke: black; color: black; }
 
