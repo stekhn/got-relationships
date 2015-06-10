@@ -203,13 +203,13 @@ function update() {
         return (d.weight - 2) * 0.1 + 7;
       });
 
-  text = node.append('svg:text')
+  shadow = node.append('svg:text')
       .attr('x', 14)
       .attr('y', '.35em')
       .attr('class', 'shadow') 
       .text(function(d) { return d.name; });
 
-  shadow = node.append('svg:text')
+  text = node.append('svg:text')
       .attr('x', 14)
       .attr('y', '.4em')
       .text(function(d) { return d.name; });
