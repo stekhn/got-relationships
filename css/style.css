@@ -4,9 +4,83 @@
   box-sizing: border-box;
 }
 
-html, body, #container {
+body {
+  margin: 0;
+}
+
+html, body, main, aside, #container {
   height: 100%;
-  font: 1em/1.2em sans-serif;
+}
+
+main {
+  position: relative;
+}
+
+aside {
+  width: 340px;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(255,255,255,.8);
+  padding: 1em;
+}
+
+.sidebar-wrapper {
+  height: 100%;
+  position: relative;
+}
+
+.close {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  transition: all 200ms;
+  font-size: 30px;
+  font-weight: bold;
+  text-decoration: none;
+  color: #333;
+}
+
+#info {
+  margin: 1em 0 2em;
+}
+
+#info img {
+  width: 120px;
+  margin-right: .7em;
+  vertical-align: bottom;
+}
+
+#info h2 {
+  margin: 0 0 .5em;
+}
+
+#info p {
+  display: inline-block;
+  margin: 0 0 .5em;
+}
+
+#list {
+  margin: 1em 0 2em;
+}
+
+#legend {
+  position: absolute;
+  bottom: 1em;
+  left: 0;
+}
+
+#legend ul {
+  margin: 1em 0 2em;
+  padding: 0;
+  display: block;
+  list-style-type: none;
+}
+
+#legend li {
+  width: 110px;
+  display: inline-block;
 }
 
 text {
@@ -54,41 +128,16 @@ span.killed, .link.killed { stroke: black; color: black; }
 .Folk { fill: #D0E0E3; color: #D0E0E3; } 
 .Others { fill: #EBD0DC; color: #EBD0DC; }
 
-#info {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  padding: 2em;
-  background-color: rgba(255,255,255,0.7);
-}
-
-#info img {
-  width: 120px;
-  margin-right: 1em;
-  vertical-align: bottom;
-}
-
-#info div {
-  display: inline-block;
-}
-
-#sidebar {
-  position: fixed;
-  bottom: 0;
-  right: 0;
-  padding: 2em;
-  background-color: rgba(255,255,255,0.7);
-}
 
 .slider-wrapper {
+  margin: 0 auto 2em;
+  text-align: center;
+  width: 100%;
   position: fixed;
-  top: 0;
+  bottom: 0;
   left: 0;
   right: 0;
-  margin: 0 auto;
-  padding: 1em 0;
-  text-align: center;
-  background-color: rgba(255,255,255,0.7);
+  padding-left: 320px;
 }
 
 .range-value {
@@ -132,6 +181,7 @@ span.killed, .link.killed { stroke: black; color: black; }
 }
 
 .tick {
+  text-align: left;
   display: inline-block;
   width: 20%;
 }

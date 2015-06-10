@@ -10,7 +10,7 @@ var relations;
 
 var container = d3.select('#container');
 var info = d3.select('#info');
-var sidebar = d3.select('#sidebar');
+var sidebar = d3.select('#list');
 var slider = d3.select('#slider');
 var episode = d3.select('#episode');
 
@@ -237,13 +237,11 @@ function connectedNodes(d) {
 function displayInfo(d) {
   if (!isDragging) {
     info.html(
+      '<h2 class="' + d.person.faction + '">' + d.name + '</h2>' + 
       '<img src="img/' + toDashCase(d.name) + '.jpg" alt="' + d.name + '">' +
-      '<div>' +
-        '<h2 class="' + d.person.faction + '">' + d.name + '</h2>' + 
-        '<p>' + d.person.faction + '<br>' +
-        (d.person["first-appearance"] ? "first appearance in " + d.person["first-appearance"] : "&nbsp") + '<br>' +
-        (d.person.killed ? "killed in " + d.person.killed : "&nbsp") + '</p>' +
-      '</div>'
+      '<p>' + d.person.faction + '<br>' +
+      (d.person["first-appearance"] ? "first in " + d.person["first-appearance"] : "&nbsp") + '<br>' +
+      (d.person.killed ? "killed in " + d.person.killed : "") + '</p>'
     );
   }
 }
@@ -255,8 +253,9 @@ function displayRelations(d) {
     //return rel.source.name == d.name && convertToNumber(rel.start) <= currentEpisode;
   });
   for (var i = 0; i < rels.length; i++) {
-    str += '<span class="' + rels[i].type + '">' +
-      rels[i].source.name + ' ' + rels[i].type + ' ' +
+    str += '<span class="' +
+      rels[i].type + '">... ' +
+      rels[i].type + ' ' +
       rels[i].target.name + '</span><br>';
   }
   sidebar.html(str + '</p>');
