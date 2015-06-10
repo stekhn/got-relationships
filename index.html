@@ -13,18 +13,18 @@
   <body>
 
     <main>
-
-      <aside>
+      <div class="open"></div>
+      <aside class="sidebar">
         <section class="sidebar-wrapper">
           <div class="close">×</div>
-          <section id="info">
+          <section class="info">
             <h2>Game of Thrones</h2>
             <p>Hover the characters to learn more about a character and see all current relations.</p>
-            <p>Use the season slider, to go back an forth in time.</p>
+            <p>Use the episode slider to go back an forth in time.</p>
             <p><em>by Matthias Huber and Steffen Kühne</em></p>
           </section>
-          <section id="list"></section>
-          <section id="legend">
+          <section class="list"></section>
+          <section class="legend">
             <h2>Houses</h2>
             <ul>
               <li><span class="Stark">Stark</span></li>
@@ -38,22 +38,21 @@
               <li><span class="Watch">Night's Watch</span></li>
               <li><span class="Folk">Free Folk</span></li>
               <li><span class="Others">Others</span></li>
-            <ul>
+            </ul>
           </section>
         </section>
       </aside>
       
-      <section id="container"></section>
+      <section class="container"></section>
     </main>
 
      <nav class="slider-wrapper">
-      <input id="slider" list="numbers" class="input-range" type="range" min="10" max="59" value="10" step="1" />
-      <span id="episode" class="range-value">1x1</span>
+      <input class="slider" list="numbers" type="range" min="10" max="59" value="10" step="1" />
+      <span class="episode">1x1</span>
       <div class="scale">
         <span class="tick">Season 1</span><span class="tick">Season 2</span><span class="tick">Season 3</span><span class="tick">Season 4</span><span class="tick">Season 5</span>
       </div>
     </nav>
-
 
     <script type="text/javascript" src="js/d3.js"></script>
     <script type="text/javascript" src="js/main.js"></script>

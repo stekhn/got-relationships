@@ -8,11 +8,16 @@ var model;
 var characters;
 var relations;
 
-var container = d3.select('#container');
-var info = d3.select('#info');
-var sidebar = d3.select('#list');
-var slider = d3.select('#slider');
-var episode = d3.select('#episode');
+var container = d3.select('.container');
+var sidebar = d3.select('.sidebar');
+var close = d3.select('.close');
+var open = d3.select('.open');
+var info = d3.select('.info');
+var list = d3.select('.list');
+var slider = d3.select('.slider');
+var sliderWrapper = d3.select('.slider-wrapper');
+var episode = d3.select('.episode');
+
 
 var isDragging = false;
 
@@ -49,6 +54,18 @@ slider.on('input', function() {
   d3.timer(force.resume);
 
   sortData();
+});
+
+close.on('click', function () {
+  sliderWrapper.style('padding-left', '0');
+  sidebar.style('left', '-340px');
+  open.style('left', '40px');
+});
+
+open.on('click', function () {
+  sliderWrapper.style('padding-left', '340px');
+  sidebar.style('left', '0');
+  open.style('left', '-100px');
 });
 
 function sortData() {
@@ -262,7 +279,7 @@ function displayRelations(d) {
       '</p>';
       
   }
-  sidebar.html(str + '</p>');
+  list.html(str + '</p>');
 }
 
 // Converts epsiode 1x10 to integer 19
