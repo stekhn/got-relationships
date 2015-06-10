@@ -33,7 +33,6 @@ circle {
   stroke-width: 1.5px;
 }
 
-
 span.allied, .link.allied { stroke: green; color: green; }
 span.enemy, .link.enemy { stroke: red; color: red; }
 span.love, .link.love { stroke: gold; color: gold; }
