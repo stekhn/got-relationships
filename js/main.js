@@ -17,7 +17,8 @@ var episode = d3.select('#episode');
 var isDragging = false;
 
 var width = parseInt(container.style('width')),
-    height = parseInt(container.style('height'));
+    height = parseInt(container.style('height')),
+    radius = 20;
 
 // Load data from JSON and initialize the app
 d3.json('data/data.json', function(error, data) {
@@ -344,5 +345,7 @@ function neighboring(a, b) {
 }
 
 function transform(d) {
-  return 'translate(' + d.x + ',' + d.y + ')';
+  return 'translate(' +
+    Math.max(radius, Math.min(width - radius, d.x)) + ',' +
+    Math.max(radius, Math.min(height - radius, d.y)) + ')';
 }
