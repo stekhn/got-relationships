@@ -20,6 +20,7 @@ var episode = d3.select('.episode');
 
 
 var isDragging = false;
+var isClosed = false;
 
 var width = parseInt(container.style('width')),
     height = parseInt(container.style('height')),
@@ -60,12 +61,14 @@ close.on('click', function () {
   sliderWrapper.style('padding-left', '0');
   sidebar.style('left', '-340px');
   open.style('left', '40px');
+  isClosed = true;
 });
 
 open.on('click', function () {
   sliderWrapper.style('padding-left', '340px');
   sidebar.style('left', '0');
   open.style('left', '-100px');
+  isClosed = false;
 });
 
 function sortData() {
@@ -253,7 +256,7 @@ function connectedNodes(d) {
 }
 
 function displayInfo(d) {
-  if (!isDragging) {
+  if (!isDragging && !isClosed) {
     info.html(
       '<h2 class="' + d.person.faction + '">' + d.name + '</h2>' + 
       '<img src="img/' + toDashCase(d.name) + '.jpg" alt="' + d.name + '">' +
@@ -265,21 +268,22 @@ function displayInfo(d) {
 }
 
 function displayRelations(d) {
-  var str = "";
-  var rels = relations.filter(function (rel) {
-    return rel.source.name == d.name;
-    //return rel.source.name == d.name && convertToNumber(rel.start) <= currentEpisode;
-  });
-  for (var i = 0; i < rels.length; i++) {
-    str +=  '<p>... ' +
-      rels[i].type + ' ' +
-      '<span class="' + rels[i].target.person.faction + '">' +
-      rels[i].target.name +
-      '</span> <span class="' + rels[i].type + '">–</span>' +
-      '</p>';
-      
+  if (!isDragging && !isClosed) {
+    var str = "";
+    var rels = relations.filter(function (rel) {
+      return rel.source.name == d.name;
+      //return rel.source.name == d.name && convertToNumber(rel.start) <= currentEpisode;
+    });
+    for (var i = 0; i < rels.length; i++) {
+      str +=  '<p>... ' +
+        rels[i].type + ' ' +
+        '<span class="' + rels[i].target.person.faction + '">' +
+        rels[i].target.name +
+        '</span> <span class="' + rels[i].type + '">–</span>' +
+        '</p>';
+    }
+    list.html(str + '</p>');
   }
-  list.html(str + '</p>');
 }
 
 // Converts epsiode 1x10 to integer 19

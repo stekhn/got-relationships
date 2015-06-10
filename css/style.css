@@ -25,6 +25,16 @@
     src: url("http://polpix.sueddeutsche.com/staticassets/fonts/sz-text/SZText-Bold.eot#iefix") format("eot"), url("http://polpix.sueddeutsche.com/staticassets/fonts/sz-text/SZText-Bold.woff") format("woff"), url("http://polpix.sueddeutsche.com/staticassets/fonts/sz-text/SZText-Bold.otf") format("opentype")
 }
 
+body {
+  font-family: SZSansRegular, Helvetica, Arial, sans-serif;
+  color: #333;
+  margin: 0;
+}
+
+html, body, main, aside, .container {
+  height: 100%;
+}
+
 h1, h2, h3, h4, h5, h6, b, strong {
   font-family: SZSansRegular, Helvetica, Arial, sans-serif;
   font-weight: normal;
@@ -34,14 +44,8 @@ p {
   line-height: 1.2em;
 }
 
-body {
-  font-family: SZSansRegular, Helvetica, Arial, sans-serif;
-  color: #333;
-  margin: 0;
-}
-
-html, body, main, aside, .container {
-  height: 100%;
+a {
+  text-decoration: none;
 }
 
 main {
@@ -143,6 +147,14 @@ aside {
   display: inline-block;
 }
 
+.sharing {
+  display: none;
+}
+
+.sharing img {
+  margin-right: 1em;
+}
+
 text {
   font-size: 0.8em;
   pointer-events: none;
@@ -190,6 +202,7 @@ span.killed, .link.killed { stroke: black; color: black; }
 
 
 .slider-wrapper {
+  pointer-events: none;
   margin: 0 auto 2em;
   text-align: center;
   width: 100%;
@@ -229,6 +242,7 @@ span.killed, .link.killed { stroke: black; color: black; }
 }
 
 .slider {
+  pointer-events: auto;
   width: 75%;
   -webkit-appearance: none;
   height: 10px;
