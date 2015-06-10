@@ -4,7 +4,38 @@
   box-sizing: border-box;
 }
 
+@font-face {
+    font-family: SZSansRegular;
+    src: url("http://polpix.sueddeutsche.com/staticassets/fonts/sz-sans/SZSans.eot");
+    src: url("http://polpix.sueddeutsche.com/staticassets/fonts/sz-sans/SZSans.eot#iefix") format("eot"), url("http://polpix.sueddeutsche.com/staticassets/fonts/sz-sans/SZSans.woff") format("woff"), url("http://polpix.sueddeutsche.com/staticassets/fonts/sz-sans/SZSans.otf") format("opentype")
+}
+@font-face {
+    font-family: SZSansBold;
+    src: url("http://polpix.sueddeutsche.com/staticassets/fonts/sz-sans/SZSans-Bold.eot");
+    src: url("http://polpix.sueddeutsche.com/staticassets/fonts/sz-sans/SZSans-Bold.eot#iefix") format("eot"), url("http://polpix.sueddeutsche.com/staticassets/fonts/sz-sans/SZSans-Bold.woff") format("woff"), url("http://polpix.sueddeutsche.com/staticassets/fonts/sz-sans/SZSans-Bold.otf") format("opentype")
+}
+@font-face {
+    font-family: SZTextRegular;
+    src: url("http://polpix.sueddeutsche.com/staticassets/fonts/sz-text/SZText.eot");
+    src: url("http://polpix.sueddeutsche.com/staticassets/fonts/sz-text/SZText.eot#iefix") format("eot"), url("http://polpix.sueddeutsche.com/staticassets/fonts/sz-text/SZText.woff") format("woff"), url("http://polpix.sueddeutsche.com/staticassets/fonts/sz-text/SZText.otf") format("opentype")
+}
+@font-face {
+    font-family: SZTextBold;
+    src: url("http://polpix.sueddeutsche.com/staticassets/fonts/sz-text/SZText-Bold.eot");
+    src: url("http://polpix.sueddeutsche.com/staticassets/fonts/sz-text/SZText-Bold.eot#iefix") format("eot"), url("http://polpix.sueddeutsche.com/staticassets/fonts/sz-text/SZText-Bold.woff") format("woff"), url("http://polpix.sueddeutsche.com/staticassets/fonts/sz-text/SZText-Bold.otf") format("opentype")
+}
+
+h1, h2, h3, h4, h5, h6, b, strong {
+  font-family: SZSansRegular, Helvetica, Arial, sans-serif;
+  font-weight: normal;
+}
+
+p {
+  line-height: 1.2em;
+}
+
 body {
+  font-family: SZSansRegular, Helvetica, Arial, sans-serif;
   margin: 0;
 }
 
@@ -22,8 +53,9 @@ aside {
   top: 0;
   bottom: 0;
   left: 0;
-  background-color: rgba(255,255,255,.8);
-  padding: 1em;
+  background-color: rgba(255,255,255,.9);
+  border-right: 1px solid #ececec; 
+  padding: 2em 1.5em;
 }
 
 .sidebar-wrapper {
@@ -33,17 +65,18 @@ aside {
 
 .close {
   position: absolute;
-  top: 20px;
-  right: 30px;
+  top: -5px;
+  right: 7px;
   transition: all 200ms;
-  font-size: 30px;
+  color: #aaa;
+  font-size: 2em;
   font-weight: bold;
   text-decoration: none;
-  color: #333;
+  cursor: pointer;
 }
 
 #info {
-  margin: 1em 0 2em;
+  margin: 0 0 2em;
 }
 
 #info img {
@@ -58,11 +91,15 @@ aside {
 
 #info p {
   display: inline-block;
-  margin: 0 0 .5em;
+  margin: 1em 0 .5em;
 }
 
 #list {
   margin: 1em 0 2em;
+}
+
+#list p {
+  margin: 0 0 0.3em;
 }
 
 #legend {

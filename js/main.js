@@ -247,16 +247,19 @@ function displayInfo(d) {
 }
 
 function displayRelations(d) {
-  var str = "<p>";
+  var str = "";
   var rels = relations.filter(function (rel) {
     return rel.source.name == d.name;
     //return rel.source.name == d.name && convertToNumber(rel.start) <= currentEpisode;
   });
   for (var i = 0; i < rels.length; i++) {
-    str += '<span class="' +
-      rels[i].type + '">... ' +
+    str +=  '<p>... ' +
       rels[i].type + ' ' +
-      rels[i].target.name + '</span><br>';
+      '<span class="' + rels[i].target.person.faction + '">' +
+      rels[i].target.name +
+      '</span> <span class="' + rels[i].type + '">–</span>' +
+      '</p>';
+      
   }
   sidebar.html(str + '</p>');
 }
