@@ -148,9 +148,9 @@ function drawGraph() {
 
   drag = d3.behavior.drag()
       .origin(function(d) { return d; })
-      .on("dragstart", dragstarted)
-      .on("drag", dragged)
-      .on("dragend", dragended);
+      .on("dragstart", dragstart)
+      .on("drag", dragging)
+      .on("dragend", dragend);
 
   link = svg.append('svg:g').selectAll('path')
       .data(force.links())
@@ -254,19 +254,20 @@ function connectedNodes(d) {
   }
 }
 
-function dragstarted(d) {
+function dragstart(d) {
+  isDragging = true;
   d3.event.sourceEvent.stopPropagation();
   d3.select(this).classed("dragging", true);
-  d3.select(this).classed("fixed", d.fixed = true);
   force.stop();
 }
 
-function dragged(d) {
+function dragging(d) {
   d3.select(this).attr("cx", d.x = d3.event.x).attr("cy", d.y = d3.event.y);
   tick();
 }
 
-function dragended(d) {
+function dragend(d) {
+  isDragging = false;
   d3.select(this).classed("dragging", false);
   tick();
   force.resume();
