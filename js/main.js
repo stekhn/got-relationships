@@ -138,7 +138,7 @@ function update() {
   force = d3.layout.force()
     .nodes(d3.values(nodes))
     .links(relations)
-    .size([width, height])
+    .size([width * 1.3, height])
     .gravity(0.1)
     .linkDistance(150)
     .charge(-500)

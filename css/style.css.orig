@@ -54,7 +54,7 @@ main {
 }
 
 aside {
-  width: 340px;
+  width: 320px;
   position: absolute;
   top: 0;
   bottom: 0;
@@ -109,7 +109,11 @@ aside {
   top: -5px;
   right: 7px;
   transition: all 200ms;
+<<<<<<< Updated upstream
   color: #ccc;
+=======
+  color: #ddd;
+>>>>>>> Stashed changes
   font-size: 2em;
   font-weight: bold;
   text-decoration: none;
@@ -184,9 +188,14 @@ aside {
   list-style-type: none;
 }
 
+<<<<<<< Updated upstream
+.legend li {
+  width: 110px;
+=======
 #legend li {
   padding: 0.2em 0;
   width: 130px;
+>>>>>>> Stashed changes
   display: inline-block;
 }
 
