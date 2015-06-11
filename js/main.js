@@ -216,17 +216,23 @@ function update() {
 }
 
 function tick() {
-  link.attr('d', linkArc);
-  node.attr('transform', transform);
+  link.attr('d', drawLinks);
+  node.attr('transform', drawNode);
 }
 
 // Use elliptical arc path segments to doubly-encode directionality.
-function linkArc(d) {
+function drawLinks(d) {
   var dx = d.target.x - d.source.x,
       dy = d.target.y - d.source.y,
       dr = Math.sqrt(dx * dx + dy * dy);
 
   return 'M' + d.source.x + ',' + d.source.y + 'A' + dr + ',' + dr * d.linknum + ' 0 0,1 ' + d.target.x + ',' + d.target.y;
+}
+
+function drawNode(d) {
+  return 'translate(' +
+    Math.max(radius, Math.min(width - radius, d.x)) + ',' +
+    Math.max(radius, Math.min(height - radius, d.y)) + ')';
 }
 
 function connectedNodes(d) {
@@ -363,10 +369,4 @@ function cloneObject(obj) {
 
 function neighboring(a, b) {
   return linked[a.name + ',' + b.name];
-}
-
-function transform(d) {
-  return 'translate(' +
-    Math.max(radius, Math.min(width - radius, d.x)) + ',' +
-    Math.max(radius, Math.min(height - radius, d.y)) + ')';
 }

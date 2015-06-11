@@ -184,7 +184,8 @@ aside {
   list-style-type: none;
 }
 
-#legend li {
+.legend li {
+  display: inline-block;
   padding: 0.2em 0;
   width: 130px;
   display: inline-block;
