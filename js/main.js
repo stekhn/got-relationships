@@ -1,3 +1,4 @@
+var lang = 'de';
 var currentEpisode = 10;
 
 var node, link, marker, text, shadow, force, drag, svg;
@@ -18,7 +19,6 @@ var slider = d3.select('.slider');
 var sliderWrapper = d3.select('.slider-wrapper');
 var episode = d3.select('.episode');
 
-
 var isDragging = false;
 var isClosed = false;
 
@@ -32,7 +32,9 @@ d3.json('data/data.json', function(error, data) {
     console.log(error);
   } else {
     model = data;
+
     getEpisodeFromURL();
+    setInterfaceLanguage();
     sortData();
   }
 });
@@ -157,24 +159,10 @@ function update() {
     .attr('width', width)
     .attr('height', height);
 
-  // var marker = svg.append('defs').selectAll('marker')
-  //     .data(['end'])
-  //   .enter().append('marker')
-  //     .attr('id', function(d) { return d; })
-  //     .attr('viewBox', '0 -5 10 10')
-  //     .attr('refX', 15)
-  //     .attr('refY', -1.5)
-  //     .attr('markerWidth', 6)
-  //     .attr('markerHeight', 6)
-  //     .attr('orient', 'auto')
-  //   .append('path')
-  //     .attr('d', 'M0,-5L10,0L0,5');
-
   link = svg.append('svg:g').selectAll('path')
       .data(force.links())
     .enter().append('svg:path')
       .attr('class', function(d) { return 'link ' + d.type; })
-      // .attr('marker-end', 'url(#end)')
       .style('opacity', 0.25);
 
   node = svg.selectAll('.node')
@@ -236,22 +224,16 @@ function drawNode(d) {
 }
 
 function connectedNodes(d) {
-  if (d != null && !isDragging) {
+  if (d !== null && !isDragging) {
 
     //Reduce the opacity of all but the neighbouring nodes and the source node
     node.style('opacity', function (o) {
-
-      // Highlight incoming and outgoing relations
-      // return d.name==o.name | neighboring(d, o) | neighboring(o, d) ? 1 : 0.1;
 
       // Highlight outgoing relations
       return d.name==o.name | neighboring(d, o)  ? 1 : 0.1;
     });
     link.style('opacity', function (o) {
 
-      // Highlight incoming and outgoing relations
-      // return d.name==o.target.name | d.name==o.source.name ? 1 : 0.05;
-      
       // Highlight outgoing relations
       return d.name==o.source.name ? 1 : 0.05;
     });
@@ -266,9 +248,9 @@ function displayInfo(d) {
     info.html(
       '<h2 class="' + d.person.faction + '">' + d.name + '</h2>' + 
       '<img src="img/' + toDashCase(d.name) + '.jpg" alt="' + d.name + '">' +
-      '<p>' + d.person.faction + '<br>' +
-      (d.person["first-appearance"] ? "first in " + d.person["first-appearance"] : "&nbsp") + '<br>' +
-      (d.person.killed ? "killed in " + d.person.killed : "") + '</p>'
+      '<p>' + translate(d.person.faction) + '<br>' +
+      (d.person["first-appearance"] ? translate('first in') + d.person["first-appearance"] : "&nbsp") + '<br>' +
+      (d.person.killed ? translate('killed in') + d.person.killed : '') + '</p>'
     );
   }
 }
@@ -282,7 +264,7 @@ function displayRelations(d) {
     });
     for (var i = 0; i < rels.length; i++) {
       str +=  '<p>... ' +
-        rels[i].type + ' ' +
+        translate(rels[i].type) + ' ' +
         '<span class="' + rels[i].target.person.faction + '">' +
         rels[i].target.name +
         '</span> <span class="' + rels[i].type + '">–</span>' +
@@ -330,21 +312,13 @@ function getFirstObjectByValue(obj, prop, value) {
   })[0];
 }
 
-function filterObject (obj, predicate) {
-    var result = {}, key;
-
-    for (key in obj) {
-        if (obj.hasOwnProperty(key) && !predicate(obj[key])) {
-            result[key] = obj[key];
-        }
-    }
-
-    return result;
+function getElementsByAttribute(attr) {
+  return document.querySelectorAll('[' + attr + ']');
 }
 
 function cloneObject(obj) {
     var copy;
-    if (null == obj || "object" != typeof obj) return obj;
+    if (null === obj || "object" != typeof obj) return obj;
     if (obj instanceof Date) {
         copy = new Date();
         copy.setTime(obj.getTime());
@@ -370,3 +344,18 @@ function cloneObject(obj) {
 function neighboring(a, b) {
   return linked[a.name + ',' + b.name];
 }
+
+function translate(i18n) {
+  var entry = getFirstObjectByValue(model.translation, 'i18n', i18n);
+  return entry ? entry[lang] : i18n;
+}
+
+function setInterfaceLanguage() {
+  var elements = getElementsByAttribute('data-i18n');
+
+  for (var i = 0; i < elements.length; i++) {
+    var i18n = elements[i].getAttribute('data-i18n');
+    elements[i].innerHTML = translate(i18n);
+  }
+}
+
