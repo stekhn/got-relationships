@@ -20,7 +20,6 @@ var sliderWrapper = d3.select('.slider-wrapper');
 var episode = d3.select('.episode');
 
 var isDragging = false;
-var isClosed = false;
 
 var width = parseInt(container.style('width')),
     height = parseInt(container.style('height')),
@@ -64,14 +63,12 @@ close.on('click', function () {
   sliderWrapper.style('padding-left', '0');
   sidebar.style('left', '-340px');
   open.style('left', '40px');
-  isClosed = true;
 });
 
 open.on('click', function () {
   sliderWrapper.style('padding-left', '340px');
   sidebar.style('left', '0');
   open.style('left', '-100px');
-  isClosed = false;
 });
 
 function sortData() {
@@ -245,7 +242,7 @@ function connectedNodes(d) {
 }
 
 function displayInfo(d) {
-  if (!isDragging && !isClosed) {
+  if (!isDragging) {
     info.html(
       '<h2 class="' + d.person.faction + '">' + d.name + '</h2>' + 
       '<img src="img/' + toDashCase(d.name) + '.jpg" alt="' + d.name + '">' +
@@ -257,7 +254,7 @@ function displayInfo(d) {
 }
 
 function displayRelations(d) {
-  if (!isDragging && !isClosed) {
+  if (!isDragging) {
     var str = "";
     var rels = relations.filter(function (rel) {
       return rel.source.name == d.name;
