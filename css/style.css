@@ -218,6 +218,10 @@ text.shadow {
   stroke-width: 1.5px;
 }
 
+.dragging circle {
+  stroke-width: 2.5px;
+}
+
 circle {
   cursor: pointer;
   fill: #ccc;

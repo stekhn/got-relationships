@@ -1,7 +1,7 @@
 var lang = 'de';
 var currentEpisode = 10;
 
-var node, link, marker, text, shadow, force, drag, svg;
+var node, link, marker, text, shadow, force, drag, rect, svg;
 var nodes = {};
 var linked = {};
 
@@ -130,14 +130,6 @@ function drawGraph() {
       .on('tick', tick)
       .start();
 
-  drag = force.drag()
-      .on("dragstart", function () {
-        isDragging = true;
-      })
-      .on("dragend", function () {
-        isDragging = false;
-      });
-
   svg = container.append('svg:svg')
       .attr('width', width)
       .attr('height', height)
@@ -146,13 +138,19 @@ function drawGraph() {
       .call(d3.behavior.zoom().on("zoom", scale))
     .append('svg:g');
 
-  svg.append('svg:rect')
-    .attr('width', width*2)
-    .attr('height', height*2)
-    .attr('x', width/2 - width)
-    .attr('y', height/2 - height)
-    .attr('fill', '#fcfcfc')
-    .attr('fill-opacity', '0');
+  rect = svg.append('svg:rect')
+      .attr('width', width*2)
+      .attr('height', height*2)
+      .attr('x', width/2 - width)
+      .attr('y', height/2 - height)
+      .attr('fill', '#fcfcfc')
+      .attr('fill-opacity', '0');
+
+  drag = d3.behavior.drag()
+      .origin(function(d) { return d; })
+      .on("dragstart", dragstarted)
+      .on("drag", dragged)
+      .on("dragend", dragended);
 
   link = svg.append('svg:g').selectAll('path')
       .data(force.links())
@@ -173,7 +171,7 @@ function drawGraph() {
       .on('mouseout', function(d) {
         connectedNodes(null);
       })
-      .call(drag);
+    .call(drag);
 
   marker = node.append('svg:circle')
       .attr('class', function(d) {
@@ -254,6 +252,24 @@ function connectedNodes(d) {
     node.style('opacity', 1);
     link.style('opacity', 0.25);
   }
+}
+
+function dragstarted(d) {
+  d3.event.sourceEvent.stopPropagation();
+  d3.select(this).classed("dragging", true);
+  d3.select(this).classed("fixed", d.fixed = true);
+  force.stop();
+}
+
+function dragged(d) {
+  d3.select(this).attr("cx", d.x = d3.event.x).attr("cy", d.y = d3.event.y);
+  tick();
+}
+
+function dragended(d) {
+  d3.select(this).classed("dragging", false);
+  tick();
+  force.resume();
 }
 
 function displayInfo(d) {
