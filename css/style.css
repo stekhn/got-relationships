@@ -30,6 +30,8 @@ body {
   color: #333;
   margin: 0;
   overflow: hidden;
+  border: 1px solid #ececec;
+  background-color: #fcfcfc;
 }
 
 html, body, main, aside, .container {
@@ -292,7 +294,7 @@ span.killed, .link.killed { stroke: black; color: black; }
   height: 9px;
   border-radius: 5px;
   outline: none;
-  background: #ddd;
+  background: #ccc;
 }
 
 .scale {
