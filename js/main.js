@@ -36,7 +36,6 @@ d3.json('data/data.json', function(error, data) {
     lang = getURLParameter('lang') || 'de';
     setInterfaceLanguage();
     sortData();
-    setStage();
     drawGraph();
   }
 });
@@ -118,7 +117,6 @@ function sortData() {
 
     linked[relation.source.name + ',' + relation.target.name] = true;
   });
-
 }
 
 function drawGraph() {
@@ -204,7 +202,7 @@ function tick() {
 }
 
 function resetGraph() {
-  svg.remove();
+  d3.select("svg").remove();
   node = {};
   link = [];
   linked = [];
