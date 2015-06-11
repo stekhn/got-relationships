@@ -36,27 +36,17 @@ d3.json('data/data.json', function(error, data) {
     lang = getURLParameter('lang') || 'de';
     setInterfaceLanguage();
     sortData();
+    setStage();
+    drawGraph();
   }
 });
 
 // Update graph on slider events
 slider.on('input', function() {
-  
   setEpisode(this.value);
-
-  svg.remove();
-  node = {};
-  link = [];
-  linked = [];
-
-  //@TODO Rather remove single nodes manually
-  nodes = [];
-  characters = [];
-  relations = [];
-  force.start();
-  d3.timer(force.resume);
-
+  resetGraph();
   sortData();
+  drawGraph();
 });
 
 close.on('click', function () {
@@ -129,33 +119,34 @@ function sortData() {
     linked[relation.source.name + ',' + relation.target.name] = true;
   });
 
-  update();
 }
 
-
-function update() {
-
-  force = d3.layout.force()
-    .nodes(d3.values(nodes))
-    .links(relations)
-    .size([width * 1.3, height])
-    .gravity(0.1)
-    .linkDistance(150)
-    .charge(-500)
-    .on('tick', tick)
-    .start();
+function drawGraph() {
+   force = d3.layout.force()
+      .nodes(d3.values(nodes))
+      .links(relations)
+      .size([width * 1.3, height])
+      .gravity(0.1)
+      .linkDistance(150)
+      .charge(-500)
+      .on('tick', tick)
+      .start();
 
   drag = force.drag()
-    .on("dragstart", function () {
-      isDragging = true;
-    })
-    .on("dragend", function () {
-      isDragging = false;
-    });
+      .on("dragstart", function () {
+        isDragging = true;
+      })
+      .on("dragend", function () {
+        isDragging = false;
+      });
 
   svg = container.append('svg:svg')
-    .attr('width', width)
-    .attr('height', height);
+      .attr('width', width)
+      .attr('height', height)
+      .attr("pointer-events", "all")
+    .append('svg:g')
+      .call(d3.behavior.zoom().on("zoom", scale))
+    .append('svg:g');
 
   link = svg.append('svg:g').selectAll('path')
       .data(force.links())
@@ -201,9 +192,29 @@ function update() {
       .text(function(d) { return d.name; });
 }
 
+function scale() {
+  svg.attr('transform',
+      'translate(' + d3.event.translate + ')' +
+      ' scale(' + d3.event.scale + ')');
+}
+
 function tick() {
   link.attr('d', drawLinks);
   node.attr('transform', drawNode);
+}
+
+function resetGraph() {
+  svg.remove();
+  node = {};
+  link = [];
+  linked = [];
+
+  //@TODO Rather remove single nodes manually
+  nodes = [];
+  characters = [];
+  relations = [];
+  force.start();
+  d3.timer(force.resume);
 }
 
 // Use elliptical arc path segments to doubly-encode directionality.
@@ -247,7 +258,7 @@ function displayInfo(d) {
       '<h2 class="' + d.person.faction + '">' + d.name + '</h2>' + 
       '<img src="img/' + toDashCase(d.name) + '.jpg" alt="' + d.name + '">' +
       '<p>' + translate(d.person.faction) + '<br>' +
-      (d.person["first-appearance"] ? translate('first in') + d.person["first-appearance"] : "&nbsp") + '<br>' +
+      (d.person["first-appearance"] ? translate('first in') + ' ' + d.person["first-appearance"] : "&nbsp") + '<br>' +
       (d.person.killed ? translate('killed in') + d.person.killed : '') + '</p>'
     );
   }
@@ -345,7 +356,6 @@ function neighboring(a, b) {
 
 function translate(i18n) {
   var entry = getFirstObjectByValue(model.translation, 'i18n', i18n);
-  console.log(i18n, entry, '\n\n\n');
   return entry ? entry[lang] || i18n : i18n;
 }
 
