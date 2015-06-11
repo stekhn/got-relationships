@@ -34,6 +34,7 @@ d3.json('data/data.json', function(error, data) {
     model = data;
 
     getEpisodeFromURL();
+    lang = getURLParameter('lang') || 'de';
     setInterfaceLanguage();
     sortData();
   }
@@ -347,7 +348,8 @@ function neighboring(a, b) {
 
 function translate(i18n) {
   var entry = getFirstObjectByValue(model.translation, 'i18n', i18n);
-  return entry ? entry[lang] : i18n;
+  console.log(i18n, entry, '\n\n\n');
+  return entry ? entry[lang] || i18n : i18n;
 }
 
 function setInterfaceLanguage() {
@@ -355,7 +357,16 @@ function setInterfaceLanguage() {
 
   for (var i = 0; i < elements.length; i++) {
     var i18n = elements[i].getAttribute('data-i18n');
-    elements[i].innerHTML = translate(i18n);
+    var translation = translate(i18n);
+    if (translation != i18n) {
+      elements[i].innerHTML = translate(i18n);
+    }
   }
 }
 
+function getURLParameter(name) {
+  return decodeURIComponent((
+    new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)')
+      .exec(location.search) || [,""])[1]
+      .replace(/\+/g, '%20')) || null;
+}
