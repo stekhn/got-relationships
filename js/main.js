@@ -225,9 +225,7 @@ function drawLinks(d) {
 }
 
 function drawNode(d) {
-  return 'translate(' +
-    Math.max(radius, Math.min(width - radius, d.x)) + ',' +
-    Math.max(radius, Math.min(height - radius, d.y)) + ')';
+  return 'translate(' + d.x + ',' + d.y + ')';
 }
 
 function connectedNodes(d) {
