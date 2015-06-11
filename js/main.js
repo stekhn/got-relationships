@@ -146,6 +146,14 @@ function drawGraph() {
       .call(d3.behavior.zoom().on("zoom", scale))
     .append('svg:g');
 
+  svg.append('svg:rect')
+    .attr('width', width*2)
+    .attr('height', height*2)
+    .attr('x', width/2 - width)
+    .attr('y', height/2 - height)
+    .attr('fill', '#fcfcfc')
+    .attr('fill-opacity', '0');
+
   link = svg.append('svg:g').selectAll('path')
       .data(force.links())
     .enter().append('svg:path')
@@ -255,7 +263,7 @@ function displayInfo(d) {
       '<img src="img/' + toDashCase(d.name) + '.jpg" alt="' + d.name + '">' +
       '<p>' + translate(d.person.faction) + '<br>' +
       (d.person["first-appearance"] ? translate('first in') + ' ' + d.person["first-appearance"] : "&nbsp") + '<br>' +
-      (d.person.killed ? translate('killed in') + d.person.killed : '') + '</p>'
+      (d.person.killed ? translate('killed in') + ' ' + d.person.killed : '') + '</p>'
     );
   }
 }
