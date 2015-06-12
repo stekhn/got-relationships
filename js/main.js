@@ -59,14 +59,14 @@ slider.on('input', function() {
 
 close.on('click', function () {
   sliderWrapper.style('padding-left', '0');
-  sliderWrapper.classed({'indented': false});
+  container.classed({'indented': false});
   sidebar.style('left', '-340px');
   open.style('left', '40px');
 });
 
 open.on('click', function () {
   sliderWrapper.style('padding-left', '340px');
-  sliderWrapper.classed({'indented': true});
+  container.classed({'indented': true});
   sidebar.style('left', '0');
   open.style('left', '-100px');
 });
