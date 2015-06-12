@@ -67,6 +67,7 @@ aside {
   -webkit-transition: left .15s ease;
   transition: left .15s ease;
 
+  z-index: 100;
   display: flex;
   flex-direction: column;
   justify-content: flex-start; /* align items in Main Axis */
@@ -124,6 +125,7 @@ aside {
 
 .info img {
   width: 120px;
+  height: 120px;
   margin-right: .7em;
   vertical-align: bottom;
 }
@@ -199,6 +201,18 @@ aside {
 
 .sharing img {
   margin-right: 1em;
+}
+
+.loading {
+  display: none;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #fcfcfc;
 }
 
 text {
