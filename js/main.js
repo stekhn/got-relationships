@@ -20,13 +20,9 @@ var sliderWrapper = d3.select('.slider-wrapper');
 var episode = d3.select('.episode');
 var loading = d3.select('.loading');
 
-console.log(getURLParameter('mobile'));
-
 var isDragging = false;
 var isMobile = getURLParameter('mobile') || isMobileBrowser();
 
-
-console.log(isMobile);
 var timeout;
 
 var width = parseInt(container.style('width')),
@@ -414,7 +410,8 @@ function convertToString(number) {
 
 function getEpisodeFromURL() {
   if (location.hash) {
-    var hashEpisode = convertToNumber(location.hash.replace('#', '')) || 10;
+    var hashEpisode =
+      convertToNumber(location.hash.replace('#', '').split('?')[0]) || 10;
     currentEpisode = hashEpisode;
     slider.property('value', hashEpisode || 10);
     episode.text(convertToString(hashEpisode));
@@ -492,10 +489,10 @@ function setInterfaceLanguage() {
 }
 
 function getURLParameter(name) {
-  return decodeURIComponent((
-    new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)')
-      .exec(location.search) || [,""])[1]
-      .replace(/\+/g, '%20')) || null;
+    name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+    var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+        results = regex.exec(location.search);
+    return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
 }
 
 function isMobileBrowser() {
