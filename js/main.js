@@ -208,7 +208,7 @@ function tick() {
       n = nodes.length;
 
   while (++i < n) q.visit(collide(nodes[i]));
-  
+
   link.attr('d', drawLinks);
   node.attr('transform', drawNode);
 }
@@ -284,7 +284,7 @@ function dragend(d) {
 }
 
 function collide(node) {
-  var r = node.radius + 16,
+  var r = node.radius + 30,
       nx1 = node.x - r,
       nx2 = node.x + r,
       ny1 = node.y - r,
@@ -341,19 +341,20 @@ function displayRelations(d) {
 // Converts epsiode 1x10 to integer 19
 function convertToNumber(episode) {
   if (!episode) { return false; }
-  var arr = episode.toString().split("x");
-  return parseInt(arr[0] + (arr[1] - 1));
+  var arr = episode.toString().split("e");
+  return parseInt(arr[0].replace('s','') + (arr[1] - 1));
 }
 
-// Converts integer 19 to epsiode 1x10 
+// Converts integer 19 to epsiode s01e10 
 function convertToString(number) {
   var arr = number.toString().split('');
-  return arr[0] + 'x' + (parseInt(arr[1]) + 1);
+  return 's' + toFixed(arr[0]) + 'e' + toFixed((parseInt(arr[1]) + 1));
 }
 
 function getEpisodeFromURL() {
   if (location.hash) {
     var hashEpisode = convertToNumber(location.hash.replace('#', '')) || 10;
+    currentEpisode = hashEpisode;
     slider.property('value', hashEpisode || 10);
     episode.text(convertToString(hashEpisode));
   }
@@ -365,6 +366,9 @@ function setEpisode(value) {
   episode.text(convertToString(currentEpisode));
 }
 
+function toFixed(n){
+    return n > 9 ? "" + n: "0" + n;
+}
 
 function toDashCase(str) {
   return str.replace(/\s+/g, '-').toLowerCase();
