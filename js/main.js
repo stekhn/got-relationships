@@ -1,4 +1,4 @@
-var lang = 'de';
+var lang = 'en';
 var currentEpisode = 10;
 
 var node, link, marker, text, shadow, force, drag, rect, svg;
@@ -37,7 +37,7 @@ d3.json('data/data.json', function(error, data) {
     model = data;
 
     getEpisodeFromURL();
-    lang = getURLParameter('lang') || 'de';
+    lang = getURLParameter('lang') || 'en';
     setInterfaceLanguage();
     sortData();
     drawGraph();
