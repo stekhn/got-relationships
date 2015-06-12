@@ -20,6 +20,7 @@ var sliderWrapper = d3.select('.slider-wrapper');
 var episode = d3.select('.episode');
 
 var isDragging = false;
+var timeout;
 
 var width = parseInt(container.style('width')),
     height = parseInt(container.style('height')),
@@ -61,6 +62,18 @@ open.on('click', function () {
   sidebar.style('left', '0');
   open.style('left', '-100px');
 });
+
+d3.select(window).on('resize', function() {
+  clearTimeout(timeout);
+  timeout = setTimeout(function () {
+    width = parseInt(container.style('width'));
+    height = parseInt(container.style('height'));
+
+    resetGraph();
+    sortData();
+    drawGraph();
+  }, 500);
+}); 
 
 function sortData() {
   relations = cloneObject(model.relations);
@@ -310,7 +323,6 @@ function collide(node) {
 
 function displayInfo(d) {
   if (!isDragging) {
-    console.log(d);
     info.html(
       '<h2 class="' + d.person.faction + '">' + d.name + '</h2>' + 
       '<img src="img/' + toDashCase(d.name) + '.jpg" alt="' + d.name + '">' +
