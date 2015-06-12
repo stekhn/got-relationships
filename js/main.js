@@ -72,12 +72,11 @@ function sortData() {
     var target = getFirstObjectByValue(characters, 'name', rel.target);
 
     return convertToNumber(source['first-appearance']) <= currentEpisode &&
-      (convertToNumber(source.killed) || Infinity) >= currentEpisode &&
+      // (convertToNumber(source.killed) || Infinity) >= currentEpisode &&
       convertToNumber(target['first-appearance']) <= currentEpisode &&
-      (convertToNumber(target.killed) || Infinity) >= currentEpisode &&
+      // (convertToNumber(target.killed) || Infinity) >= currentEpisode &&
       convertToNumber(rel.start) <= currentEpisode &&
-      (convertToNumber(rel.end) || Infinity) >= currentEpisode
-      //&& source.name == 'Cersei Lannister';
+      (convertToNumber(rel.end) || Infinity) >= currentEpisode;
   });
 
   // Sort relations by source, then target. Speeds up inital drawing.
@@ -311,12 +310,13 @@ function collide(node) {
 
 function displayInfo(d) {
   if (!isDragging) {
+    console.log(d);
     info.html(
       '<h2 class="' + d.person.faction + '">' + d.name + '</h2>' + 
       '<img src="img/' + toDashCase(d.name) + '.jpg" alt="' + d.name + '">' +
       '<p>' + translate(d.person.faction) + '<br>' +
-      (d.person["first-appearance"] ? translate('first in') + ' ' + d.person["first-appearance"] : "&nbsp") + '<br>' +
-      (d.person.killed ? translate('killed in') + ' ' + d.person.killed : '') + '</p>'
+      (d.person['first-appearance'] ? translate('first in') + ' ' + d.person['first-appearance'] : '') + '<br>' +
+      ((convertToNumber(d.person.killed) || Infinity) <= currentEpisode  ? translate('killed in') + ' ' + d.person.killed : '') + '</p>'
     );
   }
 }
@@ -340,7 +340,7 @@ function displayRelations(d) {
   }
 }
 
-// Converts epsiode 1x10 to integer 19
+// Converts epsiode s01e10 to integer 19
 function convertToNumber(episode) {
   if (!episode) { return false; }
   var arr = episode.toString().split("e");
