@@ -71,9 +71,9 @@ function sortData() {
     var source = getFirstObjectByValue(characters, 'name', rel.source);
     var target = getFirstObjectByValue(characters, 'name', rel.target);
 
-    return convertToNumber(source['first-appearance']) <= currentEpisode &&
+    return convertToNumber(source.first) <= currentEpisode &&
       // (convertToNumber(source.killed) || Infinity) >= currentEpisode &&
-      convertToNumber(target['first-appearance']) <= currentEpisode &&
+      convertToNumber(target.first) <= currentEpisode &&
       // (convertToNumber(target.killed) || Infinity) >= currentEpisode &&
       convertToNumber(rel.start) <= currentEpisode &&
       (convertToNumber(rel.end) || Infinity) >= currentEpisode;
@@ -315,7 +315,7 @@ function displayInfo(d) {
       '<h2 class="' + d.person.faction + '">' + d.name + '</h2>' + 
       '<img src="img/' + toDashCase(d.name) + '.jpg" alt="' + d.name + '">' +
       '<p>' + translate(d.person.faction) + '<br>' +
-      (d.person['first-appearance'] ? translate('first in') + ' ' + d.person['first-appearance'] : '') + '<br>' +
+      (d.person.first ? translate('first in') + ' ' + d.person.first : '') + '<br>' +
       ((convertToNumber(d.person.killed) || Infinity) <= currentEpisode  ? translate('killed in') + ' ' + d.person.killed : '') + '</p>'
     );
   }
