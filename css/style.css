@@ -364,3 +364,25 @@ span.killed, .link.killed { stroke: black; color: black; }
 input::-moz-focus-inner {
   border: 0 !important;
 }
+
+@media (max-width: 800px) {
+  .slider-wrapper {
+    padding-left: 0;
+  }
+  .sidebar {
+    left: -340px;
+  }
+  .open {
+    left: 40px;
+  }
+  .indented .scale {
+    visibility: hidden;
+  }
+}
+
+@media (max-width: 800px) {
+  span[data-i18n] {
+    display: none;
+    text-align: left,
+  }
+}
