@@ -42,6 +42,7 @@ d3.json('data/data.json', function(error, data) {
     setInterfaceLanguage();
     sortData();
     drawGraph();
+    loading.style('display', 'none');
   }
 });
 

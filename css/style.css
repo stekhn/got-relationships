@@ -399,7 +399,6 @@ input::-moz-focus-inner {
 }
 
 .loading {
-  display: none;
   position: absolute;
   top: 0;
   bottom: 0;
