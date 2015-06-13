@@ -52,6 +52,10 @@ a {
   text-decoration: none;
 }
 
+.graph {
+  z-index: 0;
+}
+
 aside {
   width: 320px;
   position: absolute;
@@ -92,6 +96,7 @@ aside {
   cursor: pointer;
   -webkit-transition: all .3s ease;
   transition: all .3s ease;
+  z-index: 500;
 }
 
 .open:hover {
@@ -202,7 +207,6 @@ aside {
 }
 
 .loading {
-  display: none;
   position: absolute;
   top: 0;
   bottom: 0;
@@ -271,6 +275,7 @@ nav {
   bottom: 0;
   left: 0;
   right: 0;
+  z-index: 300;
   padding-left: 320px;
   -webkit-transition: padding-left .15s ease;
   transition: padding-left .15s ease;
@@ -400,6 +405,7 @@ input::-moz-focus-inner {
   bottom: 0;
   right: 0;
   left: 0;
+  z-index: 200;
   width: 100%;
   height: 100%;
   background-color: #fcfcfc;
@@ -408,7 +414,7 @@ input::-moz-focus-inner {
 .spinner {
   position: absolute;
   top: 40%;
-  left: 70%;
+  left: 50%;
   margin-top: -25px;
   margin-left: -25px;
   width: 50px;
