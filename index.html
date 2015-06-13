@@ -29,11 +29,13 @@
 
   <body>
 
-    <main>
       <div class="open"></div>
+
       <aside class="sidebar">
         <section class="sidebar-wrapper">
+
           <div class="close">×</div>
+          
           <section class="info">
             <h2>Game of Thrones</h2>
             <p data-i18n="hover">Hover the characters to learn more about a character and see all current relations.</p>
@@ -41,10 +43,12 @@
             <p><em data-i18n="author">by Matthias Huber and Steffen Kühne</em></p>
             <p style="margin-top: 2em; color: #ccc"><em data-i18n="credits">Character image with permission by SKY, wolf icon by XXXX, dragon icon by YYYY</em></p>
           </section>
+         
           <section class="list-wrapper">
             <section class="list"></section>
             <div class="gradient"></div>
           </section>
+          
           <section class="legend">
             <h2 data-i18n="Houses">Houses</h2>
             <ul>
@@ -60,22 +64,12 @@
               <li><span class="Folk" data-i18n="Free Folk">Free Folk</span></li>
               <li><span class="Others" data-i18n="Others">Others</span></li>
             </ul>
-            <section class="sharing">
-              <a href="#">
-                <img src="asset/sharing-facebook.svg" alt="Share on Facebook">
-              </a>
-              <a href="#">
-                <img src="asset/sharing-twitter.svg" alt="Share on Twitter">
-              </a>
-              <a href="#">
-                <img src="asset/sharing-google.svg" alt="Share on Google+">
-              </a>
-            </section>
           </section>
+
         </section>
       </aside>
       
-      <section class="container">
+      <section class="graph">
         <div class="loading">
           <div class="spinner">
             <div class="double-bounce1"></div>
@@ -83,15 +77,17 @@
           </div>
         </div>
       </section>
-    </main>
 
-     <nav class="slider-wrapper">
-      <input class="slider" list="numbers" type="range" min="10" max="59" value="10" step="1" />
-      <span class="episode">s01e01</span>
-      <div class="scale">
-        <span class="tick"><span data-i18n="Season">Season</span> 1</span><span class="tick"><span data-i18n="Season">Season</span> 2</span><span class="tick"><span data-i18n="Season">Season</span> 3</span><span class="tick"><span data-i18n="Season">Season</span> 4</span><span class="tick"><span data-i18n="Season">Season</span> 5</span>
-      </div>
-    </nav>
+      <nav>
+        <section class="slider-wrapper">
+          <input class="slider" list="numbers" type="range" min="10" max="59" value="10" step="1" />
+          <section class="scale">
+            <span class="tick"><span data-i18n="Season">Season</span> 1</span><span class="tick"><span data-i18n="Season">Season</span> 2</span><span class="tick"><span data-i18n="Season">Season</span> 3</span><span class="tick"><span data-i18n="Season">Season</span> 4</span><span class="tick"><span data-i18n="Season">Season</span> 5</span>
+          </section>
+        </section>
+        
+        <section class="episode"><p class="episode-content">s01e01</p></section>
+      </nav>
 
     <script type="text/javascript" src="js/d3.js"></script>
     <script type="text/javascript" src="js/main.js"></script>

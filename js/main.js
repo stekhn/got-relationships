@@ -9,15 +9,16 @@ var model;
 var characters;
 var relations;
 
-var container = d3.select('.container');
+var body = d3.select('body');
+var graph = d3.select('.graph');
 var sidebar = d3.select('.sidebar');
 var close = d3.select('.close');
 var open = d3.select('.open');
 var info = d3.select('.info');
 var list = d3.select('.list');
 var slider = d3.select('.slider');
-var sliderWrapper = d3.select('.slider-wrapper');
-var episode = d3.select('.episode');
+var nav = d3.select('nav');
+var episode = d3.select('.episode-content');
 var loading = d3.select('.loading');
 
 var isDragging = false;
@@ -25,8 +26,8 @@ var isMobile = getURLParameter('mobile') || isMobileBrowser();
 
 var timeout;
 
-var width = parseInt(container.style('width')),
-    height = parseInt(container.style('height')),
+var width = parseInt(graph.style('width')),
+    height = parseInt(graph.style('height')),
     radius = 20;
 
 // Load data from JSON and initialize the app
@@ -58,15 +59,15 @@ slider.on('input', function() {
 });
 
 close.on('click', function () {
-  sliderWrapper.style('padding-left', '0');
-  container.classed({'indented': false});
-  sidebar.style('left', '-340px');
+  body.classed({'with-menu': false});
+  nav.style('padding-left', '0');
+  sidebar.style('left', '-320px');
   open.style('left', '40px');
 });
 
 open.on('click', function () {
-  sliderWrapper.style('padding-left', '340px');
-  container.classed({'indented': true});
+  body.classed({'with-menu': true});
+  nav.style('padding-left', '320px');
   sidebar.style('left', '0');
   open.style('left', '-100px');
 });
@@ -74,8 +75,8 @@ open.on('click', function () {
 d3.select(window).on('resize', function() {
   clearTimeout(timeout);
   timeout = setTimeout(function () {
-    width = parseInt(container.style('width'));
-    height = parseInt(container.style('height'));
+    width = parseInt(graph.style('width'));
+    height = parseInt(graph.style('height'));
 
     resetGraph();
     sortData();
@@ -166,7 +167,7 @@ function drawGraph() {
       .on('tick', tick)
       .start();
 
-  svg = container.append('svg:svg')
+  svg = graph.append('svg:svg')
       .attr('width', width)
       .attr('height', height)
       .attr("pointer-events", "all")
@@ -391,7 +392,7 @@ function displayRelations(d) {
         '</span> <span class="' + rels[i].type + '">–</span>' +
         '</p>';
     }
-    list.html(str + '</p>');
+    list.html(str);
   }
 }
 
