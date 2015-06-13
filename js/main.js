@@ -1,7 +1,7 @@
 var lang = 'en';
 var currentEpisode = 10;
 
-var node, link, marker, text, shadow, force, drag, rect, svg;
+var node, link, marker, text, shadow, force, zoom, drag, rect, svg;
 var nodes = {};
 var linked = {};
 
@@ -23,6 +23,7 @@ var loading = d3.select('.loading');
 
 var isDragging = false;
 var isMobile = getURLParameter('mobile') || isMobileBrowser();
+var zoomFactor = 1;
 
 var timeout;
 
@@ -72,6 +73,13 @@ open.on('click', function () {
   sidebar.style('left', '0');
   open.style('left', '-100px');
 });
+
+d3.selectAll("div[data-zoom]")
+    .on("click", function () {
+      zoomFactor = zoomFactor + (+this.getAttribute("data-zoom"));
+      zoom.scale(zoomFactor).event(graph);
+    });
+
 
 d3.select(window).on('resize', function() {
   clearTimeout(timeout);
@@ -168,12 +176,15 @@ function drawGraph() {
       .on('tick', tick)
       .start();
 
+  zoom = d3.behavior.zoom()
+      .on("zoom", zoomed);
+
   svg = graph.append('svg:svg')
       .attr('width', width)
       .attr('height', height)
       .attr("pointer-events", "all")
     .append('svg:g')
-      .call(d3.behavior.zoom().on("zoom", scale))
+      .call(zoom)
     .append('svg:g');
 
   rect = svg.append('svg:rect')
@@ -252,7 +263,7 @@ function drawGraph() {
   }
 }
 
-function scale() {
+function zoomed() {
   svg.attr('transform',
       'translate(' + d3.event.translate + ')' +
       ' scale(' + d3.event.scale + ')');

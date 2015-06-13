@@ -139,15 +139,38 @@ aside {
 }
 
 .close {
+  padding: .5em;
   position: absolute;
-  top: -5px;
+  top: -20px;
   right: 7px;
   transition: all 200ms;
-  color: #ccc;
+  color: #333;
   font-size: 2em;
   font-weight: bold;
   text-decoration: none;
   cursor: pointer;
+}
+
+.zoom {
+  cursor: pointer;
+  position: absolute;
+  right: 40px;
+  top: 28px;
+  font-size: 2em;
+  text-align: center;
+}
+
+.zoom div {
+  height: 36px;
+  width: 36px;
+  border: 2px solid #333;
+  border-radius: 3px;
+  margin-bottom: .5em;
+}
+
+.zoom div span {
+  line-height: 36px;
+  vertical-align: middle;
 }
 
 .info {
