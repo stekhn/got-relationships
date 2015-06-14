@@ -42,48 +42,55 @@ d3.json('data/data.json', function(error, data) {
     setInterfaceLanguage();
     sortData();
     drawGraph();
+    registerEventListeners();
     loading.style('display', 'none');
   }
 });
 
-// Update graph on slider events
-slider.on('input', function() {
-  setEpisode(this.value);
-  resetGraph();
-  sortData();
-  drawGraph();
+console.log("foo");
 
-  if(!isMobile) {
-    force.start();
-    d3.timer(force.resume);
-  }
-});
+function registerEventListeners() {
 
-close.on('click', function () {
-  body.classed({'with-menu': false});
-  nav.style('padding-left', '0');
-  sidebar.style('left', '-320px');
-  open.style('left', '40px');
-});
+  // Update graph on slider events
+  slider.on('input', function() {
 
-open.on('click', function () {
-  body.classed({'with-menu': true});
-  nav.style('padding-left', '320px');
-  sidebar.style('left', '0');
-  open.style('left', '-100px');
-});
-
-d3.select(window).on('resize', function() {
-  clearTimeout(timeout);
-  timeout = setTimeout(function () {
-    width = parseInt(graph.style('width'));
-    height = parseInt(graph.style('height'));
-
+    setEpisode(this.value);
     resetGraph();
     sortData();
     drawGraph();
-  }, 500);
-}); 
+
+    if(!isMobile) {
+      force.start();
+      d3.timer(force.resume);
+    }
+  });
+
+  close.on('click', function () {
+    body.classed({'with-menu': false});
+    nav.style('padding-left', '0');
+    sidebar.style('left', '-320px');
+    open.style('left', '40px');
+  });
+
+  open.on('click', function () {
+    body.classed({'with-menu': true});
+    nav.style('padding-left', '320px');
+    sidebar.style('left', '0');
+    open.style('left', '-100px');
+  });
+
+  d3.select(window).on('resize', function() {
+    clearTimeout(timeout);
+    timeout = setTimeout(function () {
+      width = parseInt(graph.style('width'));
+      height = parseInt(graph.style('height'));
+
+      resetGraph();
+      sortData();
+      drawGraph();
+    }, 500);
+  }); 
+}
 
 function sortData() {
   relations = cloneObject(model.relations);

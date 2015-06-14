@@ -335,10 +335,10 @@ nav {
   -webkit-appearance: none;
   pointer-events: auto;
   cursor: pointer;
-  margin: 1em 0 0 0;
+  margin-top: 1em;
+  padding: 0 !important;
   border-radius: 5px;
   width: 100%;
-  background: background: #ccc;
 }
 
 .slider::-webkit-slider-runnable-track {
@@ -346,6 +346,7 @@ nav {
   height: 9px;
   border: none;
   border-radius: 5px;
+  background: #ccc;
   background: -webkit-gradient(left top, right top, color-stop(0%, #ccc), color-stop(20%, #ccc), color-stop(20%, #bbb), color-stop(40%, #bbb), color-stop(40%, #ccc), color-stop(60%, #ccc), color-stop(60%, #bbb), color-stop(80%, #bbb), color-stop(80%, #ccc), color-stop(100%, #ccc));
   background: -webkit-linear-gradient(left, #ccc 0%, #ccc 20%, #bbb 20%, #bbb 40%, #ccc 40%, #ccc 60%, #bbb 60%, #bbb 80%, #ccc 80%, #ccc 100%);
   background: -o-linear-gradient(left, #ccc 0%, #ccc 20%, #bbb 20%, #bbb 40%, #ccc 40%, #ccc 60%, #bbb 60%, #bbb 80%, #ccc 80%, #ccc 100%);
@@ -377,7 +378,7 @@ nav {
   height: 9px;
   border: none;
   border-radius: 5px;
-  background: background: #ccc;
+  background: #ccc;
   background: -moz-linear-gradient(left, #ccc 0%, #ccc 20%, #bbb 20%, #bbb 40%, #ccc 40%, #ccc 60%, #bbb 60%, #bbb 80%, #ccc 80%, #ccc 100%);
   background: linear-gradient(to right, #ccc 0%, #ccc 20%, #bbb 20%, #bbb 40%, #ccc 40%, #ccc 60%, #bbb 60%, #bbb 80%, #ccc 80%, #ccc 100%);
 }
@@ -409,7 +410,7 @@ nav {
   height: 32px;
   background: transparent;
   border-color: transparent;
-  border-width: 6px 0;
+  border: none;
   color: transparent;
 }
 
@@ -430,6 +431,14 @@ nav {
   width: 32px;
   border-radius: 50%;
   background: #333;
+}
+
+.slider::-ms-thumb:hover {
+  background: #A81800;
+}
+
+.slider::-ms-thumb:active {
+  background: #A81800;
 }
 
 .slider:focus {
@@ -588,4 +597,10 @@ nav {
   .episode:after {
     border: none;
   } 
+}
+
+@media (max-height: 560px) {
+  .legend{
+    display: none;
+  }
 }
