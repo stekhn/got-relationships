@@ -97,8 +97,8 @@ function sortData() {
 
   // Filter out all relations which are not related to the current episode
   relations = relations.filter(function (rel, index) {
-    var source = getFirstObjectByValue(characters, 'name', rel.source);
-    var target = getFirstObjectByValue(characters, 'name', rel.target);
+    var source = getObjectByValue(characters, 'name', rel.source);
+    var target = getObjectByValue(characters, 'name', rel.target);
 
     return convertToNumber(source.first) <= currentEpisode &&
       // (convertToNumber(source.killed) || Infinity) >= currentEpisode &&
@@ -147,8 +147,15 @@ function sortData() {
       relation.target = nodes[relation.target];
     }
 
-    relation.source.person = getFirstObjectByValue(characters, 'name', relation.source.name);
-    relation.target.person = getFirstObjectByValue(characters, 'name', relation.target.name);
+    relation.source = mergeObjects(
+      getObjectByValue(characters, 'name', relation.source.name) || {},
+      relation.source);
+
+    relation.target = mergeObjects(
+      getObjectByValue(characters, 'name', relation.target.name) || {},
+      relation.target);
+
+    console.log(relation.source);
 
     // if (relation.source.name) {
     //   sources.push(relation.source.name);
@@ -222,8 +229,8 @@ function drawGraph() {
 
   marker = node.append('svg:circle')
       .attr('class', function(d) {
-        if (d.person) {
-          return d.person.faction;
+        if (d) {
+          return d.faction;
         }
       })
       .attr('r', function (d) {
@@ -235,7 +242,7 @@ function drawGraph() {
       .attr('y', '.35em')
       .attr('class', 'shadow') 
       .text(function(d) {
-        if ((convertToNumber(d.person.killed) || Infinity) <= currentEpisode) {
+        if ((convertToNumber(d.killed) || Infinity) <= currentEpisode) {
           return d.name + ' ✝';
         } else {
           return d.name;
@@ -246,7 +253,7 @@ function drawGraph() {
       .attr('x', 14)
       .attr('y', '.4em')
       .text(function(d) {
-        if ((convertToNumber(d.person.killed) || Infinity) <= currentEpisode) {
+        if ((convertToNumber(d.killed) || Infinity) <= currentEpisode) {
           return d.name + ' ✝';
         } else {
           return d.name;
@@ -405,11 +412,11 @@ function collide(node) {
 function displayInfo(d) {
   if (!isDragging) {
     info.html(
-      '<h2 class="' + d.person.faction + '">' + d.name + '</h2>' + 
+      '<h2 class="' + d.faction + '">' + d.name + '</h2>' + 
       '<img src="img/' + toDashCase(d.name) + '.jpg" alt="' + d.name + '">' +
-      '<p>' + translate(d.person.faction) + '<br>' +
-      (d.person.first ? translate('first in') + ' ' + d.person.first : '') + '<br>' +
-      ((convertToNumber(d.person.killed) || Infinity) <= currentEpisode  ? translate('killed in') + ' ' + d.person.killed : '') + '</p>'
+      '<p>' + translate(d.faction) + '<br>' +
+      (d.first ? translate('first in') + ' ' + d.first : '') + '<br>' +
+      ((convertToNumber(d.killed) || Infinity) <= currentEpisode  ? translate('killed in') + ' ' + d.killed : '') + '</p>'
     );
   }
 }
@@ -424,7 +431,7 @@ function displayRelations(d) {
     for (var i = 0; i < rels.length; i++) {
       str +=  '<p>... ' +
         translate(rels[i].type) + ' ' +
-        '<span class="' + rels[i].target.person.faction + '">' +
+        '<span class="' + rels[i].target.faction + '">' +
         rels[i].target.name +
         '</span> <span class="' + rels[i].type + '">–</span>' +
         '</p>';
@@ -470,14 +477,14 @@ function toDashCase(str) {
   return str.replace(/\s+/g, '-').toLowerCase();
 }
 
-function getFirstObjectByValue(obj, prop, value) {
+function getElementsByAttribute(attr) {
+  return document.querySelectorAll('[' + attr + ']');
+}
+
+function getObjectByValue(obj, prop, value) {
   return obj.filter(function (o) {
     return o[prop] == value;
   })[0];
-}
-
-function getElementsByAttribute(attr) {
-  return document.querySelectorAll('[' + attr + ']');
 }
 
 function cloneObject(obj) {
@@ -505,12 +512,23 @@ function cloneObject(obj) {
     throw new Error();
 }
 
+function mergeObjects(obj1, obj2) {
+    var result = {};
+    for (var key in obj1) {
+      result[key] = obj1[key];
+    }
+    for (var key in obj2) {
+      result[key] = obj2[key];
+    }
+    return result;
+}
+
 function neighboring(a, b) {
   return linked[a.name + ',' + b.name];
 }
 
 function translate(i18n) {
-  var entry = getFirstObjectByValue(model.translation, 'i18n', i18n);
+  var entry = getObjectByValue(model.translation, 'i18n', i18n);
   return entry ? entry[lang] || i18n : i18n;
 }
 
