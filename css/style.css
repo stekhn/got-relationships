@@ -398,7 +398,7 @@ nav {
 
 .slider::-ms-track {
   width: 100%;
-  height: 32px;
+  height: 30px;
   background: transparent;
   border-color: transparent;
   border: none;
@@ -418,8 +418,8 @@ nav {
 
 .slider::-ms-thumb {
   border: none;
-  height: 32px;
-  width: 32px;
+  height: 30px;
+  width: 30px;
   border-radius: 50%;
   background: #333;
 }
@@ -507,6 +507,7 @@ nav {
 }
 
 .loading {
+  display: block;
   position: absolute;
   top: 0;
   bottom: 0;

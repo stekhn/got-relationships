@@ -61,8 +61,8 @@ d3.json('data/data.json', function(error, data) {
 function registerEventListeners() {
 
   // Update graph on slider events
-  slider.on('input', onSlide)
-        .on('change', onSlide);
+  slider.on('change', episodeChanged)
+        .on('input', changingEpisode);
 
   close.on('click', function () {
     body.classed({'with-menu': false});
@@ -289,16 +289,20 @@ function resetGraph() {
   relations = [];
 }
 
-function onSlide() {
-    setEpisode(this.value);
-    resetGraph();
-    sortData();
-    drawGraph();
+function episodeChanged() {
+  setEpisode(this.value);
+  resetGraph();
+  sortData();
+  drawGraph();
 
-    if(!isMobile) {
-      force.start();
-      d3.timer(force.resume);
-    }
+  if(!isMobile) {
+    force.start();
+    d3.timer(force.resume);
+  }
+}
+
+function changingEpisode() {
+  setEpisode(this.value);
 }
 
 // Use elliptical arc path segments to doubly-encode directionality.
