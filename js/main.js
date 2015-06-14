@@ -47,23 +47,11 @@ d3.json('data/data.json', function(error, data) {
   }
 });
 
-console.log("foo");
-
 function registerEventListeners() {
 
   // Update graph on slider events
-  slider.on('input', function() {
-
-    setEpisode(this.value);
-    resetGraph();
-    sortData();
-    drawGraph();
-
-    if(!isMobile) {
-      force.start();
-      d3.timer(force.resume);
-    }
-  });
+  slider.on('input', onSlide)
+        .on('change', onSlide);
 
   close.on('click', function () {
     body.classed({'with-menu': false});
@@ -288,6 +276,18 @@ function resetGraph() {
   nodes = {};
   characters = [];
   relations = [];
+}
+
+function onSlide() {
+    setEpisode(this.value);
+    resetGraph();
+    sortData();
+    drawGraph();
+
+    if(!isMobile) {
+      force.start();
+      d3.timer(force.resume);
+    }
 }
 
 // Use elliptical arc path segments to doubly-encode directionality.
