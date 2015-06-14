@@ -142,12 +142,17 @@ aside {
   position: absolute;
   top: -5px;
   right: 7px;
-  transition: all 200ms;
-  color: #ccc;
+  color: #333;
   font-size: 2em;
   font-weight: bold;
   text-decoration: none;
   cursor: pointer;
+}
+
+.close:hover {
+  color: #ccc;
+  -webkit-transition: color .15s ease;
+  transition: color .15s ease;
 }
 
 .info {
@@ -302,7 +307,6 @@ span.killed, .link.killed { stroke: black; color: black; }
 
 nav {
   visibility: hidden;
-  pointer-events: none;
   margin: 0 auto 2em;
   text-align: center;
   width: 100%;

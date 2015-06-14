@@ -147,6 +147,9 @@ function sortData() {
       relation.target = nodes[relation.target];
     }
 
+    relation.source.person = getFirstObjectByValue(characters, 'name', relation.source.name);
+    relation.target.person = getFirstObjectByValue(characters, 'name', relation.target.name);
+
     // if (relation.source.name) {
     //   sources.push(relation.source.name);
     // } else {
@@ -219,7 +222,6 @@ function drawGraph() {
 
   marker = node.append('svg:circle')
       .attr('class', function(d) {
-        d.person = getFirstObjectByValue(characters, 'name', d.name);
         if (d.person) {
           return d.person.faction;
         }
@@ -232,12 +234,24 @@ function drawGraph() {
       .attr('x', 14)
       .attr('y', '.35em')
       .attr('class', 'shadow') 
-      .text(function(d) { return d.name; });
+      .text(function(d) {
+        if ((convertToNumber(d.person.killed) || Infinity) <= currentEpisode) {
+          return d.name + ' ✝';
+        } else {
+          return d.name;
+        }
+      });
 
   text = node.append('svg:text')
       .attr('x', 14)
       .attr('y', '.4em')
-      .text(function(d) { return d.name; });
+      .text(function(d) {
+        if ((convertToNumber(d.person.killed) || Infinity) <= currentEpisode) {
+          return d.name + ' ✝';
+        } else {
+          return d.name;
+        }
+      });
 
 
   // Static force layout for mobile devices
