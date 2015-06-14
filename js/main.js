@@ -20,6 +20,7 @@ var slider = d3.select('.slider');
 var nav = d3.select('nav');
 var episode = d3.select('.episode-content');
 var loading = d3.select('.loading');
+var fallback = d3.select('.fallback');
 
 var isDragging = false;
 var isMobile = getURLParameter('mobile') || isMobileBrowser();
@@ -40,58 +41,61 @@ d3.json('data/data.json', function(error, data) {
 
     getEpisodeFromURL();
     lang = getURLParameter('lang') || 'en';
-    setInterfaceLanguage();
-    sortData();
-    drawGraph();
-    loading.style('display', 'none');
+    
+    if (lang != 'en') {
+      setInterfaceLanguage();
+    }
+
+    // Detect IE <9
+    if (document.all && !window.atob) {
+      fallback.style('display', 'block');
+    } else {
+      sortData();
+      drawGraph();
+      registerEventListeners();
+      loading.style('display', 'none');
+      nav.style('visibility', 'visible');
+    }
   }
 });
 
-// Update graph on slider events
-slider.on('input', function() {
-  setEpisode(this.value);
-  resetGraph();
-  sortData();
-  drawGraph();
+function registerEventListeners() {
 
-  if(!isMobile) {
-    force.start();
-    d3.timer(force.resume);
-  }
-});
+  // Update graph on slider events
+  slider.on('change', episodeChanged)
+        .on('input', changingEpisode);
 
-close.on('click', function () {
-  body.classed({'with-menu': false});
-  nav.style('padding-left', '0');
-  sidebar.style('left', '-320px');
-  open.style('left', '40px');
-});
+  close.on('click', function () {
+    body.classed({'with-menu': false});
+    nav.style('padding-left', '0');
+    sidebar.style('left', '-320px');
+    open.style('left', '40px');
+  });
 
-open.on('click', function () {
-  body.classed({'with-menu': true});
-  nav.style('padding-left', '320px');
-  sidebar.style('left', '0');
-  open.style('left', '-100px');
-});
+  open.on('click', function () {
+    body.classed({'with-menu': true});
+    nav.style('padding-left', '320px');
+    sidebar.style('left', '0');
+    open.style('left', '-100px');
+  });
 
-d3.selectAll("div[data-zoom]")
-    .on("click", function () {
+  d3.selectAll("div[data-zoom]").on("click", function () {
       zoomFactor = zoomFactor + (+this.getAttribute("data-zoom"));
       zoom.scale(zoomFactor).event(graph);
     });
 
+  d3.select(window).on('resize', function() {
+    clearTimeout(timeout);
+    timeout = setTimeout(function () {
+      width = parseInt(graph.style('width'));
+      height = parseInt(graph.style('height'));
 
-d3.select(window).on('resize', function() {
-  clearTimeout(timeout);
-  timeout = setTimeout(function () {
-    width = parseInt(graph.style('width'));
-    height = parseInt(graph.style('height'));
-
-    resetGraph();
-    sortData();
-    drawGraph();
-  }, 500);
-}); 
+      resetGraph();
+      sortData();
+      drawGraph();
+    }, 500);
+  }); 
+}
 
 function sortData() {
   relations = cloneObject(model.relations);
@@ -148,6 +152,9 @@ function sortData() {
       nodes[relation.target] = {name: relation.target};
       relation.target = nodes[relation.target];
     }
+
+    relation.source.person = getFirstObjectByValue(characters, 'name', relation.source.name);
+    relation.target.person = getFirstObjectByValue(characters, 'name', relation.target.name);
 
     // if (relation.source.name) {
     //   sources.push(relation.source.name);
@@ -224,7 +231,6 @@ function drawGraph() {
 
   marker = node.append('svg:circle')
       .attr('class', function(d) {
-        d.person = getFirstObjectByValue(characters, 'name', d.name);
         if (d.person) {
           return d.person.faction;
         }
@@ -237,12 +243,24 @@ function drawGraph() {
       .attr('x', 14)
       .attr('y', '.35em')
       .attr('class', 'shadow') 
-      .text(function(d) { return d.name; });
+      .text(function(d) {
+        if ((convertToNumber(d.person.killed) || Infinity) <= currentEpisode) {
+          return d.name + ' ✝';
+        } else {
+          return d.name;
+        }
+      });
 
   text = node.append('svg:text')
       .attr('x', 14)
       .attr('y', '.4em')
-      .text(function(d) { return d.name; });
+      .text(function(d) {
+        if ((convertToNumber(d.person.killed) || Infinity) <= currentEpisode) {
+          return d.name + ' ✝';
+        } else {
+          return d.name;
+        }
+      });
 
 
   // Static force layout for mobile devices
@@ -294,6 +312,22 @@ function resetGraph() {
   relations = [];
 }
 
+function episodeChanged() {
+  setEpisode(this.value);
+  resetGraph();
+  sortData();
+  drawGraph();
+
+  if(!isMobile) {
+    force.start();
+    d3.timer(force.resume);
+  }
+}
+
+function changingEpisode() {
+  setEpisode(this.value);
+}
+
 // Use elliptical arc path segments to doubly-encode directionality.
 function drawLinks(d) {
   var dx = d.target.x - d.source.x,
@@ -327,6 +361,19 @@ function connectedNodes(d) {
       link.style('opacity', 0.25);
     }
   }
+}
+
+function calculateTranslation(x, y) {
+    // get the scale var scale = Graph.Zoompos;
+    // calculate the centers depending on the scale and viewport
+    var scaledCenterX = (Graph.width / scale) / 2;
+    var scaledCenterY = (Graph.height / scale) / 2;
+    // calculate the translation vectors 
+    var panx = -(x - scaledCenterX);
+    var pany = -(y - scaledCenterY);
+    console.log(panx + " " + pany);
+    // set the translation vectors and the scale
+    d3.zoom.translate([panx, pany]);
 }
 
 function dragstart(d) {

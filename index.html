@@ -4,6 +4,7 @@
  <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
     <meta property="og:type" content="article" />
     <meta property="og:url" content="http://gfx.sueddeutsche.de/kultur/gameofthrones"/>
@@ -29,12 +30,16 @@
 
   <body>
 
-      <div class="loading">
+      <section class="fallback">
+        <p data-i18n="fallback">Unfortunatly, this visualization can't be displayed with you current browser. Please consider updating to a <a href="http://browsehappy.com/" target="_blank">more recent version</a> of your browser.</p>
+      </section>
+
+      <section class="loading">
         <div class="spinner">
           <div class="double-bounce1"></div>
           <div class="double-bounce2"></div>
         </div>
-      </div>
+      </section>
 
       <div class="open"></div>
 
@@ -48,7 +53,7 @@
             <p data-i18n="hover">Hover the characters to learn more about a character and see all current relations.</p>
             <p data-i18n="slider">Use the episode slider to go back an forth in time.</p>
             <p><em data-i18n="author">by Matthias Huber and Steffen Kühne</em></p>
-            <p style="margin-top: 2em; color: #ccc"><em data-i18n="credits">Character image with permission by SKY, wolf icon by XXXX, dragon icon by YYYY</em></p>
+            <p style="margin-top: 2em; color: #ccc"><em data-i18n="credits">Character image with permission from SKY Germany/HBO</em></p>
           </section>
          
           <section class="list-wrapper">
@@ -89,7 +94,7 @@
 
       <nav>
         <section class="slider-wrapper">
-          <input class="slider" list="numbers" type="range" min="10" max="59" value="10" step="1" />
+          <input class="slider" type="range" min="10" max="59" value="10" step="1" />
           <section class="scale">
             <span class="tick"><span data-i18n="Season">Season</span> 1</span><span class="tick"><span data-i18n="Season">Season</span> 2</span><span class="tick"><span data-i18n="Season">Season</span> 3</span><span class="tick"><span data-i18n="Season">Season</span> 4</span><span class="tick"><span data-i18n="Season">Season</span> 5</span>
           </section>
