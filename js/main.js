@@ -20,6 +20,7 @@ var slider = d3.select('.slider');
 var nav = d3.select('nav');
 var episode = d3.select('.episode-content');
 var loading = d3.select('.loading');
+var fallback = d3.select('.fallback');
 
 var isDragging = false;
 var isMobile = getURLParameter('mobile') || isMobileBrowser();
@@ -39,11 +40,21 @@ d3.json('data/data.json', function(error, data) {
 
     getEpisodeFromURL();
     lang = getURLParameter('lang') || 'en';
-    setInterfaceLanguage();
-    sortData();
-    drawGraph();
-    registerEventListeners();
-    loading.style('display', 'none');
+    
+    if (lang != 'en') {
+      setInterfaceLanguage();
+    }
+
+    // Detect IE <9
+    if (document.all && !window.atob) {
+      fallback.style('display', 'block');
+    } else {
+      sortData();
+      drawGraph();
+      registerEventListeners();
+      loading.style('display', 'none');
+      nav.style('visibility', 'visible');
+    }
   }
 });
 
