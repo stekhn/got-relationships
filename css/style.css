@@ -251,17 +251,6 @@ aside {
   display: inline-block;
 }
 
-.loading {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  right: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: #fcfcfc;
-}
-
 text {
   font-size: 0.8em;
   pointer-events: none;
@@ -339,7 +328,7 @@ nav {
   padding: 0 !important;
   border-radius: 5px;
   width: 100%;
-  z-index: 200;
+  z-index: 400;
 }
 
 .slider::-webkit-slider-runnable-track {
@@ -502,7 +491,7 @@ nav {
   bottom: 0;
   right: 0;
   left: 0;
-  z-index: 400;
+  z-index: 300;
   width: 100%;
   height: 100%;
   background-color: #fcfcfc;
