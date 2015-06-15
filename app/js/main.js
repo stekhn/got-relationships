@@ -1,7 +1,7 @@
 var lang = 'en';
 var currentEpisode = 10;
 
-var node, link, marker, text, shadow, force, zoom, drag, rect, svg;
+var node, link, marker, text, shadow, force, drag, zoom, rect, svg;
 var nodes = {};
 var linked = {};
 
@@ -80,9 +80,32 @@ function registerEventListeners() {
   });
 
   d3.selectAll("div[data-zoom]").on("click", function () {
-      zoomFactor = zoomFactor + (+this.getAttribute("data-zoom"));
-      zoom.scale(zoomFactor).event(graph);
-    });
+    var clicked = d3.event.target,
+      direction = 1,
+      factor = this.dataset.zoom,
+      target_zoom = 1,
+      center = [width / 2, height / 2],
+      extent = zoom.scaleExtent(),
+      translate = zoom.translate(),
+      translate0 = [],
+      l = [],
+      view = {x: translate[0], y: translate[1], k: zoom.scale()};
+
+    d3.event.preventDefault();
+    target_zoom = zoom.scale() * (1 + factor * direction);
+
+    if (target_zoom < extent[0] || target_zoom > extent[1]) { return false; }
+
+    translate0 = [(center[0] - view.x) / view.k, (center[1] - view.y) / view.k];
+    view.k = target_zoom;
+    l = [translate0[0] * view.k + view.x, translate0[1] * view.k + view.y];
+
+    view.x += center[0] - l[0];
+    view.y += center[1] - l[1];
+
+    zoom.scale(view.k).translate([view.x, view.y]);
+    zoomed();
+  });
 
   d3.select(window).on('resize', function() {
     clearTimeout(timeout);
@@ -184,6 +207,7 @@ function drawGraph() {
       .start();
 
   zoom = d3.behavior.zoom()
+      .scaleExtent([0.4, 2])
       .on("zoom", zoomed);
 
   svg = graph.append('svg:svg')
@@ -283,8 +307,8 @@ function drawGraph() {
 
 function zoomed() {
   svg.attr('transform',
-      'translate(' + d3.event.translate + ')' +
-      ' scale(' + d3.event.scale + ')');
+      'translate(' + zoom.translate() + ')' +
+      ' scale(' + zoom.scale() + ')');
 }
 
 function tick(enforce) {
@@ -361,19 +385,6 @@ function connectedNodes(d) {
       link.style('opacity', 0.25);
     }
   }
-}
-
-function calculateTranslation(x, y) {
-    // get the scale var scale = Graph.Zoompos;
-    // calculate the centers depending on the scale and viewport
-    var scaledCenterX = (Graph.width / scale) / 2;
-    var scaledCenterY = (Graph.height / scale) / 2;
-    // calculate the translation vectors 
-    var panx = -(x - scaledCenterX);
-    var pany = -(y - scaledCenterY);
-    console.log(panx + " " + pany);
-    // set the translation vectors and the scale
-    d3.zoom.translate([panx, pany]);
 }
 
 function dragstart(d) {
