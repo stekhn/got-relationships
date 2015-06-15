@@ -20,6 +20,8 @@ A project by [Matthias Huber](https://twitter.com/djmacbest) and [Steffen Kühne
 - Update nodes instead of deleting them (feature/data-mangling)
 - Implement translation for zoom buttons (feature/zooming)  
 - Split main.js in components (graph, navigation etc.)
+- Remove external libraries from version control (use Bower)
+- Fix loading screen in iOS
 - Add house's crests to the sidebar
 - Add more languages
 
