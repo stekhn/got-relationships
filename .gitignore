@@ -1,5 +1,7 @@
-### Images ###
-img/
+### Specific ###
+app/img/*
+!app/img/preview.jpg
+dist/
 
 ### Windows ###
 Thumbs.db

@@ -3,20 +3,20 @@
 <html>
  <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
     <meta property="og:type" content="article" />
     <meta property="og:url" content="http://gfx.sueddeutsche.de/kultur/gameofthrones/"/>
     <meta property="og:title" content="Game of Thrones Character Map: Friend or Foe?" />
     <meta property="og:description" content="Alliances, schemes and murder: Interactive chart mapping the chaotic relationships between 116 men, women, wolves and dragons in Game of Thrones." />
-    <meta property="og:image" content="http://gfx.sueddeutsche.de/kultur/gameofthrones/preview.jpg" />
+    <meta property="og:image" content="http://gfx.sueddeutsche.de/kultur/gameofthrones/img/preview.jpg" />
 
     <meta name="twitter:card" content="summary"/>
     <meta name="twitter:url" content="http://gfx.sueddeutsche.de/kultur/gameofthrones/"/>
     <meta name="twitter:title" content="Game of Thrones Character Map: Friend or Foe?"/>
     <meta name="twitter:description" content="Alliances, schemes and murder: Interactive chart mapping the chaotic relationships between 116 men, women, wolves and dragons in Game of Thrones."/>
-    <meta name="twitter:image" content="http://gfx.sueddeutsche.de/kultur/gameofthrones/preview.jpg"/>
+    <meta name="twitter:image" content="http://gfx.sueddeutsche.de/kultur/gameofthrones/img/preview.jpg"/>
 
     <meta name="description" content="Game of Thrones: Interactive chart mapping the chaotic relationships between 116 men, women, wolves and dragons."/>
     <meta name="keywords" content="Game of Thrones, GOT, Season 5, interactive, chart, network, graph"/>
@@ -24,7 +24,9 @@
 
     <title>Game of Thrones</title>
 
+    <!-- build:css css/style.min.css -->
     <link rel="stylesheet" type="text/css" href="css/style.css"/>
+    <!-- endbuild -->
 
   </head>
 
@@ -50,10 +52,10 @@
           
           <section class="info">
             <h2>Game of Thrones</h2>
-            <p data-i18n="hover">Hover the characters to learn more about a character and see all current relations.</p>
-            <p data-i18n="slider">Use the episode slider to go back an forth in time.</p>
+            <p data-i18n="hover">Hover over the characters to learn more about a character and see all current relations.</p>
+            <p data-i18n="slider">Use the episode slider to go back and forth in time.</p>
             <p><em data-i18n="author">by Matthias Huber and Steffen Kühne</em></p>
-            <p style="margin-top: 2em; color: #ccc"><em data-i18n="credits">Character image with permission from SKY Germany/HBO</em></p>
+            <p style="margin-top: 2em; color: #ccc"><em data-i18n="credits">Character images: SKY Germany/HBO</em></p>
           </section>
          
           <section class="list-wrapper">
@@ -94,8 +96,10 @@
         <section class="episode"><p class="episode-content">s01e01</p></section>
       </nav>
 
-    <script type="text/javascript" src="js/d3.js"></script>
+    <script type="text/javascript" src="js/d3.min.js"></script>
+    <!-- build:js js/main.min.js -->
     <script type="text/javascript" src="js/main.js"></script>
+    <!-- endbuild -->
 
   </body>
 
