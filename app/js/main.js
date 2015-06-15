@@ -1,7 +1,7 @@
 var lang = 'en';
 var currentEpisode = 10;
 
-var node, link, marker, text, shadow, force, drag, rect, svg;
+var node, link, marker, text, shadow, force, drag, zoom, rect, svg;
 var nodes = {};
 var linked = {};
 
@@ -177,12 +177,16 @@ function drawGraph() {
       .on('tick', tick)
       .start();
 
+  zoom = d3.behavior.zoom()
+      .scaleExtent([0.4, 2])
+      .on("zoom", scale);
+
   svg = graph.append('svg:svg')
       .attr('width', width)
       .attr('height', height)
       .attr("pointer-events", "all")
     .append('svg:g')
-      .call(d3.behavior.zoom().on("zoom", scale))
+      .call(zoom)
     .append('svg:g');
 
   rect = svg.append('svg:rect')
