@@ -4,6 +4,10 @@ Alliances, schemes and murder: Interactive chart mapping the chaotic relationshi
 
 ![Preview](https://raw.githubusercontent.com/stekhn/got-relationships/master/app/img/preview.jpg)
 
+**Article (English):** http://www.sueddeutsche.de/1.2521382  
+**Article (German):** http://www.sueddeutsche.de/1.2477892  
+**Demo:** http://gfx.sueddeutsche.de/kultur/gameofthrones/
+
 ### Usage
 1. Clone the repository
 2. Run `npm install`
