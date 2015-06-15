@@ -58,7 +58,6 @@
 
       var key = "1SbMWBGGvdh3iKwWIMRL7lHZzKjWfB8oCqMNwKcq8tIY";
       var data = {};
-      var loaded = 0;
       var blob;
       
       document.getElementById("get-data").onclick = getData;
@@ -66,50 +65,35 @@
 
       function getData() {
 
-        getSpreadsheet(key, 1, handler);
-        getSpreadsheet(key, 2, handler);
+        var ds1 = setDataset(key, 1);
+        var ds2 = setDataset(key, 2);
+        var ds3 = setDataset(key, 3);
+
+        _.when(ds1.fetch(), ds2.fetch(), ds3.fetch())
+          .then(function () {
+
+            data.relations = _.filter(ds1.toJSON(), function (obj) { return obj.source; });
+            data.characters = _.filter(ds2.toJSON(), function (obj) { return obj.name; });
+            data.translation = _.filter(ds3.toJSON(), function (obj) { return obj.i18n; });
+
+            outputData(JSON.stringify(data));
+          })
+          .fail(function (err) {
+
+            console.log(err);
+            outputData("Couldn't get data. Are you sure you are connected to the internet and your spreadsheet is public?");
+          });
       }
 
-      function getSpreadsheet(key, worksheet, handler) {
+      function setDataset(key, worksheet) {
 
-        var ds = new Miso.Dataset({
+        return new Miso.Dataset({
 
           importer : Miso.Dataset.Importers.GoogleSpreadsheet,
           parser : Miso.Dataset.Parsers.GoogleSpreadsheet,
           key : key,
           worksheet : worksheet
         });
-
-        ds.fetch({ 
-
-          success : function() {
-
-            handler(ds, worksheet);
-          },
-          error : function() {
-
-            outputData("Couldn't get data. Are you sure you are connected to the internet and your spreadsheet is public?");
-          }
-        });
-      }
-
-      function handler(ds, worksheet) {
-        
-        loaded += worksheet;
-
-        if (worksheet === 1) {
-
-          data.relations = _.filter(ds.toJSON(), function (obj) { return obj.source; });
-        }
-
-        if (worksheet === 2) {
-          data.characters = _.filter(ds.toJSON(), function (obj) { return obj.name; });
-        }
-
-        if (loaded === 3) {
-          outputData(JSON.stringify(data));
-        }
-
       }
      
       function convertData(json) {

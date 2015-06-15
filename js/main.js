@@ -1,6 +1,7 @@
+var lang = 'en';
 var currentEpisode = 10;
 
-var node, link, marker, text, shadow, force, drag, svg;
+var node, link, marker, text, shadow, force, drag, rect, svg;
 var nodes = {};
 var linked = {};
 
@@ -8,16 +9,27 @@ var model;
 var characters;
 var relations;
 
-var container = d3.select('#container');
-var info = d3.select('#info');
-var sidebar = d3.select('#sidebar');
-var slider = d3.select('#slider');
-var episode = d3.select('#episode');
+var body = d3.select('body');
+var graph = d3.select('.graph');
+var sidebar = d3.select('.sidebar');
+var close = d3.select('.close');
+var open = d3.select('.open');
+var info = d3.select('.info');
+var list = d3.select('.list');
+var slider = d3.select('.slider');
+var nav = d3.select('nav');
+var episode = d3.select('.episode-content');
+var loading = d3.select('.loading');
+var fallback = d3.select('.fallback');
 
 var isDragging = false;
+var isMobile = getURLParameter('mobile') || isMobileBrowser();
 
-var width = parseInt(container.style('width')),
-    height = parseInt(container.style('height'));
+var timeout;
+
+var width = parseInt(graph.style('width')),
+    height = parseInt(graph.style('height')),
+    radius = 20;
 
 // Load data from JSON and initialize the app
 d3.json('data/data.json', function(error, data) {
@@ -25,30 +37,59 @@ d3.json('data/data.json', function(error, data) {
     console.log(error);
   } else {
     model = data;
+
     getEpisodeFromURL();
-    sortData();
+    lang = getURLParameter('lang') || 'en';
+    
+    if (lang != 'en') {
+      setInterfaceLanguage();
+    }
+
+    // Detect IE <9
+    if (document.all && !window.atob) {
+      fallback.style('display', 'block');
+    } else {
+      sortData();
+      drawGraph();
+      registerEventListeners();
+      loading.style('display', 'none');
+      nav.style('visibility', 'visible');
+    }
   }
 });
 
-// Update graph on slider events
-slider.on('input', function() {
-  
-  setEpisode(this.value);
+function registerEventListeners() {
 
-  svg.remove();
-  node = {};
-  link = [];
-  linked = [];
+  // Update graph on slider events
+  slider.on('change', episodeChanged)
+        .on('input', changingEpisode);
 
-  //@TODO Rather remove single nodes manually
-  nodes = [];
-  characters = [];
-  relations = [];
-  force.start();
-  d3.timer(force.resume);
+  close.on('click', function () {
+    body.classed({'with-menu': false});
+    nav.style('padding-left', '0');
+    sidebar.style('left', '-320px');
+    open.style('left', '40px');
+  });
 
-  sortData();
-});
+  open.on('click', function () {
+    body.classed({'with-menu': true});
+    nav.style('padding-left', '320px');
+    sidebar.style('left', '0');
+    open.style('left', '-100px');
+  });
+
+  d3.select(window).on('resize', function() {
+    clearTimeout(timeout);
+    timeout = setTimeout(function () {
+      width = parseInt(graph.style('width'));
+      height = parseInt(graph.style('height'));
+
+      resetGraph();
+      sortData();
+      drawGraph();
+    }, 500);
+  }); 
+}
 
 function sortData() {
   relations = cloneObject(model.relations);
@@ -59,10 +100,10 @@ function sortData() {
     var source = getFirstObjectByValue(characters, 'name', rel.source);
     var target = getFirstObjectByValue(characters, 'name', rel.target);
 
-    return convertToNumber(source['first-appearance']) <= currentEpisode &&
-      (convertToNumber(source.killed) || Infinity) >= currentEpisode &&
-      convertToNumber(target['first-appearance']) <= currentEpisode &&
-      (convertToNumber(target.killed) || Infinity) >= currentEpisode &&
+    return convertToNumber(source.first) <= currentEpisode &&
+      // (convertToNumber(source.killed) || Infinity) >= currentEpisode &&
+      convertToNumber(target.first) <= currentEpisode &&
+      // (convertToNumber(target.killed) || Infinity) >= currentEpisode &&
       convertToNumber(rel.start) <= currentEpisode &&
       (convertToNumber(rel.end) || Infinity) >= currentEpisode;
   });
@@ -77,6 +118,8 @@ function sortData() {
       else {return 0;}
     }
   });
+
+  // var sources = [];
 
   relations.forEach(function (relation, i) {
   
@@ -104,55 +147,62 @@ function sortData() {
       relation.target = nodes[relation.target];
     }
 
+    relation.source.person = getFirstObjectByValue(characters, 'name', relation.source.name);
+    relation.target.person = getFirstObjectByValue(characters, 'name', relation.target.name);
+
+    // if (relation.source.name) {
+    //   sources.push(relation.source.name);
+    // } else {
+    //   console.log(relation.source);
+    // }
+
     linked[relation.source.name + ',' + relation.target.name] = true;
   });
 
-  update();
+  // console.log(nodes);
+
+  // for (var node in nodes) {
+  //   if (sources.indexOf(node) < 0) delete nodes[node];    
+  // }
 }
 
-
-function update() {
-
+function drawGraph() {
   force = d3.layout.force()
-    .nodes(d3.values(nodes))
-    .links(relations)
-    .size([width, height])
-    .gravity(0.1)
-    .linkDistance(150)
-    .charge(-500)
-    .on('tick', tick)
-    .start();
+      .nodes(d3.values(nodes))
+      .links(relations)
+      .size([width * 1.3, height])
+      .gravity(0.1)
+      .linkDistance(150)
+      .charge(-500)
+      .on('tick', tick)
+      .start();
 
-  drag = force.drag()
-    .on("dragstart", function () {
-      isDragging = true;
-    })
-    .on("dragend", function () {
-      isDragging = false;
-    });
+  svg = graph.append('svg:svg')
+      .attr('width', width)
+      .attr('height', height)
+      .attr("pointer-events", "all")
+    .append('svg:g')
+      .call(d3.behavior.zoom().on("zoom", scale))
+    .append('svg:g');
 
-  svg = container.append('svg:svg')
-    .attr('width', width)
-    .attr('height', height);
+  rect = svg.append('svg:rect')
+      .attr('width', width*2)
+      .attr('height', height*2)
+      .attr('x', width/2 - width)
+      .attr('y', height/2 - height)
+      .attr('fill', '#fcfcfc')
+      .attr('fill-opacity', '0');
 
-  // var marker = svg.append('defs').selectAll('marker')
-  //     .data(['end'])
-  //   .enter().append('marker')
-  //     .attr('id', function(d) { return d; })
-  //     .attr('viewBox', '0 -5 10 10')
-  //     .attr('refX', 15)
-  //     .attr('refY', -1.5)
-  //     .attr('markerWidth', 6)
-  //     .attr('markerHeight', 6)
-  //     .attr('orient', 'auto')
-  //   .append('path')
-  //     .attr('d', 'M0,-5L10,0L0,5');
+  drag = d3.behavior.drag()
+    .origin(function(d) { return d; })
+    .on("dragstart", dragstart)
+    .on("drag", dragging)
+    .on("dragend", dragend);
 
   link = svg.append('svg:g').selectAll('path')
       .data(force.links())
     .enter().append('svg:path')
       .attr('class', function(d) { return 'link ' + d.type; })
-      // .attr('marker-end', 'url(#end)')
       .style('opacity', 0.25);
 
   node = svg.selectAll('.node')
@@ -168,11 +218,10 @@ function update() {
       .on('mouseout', function(d) {
         connectedNodes(null);
       })
-      .call(drag);
+    .call(drag);
 
   marker = node.append('svg:circle')
       .attr('class', function(d) {
-        d.person = getFirstObjectByValue(characters, 'name', d.name);
         if (d.person) {
           return d.person.faction;
         }
@@ -181,103 +230,229 @@ function update() {
         return (d.weight - 2) * 0.1 + 7;
       });
 
-  text = node.append('svg:text')
+  shadow = node.append('svg:text')
       .attr('x', 14)
       .attr('y', '.35em')
       .attr('class', 'shadow') 
-      .text(function(d) { return d.name; });
+      .text(function(d) {
+        if ((convertToNumber(d.person.killed) || Infinity) <= currentEpisode) {
+          return d.name + ' ✝';
+        } else {
+          return d.name;
+        }
+      });
 
-  shadow = node.append('svg:text')
+  text = node.append('svg:text')
       .attr('x', 14)
       .attr('y', '.4em')
-      .text(function(d) { return d.name; });
+      .text(function(d) {
+        if ((convertToNumber(d.person.killed) || Infinity) <= currentEpisode) {
+          return d.name + ' ✝';
+        } else {
+          return d.name;
+        }
+      });
+
+
+  // Static force layout for mobile devices
+  // http://bl.ocks.org/mbostock/1667139
+  if (isMobile) {
+    loading.style('display', 'block');
+
+    setTimeout(function() {
+      force.start();
+      
+      for (var i = 100; i > 0; --i) {
+        force.tick(true);
+      }
+      
+      loading.style('display', 'none');
+      force.stop();
+    }, 10);
+  }
 }
 
-function tick() {
-  link.attr('d', linkArc);
-  node.attr('transform', transform);
+function scale() {
+  svg.attr('transform',
+      'translate(' + d3.event.translate + ')' +
+      ' scale(' + d3.event.scale + ')');
+}
+
+function tick(enforce) {
+  if (enforce || !isMobile) {
+    var q = d3.geom.quadtree(nodes),
+        i = 0,
+        n = nodes.length;
+
+    while (++i < n) q.visit(collide(nodes[i]));
+
+    link.attr('d', drawLinks);
+    node.attr('transform', drawNode);
+  }
+}
+
+function resetGraph() {
+  d3.select("svg").remove();
+  node = {};
+  link = [];
+  linked = [];
+
+  //@TODO Rather remove single nodes manually
+  nodes = {};
+  characters = [];
+  relations = [];
+}
+
+function episodeChanged() {
+  setEpisode(this.value);
+  resetGraph();
+  sortData();
+  drawGraph();
+
+  if(!isMobile) {
+    force.start();
+    d3.timer(force.resume);
+  }
+}
+
+function changingEpisode() {
+  setEpisode(this.value);
 }
 
 // Use elliptical arc path segments to doubly-encode directionality.
-function linkArc(d) {
-
+function drawLinks(d) {
   var dx = d.target.x - d.source.x,
       dy = d.target.y - d.source.y,
       dr = Math.sqrt(dx * dx + dy * dy);
-  return 'M' + d.source.x + ',' + d.source.y + 'A' + dr + ',' + dr + ' 0 0,1 ' + d.target.x + ',' + d.target.y;
+
+  return 'M' + d.source.x + ',' + d.source.y + 'A' + dr + ',' + dr * d.linknum + ' 0 0,1 ' + d.target.x + ',' + d.target.y;
+}
+
+function drawNode(d) {
+  return 'translate(' + d.x + ',' + d.y + ')';
 }
 
 function connectedNodes(d) {
-  if (d != null && !isDragging) {
+  if (!isDragging) {
+    if (d !== null) {
 
-    //Reduce the opacity of all but the neighbouring nodes and the source node
-    node.style('opacity', function (o) {
+      //Reduce the opacity of all but the neighbouring nodes and the source node
+      node.style('opacity', function (o) {
 
-      // Highlight incoming and outgoing relations
-      // return d.name==o.name | neighboring(d, o) | neighboring(o, d) ? 1 : 0.1;
+        // Highlight outgoing relations
+        return d.name==o.name | neighboring(d, o)  ? 1 : 0.1;
+      });
+      link.style('opacity', function (o) {
 
-      // Highlight outgoing relations
-      return d.name==o.name | neighboring(d, o)  ? 1 : 0.1;
-    });
-    link.style('opacity', function (o) {
-
-      // Highlight incoming and outgoing relations
-      // return d.name==o.target.name | d.name==o.source.name ? 1 : 0.05;
-      
-      // Highlight outgoing relations
-      return d.name==o.source.name ? 1 : 0.05;
-    });
-  } else {   
-    node.style('opacity', 1);
-    link.style('opacity', 0.25);
+        // Highlight outgoing relations
+        return d.name==o.source.name ? 1 : 0.05;
+      });
+    } else {   
+      node.style('opacity', 1);
+      link.style('opacity', 0.25);
+    }
   }
+}
+
+function dragstart(d) {
+  isDragging = true;
+  d3.event.sourceEvent.stopPropagation();
+  d3.select(this).classed("dragging", true);
+  force.stop();
+}
+
+function dragging(d) {
+  d3.select(this).attr("cx", d.x = d3.event.x).attr("cy", d.y = d3.event.y);
+  tick();
+}
+
+function dragend(d) {
+  isDragging = false;
+  d3.select(this).classed("dragging", false);
+  tick();
+
+  if (!isMobile) {
+    force.resume();
+  }
+  
+  connectedNodes(d);
+}
+
+function collide(node) {
+  var r = node.radius + 30,
+      nx1 = node.x - r,
+      nx2 = node.x + r,
+      ny1 = node.y - r,
+      ny2 = node.y + r;
+  return function(quad, x1, y1, x2, y2) {
+    if (quad.point && (quad.point !== node)) {
+      var x = node.x - quad.point.x,
+          y = node.y - quad.point.y,
+          l = Math.sqrt(x * x + y * y),
+          r = node.radius + quad.point.radius;
+      if (l < r) {
+        l = (l - r) / l * 0.5;
+        node.x -= x *= l;
+        node.y -= y *= l;
+        quad.point.x += x;
+        quad.point.y += y;
+      }
+    }
+    return x1 > nx2 || x2 < nx1 || y1 > ny2 || y2 < ny1;
+  };
 }
 
 function displayInfo(d) {
   if (!isDragging) {
     info.html(
+      '<h2 class="' + d.person.faction + '">' + d.name + '</h2>' + 
       '<img src="img/' + toDashCase(d.name) + '.jpg" alt="' + d.name + '">' +
-      '<div>' +
-        '<h2 class="' + d.person.faction + '">' + d.name + '</h2>' + 
-        '<p>' + d.person.faction + '<br>' +
-        (d.person["first-appearance"] ? "first appearance in " + d.person["first-appearance"] : "&nbsp") + '<br>' +
-        (d.person.killed ? "killed in " + d.person.killed : "&nbsp") + '</p>' +
-      '</div>'
+      '<p>' + translate(d.person.faction) + '<br>' +
+      (d.person.first ? translate('first in') + ' ' + d.person.first : '') + '<br>' +
+      ((convertToNumber(d.person.killed) || Infinity) <= currentEpisode  ? translate('killed in') + ' ' + d.person.killed : '') + '</p>'
     );
   }
 }
 
 function displayRelations(d) {
-  var str = "<p>";
-  var rels = relations.filter(function (rel) {
-    return rel.source.name == d.name;
-    //return rel.source.name == d.name && convertToNumber(rel.start) <= currentEpisode;
-  });
-  for (var i = 0; i < rels.length; i++) {
-    str += '<span class="' + rels[i].type + '">' +
-      rels[i].source.name + ' ' + rels[i].type + ' ' +
-      rels[i].target.name + '</span><br>';
+  if (!isDragging) {
+    var str = "";
+    var rels = relations.filter(function (rel) {
+      return rel.source.name == d.name;
+      //return rel.source.name == d.name && convertToNumber(rel.start) <= currentEpisode;
+    });
+    for (var i = 0; i < rels.length; i++) {
+      str +=  '<p>... ' +
+        translate(rels[i].type) + ' ' +
+        '<span class="' + rels[i].target.person.faction + '">' +
+        rels[i].target.name +
+        '</span> <span class="' + rels[i].type + '">–</span>' +
+        '</p>';
+    }
+    list.html(str);
   }
-  sidebar.html(str + '</p>');
 }
 
-// Converts epsiode 1x10 to integer 19
+// Converts epsiode s01e10 to integer 19
 function convertToNumber(episode) {
   if (!episode) { return false; }
-  var arr = episode.toString().split("x");
-  return parseInt(arr[0] + (arr[1] - 1));
+  var arr = episode.toString().split("e");
+  return parseInt(arr[0].replace('s','') + (arr[1] - 1));
 }
 
-// Converts integer 19 to epsiode 1x10 
+// Converts integer 19 to epsiode s01e10 
 function convertToString(number) {
   var arr = number.toString().split('');
-  return arr[0] + 'x' + (parseInt(arr[1]) + 1);
+  return 's' + toFixed(arr[0]) + 'e' + toFixed((parseInt(arr[1]) + 1));
 }
 
 function getEpisodeFromURL() {
   if (location.hash) {
-    var hashEpisode = convertToNumber(location.hash.replace('#', '')) || 10;
+    var hashEpisode =
+      convertToNumber(location.hash.replace('#', '').split('?')[0]) || 10;
+    currentEpisode = hashEpisode;
     slider.property('value', hashEpisode || 10);
+    episode.text(convertToString(hashEpisode));
   }
 }
 
@@ -287,6 +462,9 @@ function setEpisode(value) {
   episode.text(convertToString(currentEpisode));
 }
 
+function toFixed(n){
+    return n > 9 ? "" + n: "0" + n;
+}
 
 function toDashCase(str) {
   return str.replace(/\s+/g, '-').toLowerCase();
@@ -298,21 +476,13 @@ function getFirstObjectByValue(obj, prop, value) {
   })[0];
 }
 
-function filterObject (obj, predicate) {
-    var result = {}, key;
-
-    for (key in obj) {
-        if (obj.hasOwnProperty(key) && !predicate(obj[key])) {
-            result[key] = obj[key];
-        }
-    }
-
-    return result;
+function getElementsByAttribute(attr) {
+  return document.querySelectorAll('[' + attr + ']');
 }
 
 function cloneObject(obj) {
     var copy;
-    if (null == obj || "object" != typeof obj) return obj;
+    if (null === obj || "object" != typeof obj) return obj;
     if (obj instanceof Date) {
         copy = new Date();
         copy.setTime(obj.getTime());
@@ -339,6 +509,30 @@ function neighboring(a, b) {
   return linked[a.name + ',' + b.name];
 }
 
-function transform(d) {
-  return 'translate(' + d.x + ',' + d.y + ')';
+function translate(i18n) {
+  var entry = getFirstObjectByValue(model.translation, 'i18n', i18n);
+  return entry ? entry[lang] || i18n : i18n;
+}
+
+function setInterfaceLanguage() {
+  var elements = getElementsByAttribute('data-i18n');
+
+  for (var i = 0; i < elements.length; i++) {
+    var i18n = elements[i].getAttribute('data-i18n');
+    var translation = translate(i18n);
+    if (translation != i18n) {
+      elements[i].innerHTML = translate(i18n);
+    }
+  }
+}
+
+function getURLParameter(name) {
+    name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+    var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+        results = regex.exec(location.search);
+    return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+}
+
+function isMobileBrowser() {
+  return (/(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine|fennec|hiptop|iemobile|ip(hone|od)|ipad|iris|kindle|Android|Silk|lge |maemo|midp|mmp|netfront|opera m(ob|in)i|palm( os)?|phone|p(ixi|re)\/|plucker|pocket|psp|series(4|6)0|symbian|treo|up\.(browser|link)|vodafone|wap|windows (ce|phone)|xda|xiino/i.test(navigator.userAgent) || /1207|6310|6590|3gso|4thp|50[1-6]i|770s|802s|a wa|abac|ac(er|oo|s\-)|ai(ko|rn)|al(av|ca|co)|amoi|an(ex|ny|yw)|aptu|ar(ch|go)|as(te|us)|attw|au(di|\-m|r |s )|avan|be(ck|ll|nq)|bi(lb|rd)|bl(ac|az)|br(e|v)w|bumb|bw\-(n|u)|c55\/|capi|ccwa|cdm\-|cell|chtm|cldc|cmd\-|co(mp|nd)|craw|da(it|ll|ng)|dbte|dc\-s|devi|dica|dmob|do(c|p)o|ds(12|\-d)|el(49|ai)|em(l2|ul)|er(ic|k0)|esl8|ez([4-7]0|os|wa|ze)|fetc|fly(\-|_)|g1 u|g560|gene|gf\-5|g\-mo|go(\.w|od)|gr(ad|un)|haie|hcit|hd\-(m|p|t)|hei\-|hi(pt|ta)|hp( i|ip)|hs\-c|ht(c(\-| |_|a|g|p|s|t)|tp)|hu(aw|tc)|i\-(20|go|ma)|i230|iac( |\-|\/)|ibro|idea|ig01|ikom|im1k|inno|ipaq|iris|ja(t|v)a|jbro|jemu|jigs|kddi|keji|kgt( |\/)|klon|kpt |kwc\-|kyo(c|k)|le(no|xi)|lg( g|\/(k|l|u)|50|54|\-[a-w])|libw|lynx|m1\-w|m3ga|m50\/|ma(te|ui|xo)|mc(01|21|ca)|m\-cr|me(rc|ri)|mi(o8|oa|ts)|mmef|mo(01|02|bi|de|do|t(\-| |o|v)|zz)|mt(50|p1|v )|mwbp|mywa|n10[0-2]|n20[2-3]|n30(0|2)|n50(0|2|5)|n7(0(0|1)|10)|ne((c|m)\-|on|tf|wf|wg|wt)|nok(6|i)|nzph|o2im|op(ti|wv)|oran|owg1|p800|pan(a|d|t)|pdxg|pg(13|\-([1-8]|c))|phil|pire|pl(ay|uc)|pn\-2|po(ck|rt|se)|prox|psio|pt\-g|qa\-a|qc(07|12|21|32|60|\-[2-7]|i\-)|qtek|r380|r600|raks|rim9|ro(ve|zo)|s55\/|sa(ge|ma|mm|ms|ny|va)|sc(01|h\-|oo|p\-)|sdk\/|se(c(\-|0|1)|47|mc|nd|ri)|sgh\-|shar|sie(\-|m)|sk\-0|sl(45|id)|sm(al|ar|b3|it|t5)|so(ft|ny)|sp(01|h\-|v\-|v )|sy(01|mb)|t2(18|50)|t6(00|10|18)|ta(gt|lk)|tcl\-|tdg\-|tel(i|m)|tim\-|t\-mo|to(pl|sh)|ts(70|m\-|m3|m5)|tx\-9|up(\.b|g1|si)|utst|v400|v750|veri|vi(rg|te)|vk(40|5[0-3]|\-v)|vm40|voda|vulc|vx(52|53|60|61|70|80|81|83|85|98)|w3c(\-| )|webc|whit|wi(g |nc|nw)|wmlb|wonu|x700|yas\-|your|zeto|zte\-/i.test(navigator.userAgent.substr(0,4)));
 }

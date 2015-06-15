@@ -3,6 +3,24 @@
 <html>
  <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="http://gfx.sueddeutsche.de/kultur/gameofthrones/"/>
+    <meta property="og:title" content="Game of Thrones Character Map: Friend or Foe?" />
+    <meta property="og:description" content="Alliances, schemes and murder: Interactive chart mapping the chaotic relationships between 116 men, women, wolves and dragons in Game of Thrones." />
+    <meta property="og:image" content="http://gfx.sueddeutsche.de/kultur/gameofthrones/preview.jpg" />
+
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:url" content="http://gfx.sueddeutsche.de/kultur/gameofthrones/"/>
+    <meta name="twitter:title" content="Game of Thrones Character Map: Friend or Foe?"/>
+    <meta name="twitter:description" content="Alliances, schemes and murder: Interactive chart mapping the chaotic relationships between 116 men, women, wolves and dragons in Game of Thrones."/>
+    <meta name="twitter:image" content="http://gfx.sueddeutsche.de/kultur/gameofthrones/preview.jpg"/>
+
+    <meta name="description" content="Game of Thrones: Interactive chart mapping the chaotic relationships between 116 men, women, wolves and dragons."/>
+    <meta name="keywords" content="Game of Thrones, GOT, Season 5, interactive, chart, network, graph"/>
+    <meta name="news_keywords" content="Game of Thrones, GOT, Season 5, interactive, chart, network, graph"/>
 
     <title>Game of Thrones</title>
 
@@ -12,17 +30,70 @@
 
   <body>
 
-    <section class="slider-wrapper">
-      <input id="slider" list="numbers" class="input-range" type="range" min="10" max="59" value="10" step="1" />
-      <span id="episode" class="range-value">1x1</span>
-      <div class="scale">
-        <span class="tick">Season 1</span><span class="tick">Season 2</span><span class="tick">Season 3</span><span class="tick">Season 4</span><span class="tick">Season 5</span>
-      </div>
-    </section>
-    <section id="container"></section>
-    <section id="info"></section>
-    <section id="sidebar"></section>
-    
+      <section class="fallback">
+        <p data-i18n="fallback">Unfortunatly, this visualization can't be displayed with you current browser. Please consider updating to a <a href="http://browsehappy.com/" target="_blank">more recent version</a> of your browser.</p>
+      </section>
+
+      <section class="loading">
+        <div class="spinner">
+          <div class="double-bounce1"></div>
+          <div class="double-bounce2"></div>
+        </div>
+      </section>
+
+      <div class="open"></div>
+
+      <aside class="sidebar">
+        <section class="sidebar-wrapper">
+
+          <div class="close">×</div>
+          
+          <section class="info">
+            <h2>Game of Thrones</h2>
+            <p data-i18n="hover">Hover the characters to learn more about a character and see all current relations.</p>
+            <p data-i18n="slider">Use the episode slider to go back an forth in time.</p>
+            <p><em data-i18n="author">by Matthias Huber and Steffen Kühne</em></p>
+            <p style="margin-top: 2em; color: #ccc"><em data-i18n="credits">Character image with permission from SKY Germany/HBO</em></p>
+          </section>
+         
+          <section class="list-wrapper">
+            <section class="list"></section>
+            <div class="gradient"></div>
+          </section>
+          
+          <section class="legend">
+            <h2 data-i18n="Houses">Houses</h2>
+            <ul>
+              <li><span class="Stark" data-i18n="Stark">Stark</span></li>
+              <li><span class="Targaryen" data-i18n="Targaryen">Targaryen</span></li>
+              <li><span class="Baratheon" data-i18n="Baratheon">Baratheon</span></li>
+              <li><span class="Lannister" data-i18n="Lannister">Lannister</span></li>
+              <li><span class="Tyrell" data-i18n="Tyrell">Tyrell</span></li>
+              <li><span class="Martell" data-i18n="Martell">Martell</span></li>
+              <li><span class="Greyjoy" data-i18n="Greyjoy">Greyjoy</span></li>
+              <li><span class="Lesser" data-i18n="Lesser Houses">Lesser Houses</span></li>
+              <li><span class="Watch" data-i18n="Night's Watch">Night's Watch</span></li>
+              <li><span class="Folk" data-i18n="Free Folk">Free Folk</span></li>
+              <li><span class="Others" data-i18n="Others">Others</span></li>
+            </ul>
+          </section>
+
+        </section>
+      </aside>
+      
+      <section class="graph"></section>
+
+      <nav>
+        <section class="slider-wrapper">
+          <input class="slider" type="range" min="10" max="59" value="10" step="1" />
+          <section class="scale">
+            <span class="tick"><span data-i18n="Season">Season</span> 1</span><span class="tick"><span data-i18n="Season">Season</span> 2</span><span class="tick"><span data-i18n="Season">Season</span> 3</span><span class="tick"><span data-i18n="Season">Season</span> 4</span><span class="tick"><span data-i18n="Season">Season</span> 5</span>
+          </section>
+        </section>
+        
+        <section class="episode"><p class="episode-content">s01e01</p></section>
+      </nav>
+
     <script type="text/javascript" src="js/d3.js"></script>
     <script type="text/javascript" src="js/main.js"></script>
 
