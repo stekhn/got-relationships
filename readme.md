@@ -2,6 +2,8 @@
 
 Alliances, schemes and murder: Interactive chart mapping the chaotic relationships between 116 men, women, wolves and dragons in Game of Thrones. Hover over the characters to learn more about a character and see all current relations. Use the episode slider to go back and forth in time.
 
+![Preview](https://raw.githubusercontent.com/stekhn/got-relationships/master/app/img/preview.jpg)
+
 ### Usage
 1. Clone the repository
 2. Run `npm install`
