@@ -6,7 +6,7 @@ Alliances, schemes and murder: Interactive chart mapping the chaotic relationshi
 1. Clone the repository
 2. Run `npm install`
 3. Develop
-4. Build a optimized version by running `grunt build`
+4. Build a optimized version by running `grunt dist`
 
 ### To do
 - Update nodes instead of deleting them (feature/data-mangling)
