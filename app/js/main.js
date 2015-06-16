@@ -137,8 +137,8 @@
     
       // Any relations with duplicate source and target get an incremented 'linknum'
       if (i !== 0 &&
-        relation.source == relations[i-1].source.name &&
-        relation.target == relations[i-1].target.name) {
+        relation.source === relations[i-1].source.name &&
+        relation.target === relations[i-1].target.name) {
             relation.linknum = relations[i-1].linknum + 1;
       } else {
         relation.linknum = 1;
@@ -192,7 +192,7 @@
 
     zoom = d3.behavior.zoom()
         .scaleExtent([0.4, 2])
-        .on("zoom", zoomed);
+        .on('zoom', zoomed);
 
     svg = graph.append('svg:svg')
         .attr('width', width)
@@ -341,7 +341,7 @@
   }
 
   function resetGraph() {
-    d3.select("svg").remove();
+    d3.select('svg').remove();
     node = {};
     link = [];
     linked = [];
@@ -389,11 +389,11 @@
 
         node.style('opacity', function (o) {
           // Highlight connected nodes
-          return d.name == o.name | neighboring(d, o)  ? 1 : 0.1;
+          return d.name === o.name | neighboring(d, o)  ? 1 : 0.1;
         });
         link.style('opacity', function (o) {
           // Highlight outgoing relations
-          return d.name == o.source.name ? 1 : 0.05;
+          return d.name === o.source.name ? 1 : 0.05;
         });
       } else {   
         node.style('opacity', 1);
@@ -405,18 +405,25 @@
   function dragstart(d) {
     isDragging = true;
     d3.event.sourceEvent.stopPropagation();
-    d3.select(this).classed("dragging", true);
+    
+    d3.select(this)
+      .classed('dragging', true);
     force.stop();
   }
 
   function dragging(d) {
-    d3.select(this).attr("cx", d.x = d3.event.x).attr("cy", d.y = d3.event.y);
+    d3.select(this)
+      .attr('cx', d.x = d3.event.x)
+      .attr('cy', d.y = d3.event.y);
+
     tick();
   }
 
   function dragend(d) {
     isDragging = false;
-    d3.select(this).classed("dragging", false);
+    d3.select(this)
+      .classed('dragging', false);
+
     tick();
 
     if (!isMobile) {
@@ -466,9 +473,9 @@
 
   function displayRelations(d) {
     if (!isDragging) {
-      var str = "";
+      var str = '';
       var rels = relations.filter(function (rel) {
-        return rel.source.name == d.name;
+        return rel.source.name === d.name;
         //return rel.source.name == d.name && convertToNumber(rel.start) <= currentEpisode;
       });
       for (var i = 0; i < rels.length; i++) {
@@ -486,7 +493,7 @@
   // Converts epsiode s01e10 to integer 19
   function convertToNumber(episode) {
     if (!episode) { return false; }
-    var arr = episode.toString().split("e");
+    var arr = episode.toString().split('e');
     return parseInt(arr[0].replace('s','') + (arr[1] - 1));
   }
 
@@ -522,7 +529,7 @@
 
   function getFirstObjectByValue(obj, prop, value) {
     return obj.filter(function (o) {
-      return o[prop] == value;
+      return o[prop] === value;
     })[0];
   }
 
@@ -534,7 +541,7 @@
   // http://stackoverflow.com/a/728694/2037629
   function cloneObject(obj) {
       var copy;
-      if (null === obj || 'object' != typeof obj) return obj;
+      if (null === obj || 'object' !== typeof obj) { return obj; }
       if (obj instanceof Date) {
           copy = new Date();
           copy.setTime(obj.getTime());
