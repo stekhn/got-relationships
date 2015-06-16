@@ -80,30 +80,8 @@ function registerEventListeners() {
   });
 
   d3.selectAll("div[data-zoom]").on("click", function () {
-    var clicked = d3.event.target,
-      direction = 1,
-      factor = this.dataset.zoom,
-      target_zoom = 1,
-      center = [width / 2, height / 2],
-      extent = zoom.scaleExtent(),
-      translate = zoom.translate(),
-      translate0 = [],
-      l = [],
-      view = {x: translate[0], y: translate[1], k: zoom.scale()};
 
-    d3.event.preventDefault();
-    target_zoom = zoom.scale() * (1 + factor * direction);
-
-    if (target_zoom < extent[0] || target_zoom > extent[1]) { return false; }
-
-    translate0 = [(center[0] - view.x) / view.k, (center[1] - view.y) / view.k];
-    view.k = target_zoom;
-    l = [translate0[0] * view.k + view.x, translate0[1] * view.k + view.y];
-
-    view.x += center[0] - l[0];
-    view.y += center[1] - l[1];
-
-    zoom.scale(view.k).translate([view.x, view.y]);
+    setTranslationCenter(this.dataset.zoom);
     zoomed();
   });
 
@@ -309,6 +287,34 @@ function zoomed() {
   svg.attr('transform',
       'translate(' + zoom.translate() + ')' +
       ' scale(' + zoom.scale() + ')');
+}
+
+// Calculate scale and translated center
+// http://bl.ocks.org/linssen/7352810
+function setTranslationCenter(factor) {
+    var direction = 1,
+      targetZoom = 1,
+      center = [width / 2, height / 2],
+      extent = zoom.scaleExtent(),
+      translate = zoom.translate(),
+      translate0 = [],
+      l = [],
+      view = { x: translate[0], y: translate[1], k: zoom.scale() };
+
+    d3.event.preventDefault();
+    targetZoom = zoom.scale() * (1 + factor * direction);
+
+    if (targetZoom < extent[0] || targetZoom > extent[1]) {
+      return false;
+    }
+
+    translate0 = [(center[0] - view.x) / view.k, (center[1] - view.y) / view.k];
+    view.k = targetZoom;
+    l = [translate0[0] * view.k + view.x, translate0[1] * view.k + view.y];
+    view.x += center[0] - l[0];
+    view.y += center[1] - l[1];
+
+    zoom.scale(view.k).translate([view.x, view.y]);
 }
 
 function tick(enforce) {
