@@ -83,7 +83,16 @@
         </section>
       </aside>
       
-      <section class="graph"></section>
+      <section class="graph">
+        <section class="zoom">
+          <div data-zoom="+0.2">
+            <span>+</span>
+          </div>
+          <div data-zoom="-0.2">
+            <span>-</span>
+          </div>
+        </section>
+      </section>
 
       <nav>
         <section class="slider-wrapper">
@@ -96,8 +105,8 @@
         <section class="episode"><p class="episode-content">s01e01</p></section>
       </nav>
 
-    <script type="text/javascript" src="js/d3.min.js"></script>
     <!-- build:js js/main.min.js -->
+    <script type="text/javascript" src="../bower_components/d3/d3.min.js"></script>
     <script type="text/javascript" src="js/main.js"></script>
     <!-- endbuild -->
 

@@ -1,0 +1,23 @@
+{
+  "name": "Portfolio",
+  "description": "Portolio",
+  "author": "Steffen Kühne",
+  "license": "MIT",
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/stekhn/got-relationships.git"
+  },
+  "main": "app/index.html",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components"
+  ],
+  "dependencies": {
+    "d3": "~3.5.5",
+    "underscore": "~1.7.0",
+    "miso.dataset": "0.4.1",
+    "filesaver": "https://github.com/eligrey/FileSaver.js.git"
+  }
+}

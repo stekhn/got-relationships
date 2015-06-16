@@ -61,6 +61,28 @@ a {
   user-select: none;
 }
 
+.zoom {
+  cursor: pointer;
+  position: absolute;
+  right: 40px;
+  top: 28px;
+  font-size: 2em;
+  text-align: center;
+}
+
+.zoom div {
+  height: 36px;
+  width: 36px;
+  border: 2px solid #333;
+  border-radius: 3px;
+  margin-bottom: .4em;
+}
+
+.zoom div span {
+  line-height: 36px;
+  vertical-align: middle;
+}
+
 aside {
   width: 320px;
   position: absolute;

@@ -36,8 +36,8 @@
     }
   </style>
 
-  <script type="text/javascript" src="miso.ds.min.js"></script>
-  <script type="text/javascript" src="filesaver.min.js"></script>
+  <script type="text/javascript" src="../bower_components/miso.dataset/dist/miso.ds.deps.min.0.4.1.js"></script>
+  <script type="text/javascript" src="../bower_components/filesaver/FileSaver.min.js"></script>
   </head>
 
   <body>
@@ -55,101 +55,57 @@
     </main>
 
     <script>
+      (function convert() {
+        'use strict';
 
-      var key = "1SbMWBGGvdh3iKwWIMRL7lHZzKjWfB8oCqMNwKcq8tIY";
-      var data = {};
-      var blob;
-      
-      document.getElementById("get-data").onclick = getData;
-      document.getElementById("save-file").onclick = saveFile;
-
-      function getData() {
-
-        var ds1 = setDataset(key, 1);
-        var ds2 = setDataset(key, 2);
-        var ds3 = setDataset(key, 3);
-
-        _.when(ds1.fetch(), ds2.fetch(), ds3.fetch())
-          .then(function () {
-
-            data.relations = _.filter(ds1.toJSON(), function (obj) { return obj.source; });
-            data.characters = _.filter(ds2.toJSON(), function (obj) { return obj.name; });
-            data.translation = _.filter(ds3.toJSON(), function (obj) { return obj.i18n; });
-
-            outputData(JSON.stringify(data));
-          })
-          .fail(function (err) {
-
-            console.log(err);
-            outputData("Couldn't get data. Are you sure you are connected to the internet and your spreadsheet is public?");
-          });
-      }
-
-      function setDataset(key, worksheet) {
-
-        return new Miso.Dataset({
-
-          importer : Miso.Dataset.Importers.GoogleSpreadsheet,
-          parser : Miso.Dataset.Parsers.GoogleSpreadsheet,
-          key : key,
-          worksheet : worksheet
-        });
-      }
-     
-      function convertData(json) {
-
-        _.each(json, function(obj) {
-
-          if (arrayHasProperty(characters, "name", obj.name)) {
-
-          } else {
-            var character = {
-              name: obj.name,
-              relations: []
-            };
-
-            _.each(_.where(json, {name: obj.name}), function(obj) {
-
-              character.relations.push({
-
-                person: obj.person,
-                type: obj.type,
-                start: obj.start,
-                end: obj.end,
-              });
-            });
-
-            characters.push(character);
-          }
-        });
-
-        outputData(JSON.stringify(characters));
-      }
-
-      function outputData(string) {
-
-        document.getElementById("result").value = string;
-        blob = new Blob([string], {type: "application/json;charset=utf-8"});
-      }
-
-      function saveFile() {
-
-        if (blob) {
-          saveAs(blob, "data.json");
-        } else {
-          getData();
-        }
-      }
+        var key = '1SbMWBGGvdh3iKwWIMRL7lHZzKjWfB8oCqMNwKcq8tIY';
+        var data = {};
+        var blob;
         
-      function arrayHasProperty(arr, key, value) {
+        document.getElementById('get-data').onclick = getData;
+        document.getElementById('save-file').onclick = saveFile;
 
-        var result = arr.filter(function (obj) {
+        function getData() {
+          var ds1 = setDataset(key, 1);
+          var ds2 = setDataset(key, 2);
+          var ds3 = setDataset(key, 3);
 
-          return obj[key] == value;
-        });
+          _.when(ds1.fetch(), ds2.fetch(), ds3.fetch())
+            .then(function () {
+              data.relations = _.filter(ds1.toJSON(), function (obj) { return obj.source; });
+              data.characters = _.filter(ds2.toJSON(), function (obj) { return obj.name; });
+              data.translation = _.filter(ds3.toJSON(), function (obj) { return obj.i18n; });
+              outputData(JSON.stringify(data));
+            })
+            .fail(function (err) {
+              console.log(err);
+              outputData('Could not get data. Are you sure you are connected to the internet and your spreadsheet is public?');
+            });
+        }
 
-        return result.length;
-      }
+        function setDataset(key, worksheet) {
+          return new Miso.Dataset({
+            importer : Miso.Dataset.Importers.GoogleSpreadsheet,
+            parser : Miso.Dataset.Parsers.GoogleSpreadsheet,
+            key : key,
+            worksheet : worksheet
+          });
+        }
+
+        function outputData(string) {
+          document.getElementById('result').value = string;
+          blob = new Blob([string], {type: 'application/json;charset=utf-8'});
+        }
+
+        function saveFile() {
+          if (blob) {
+            saveAs(blob, 'data.json');
+          } else {
+            getData();
+          }
+        }
+      }());
+     
     </script>
 
   </body>
