@@ -34,7 +34,7 @@ var width = parseInt(graph.style('width')),
 
 // Load data from JSON and initialize the app
 d3.json('data/data.json', function(error, data) {
-  if(error) {
+  if (error) {
     console.log(error);
   } else {
     model = data;
@@ -42,7 +42,7 @@ d3.json('data/data.json', function(error, data) {
     getEpisodeFromURL();
     lang = getURLParameter('lang') || 'en';
     
-    if (lang != 'en') {
+    if (lang !== 'en') {
       setInterfaceLanguage();
     }
 
@@ -79,7 +79,7 @@ function registerEventListeners() {
     open.style('left', '-100px');
   });
 
-  d3.selectAll("div[data-zoom]").on("click", function () {
+  d3.selectAll('div[data-zoom]').on('click', function () {
 
     setTranslationCenter(this.dataset.zoom);
     zoomed();
@@ -196,7 +196,7 @@ function drawGraph() {
   svg = graph.append('svg:svg')
       .attr('width', width)
       .attr('height', height)
-      .attr("pointer-events", "all")
+      .attr('pointer-events', 'all')
     .append('svg:g')
       .call(zoom)
     .append('svg:g');
@@ -213,9 +213,9 @@ function drawGraph() {
 
   drag = d3.behavior.drag()
     .origin(function(d) { return d; })
-    .on("dragstart", dragstart)
-    .on("drag", dragging)
-    .on("dragend", dragend);
+    .on('dragstart', dragstart)
+    .on('drag', dragging)
+    .on('dragend', dragend);
 
   link = svg.append('svg:g').selectAll('path')
       .data(force.links())
@@ -330,7 +330,9 @@ function tick(enforce) {
         i = 0,
         n = nodes.length;
 
-    while (++i < n) q.visit(collide(nodes[i]));
+    while (++i < n) {
+      q.visit(collide(nodes[i]));
+    }
 
     link.attr('d', drawLinks);
     node.attr('transform', drawNode);
@@ -386,11 +388,11 @@ function connectedNodes(d) {
 
       node.style('opacity', function (o) {
         // Highlight connected nodes
-        return d.name==o.name | neighboring(d, o)  ? 1 : 0.1;
+        return d.name == o.name | neighboring(d, o)  ? 1 : 0.1;
       });
       link.style('opacity', function (o) {
         // Highlight outgoing relations
-        return d.name==o.source.name ? 1 : 0.05;
+        return d.name == .source.name ? 1 : 0.05;
       });
     } else {   
       node.style('opacity', 1);
