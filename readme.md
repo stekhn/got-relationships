@@ -12,18 +12,21 @@ A project by [Matthias Huber](https://twitter.com/djmacbest) and [Steffen Kühne
 
 ### Usage
 1. Clone the repository
-2. Run `npm install`
-3. Develop
+2. Run `npm install` to get the dev dependencies
+2. Run `bower install` to get app dependencies
+3. Develop and commit changes
 4. Build a optimized version by running `grunt dist`
 
 ### To do
 - Update nodes instead of deleting them (feature/data-mangling)
-- Implement translation for zoom buttons (feature/zooming)  
+- ~~Implement translation for zoom buttons (feature/zooming)~~ 
 - Split main.js in components (graph, navigation etc.)
-- Remove external libraries from version control (use Bower)
+- ~~Remove external libraries from version control (use Bower)~~
 - Fix loading screen in iOS
 - Add house's crests to the sidebar
 - Add more languages
+- Add license (MIT, after removing copyrighted stuff?)
+- Switch to SASS (?)
 
 ### Updating data
 The data is stored in [Google Spreadsheet][https://docs.google.com/spreadsheets/d/1SbMWBGGvdh3iKwWIMRL7lHZzKjWfB8oCqMNwKcq8tIY/pubhtml]. The converter fetches and transforms this data. The data can then be copied or downloaded and added to the application.

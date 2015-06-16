@@ -36,3 +36,6 @@ pids
 .tmp
 build/Release
 .lock-wscript
+
+### Bower ###
+bower_components/

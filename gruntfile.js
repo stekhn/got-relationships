@@ -12,20 +12,17 @@ module.exports = function (grunt) {
 
     uglify: {
       dist: {
-        files: {
-          'dist/js/main.min.js': [
-            'app/js/main.js'
-          ]
-        }
+        src: 'app/js/main.js',
+        dest: 'dist/js/main.min.js'
       }
     },
 
-    // concat: {
-    //   dist: {
-    //     src: ['app/js/d3.min.js', 'dist/js/main.min.js'],
-    //     dest: 'dist/js/main.min.js',
-    //   },
-    // },
+    concat: {
+      dist: {
+        src: ['bower_components/d3/d3.min.js', 'dist/js/main.min.js'],
+        dest: 'dist/js/main.min.js',
+      },
+    },
 
     cssmin: {
       dist: {
@@ -39,7 +36,6 @@ module.exports = function (grunt) {
         files: [
           { expand: true, flatten: true, src: ['app/index.html'], dest: 'dist', filter: 'isFile' },
           { expand: true, flatten: true, src: ['app/data/*'], dest: 'dist/data', filter: 'isFile' },
-          { expand: true, flatten: true, src: ['app/js/d3.min.js'], dest: 'dist/js', filter: 'isFile' },
           { expand: true, flatten: true, src: ['app/img/*'], dest: 'dist/img', filter: 'isFile' }
         ]
       }
@@ -61,5 +57,5 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-usemin');
 
-  grunt.registerTask('dist', ['clean:dist', 'useminPrepare', 'cssmin:dist', 'uglify:dist', 'copy:dist', 'usemin']);
+  grunt.registerTask('dist', ['clean:dist', 'useminPrepare', 'cssmin:dist', 'uglify:dist', 'concat:dist', 'copy:dist', 'usemin']);
 };
