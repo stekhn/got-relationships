@@ -4,6 +4,9 @@
     "node": true,
     "globals": {            // Extra globals.
         "$": false,
+        "d3": false,
+        "_": false,
+        "Miso": false,
         "define": false,
         "describe": false,
         "it": false,
