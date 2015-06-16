@@ -45,6 +45,40 @@ d3.json('data/data.json', function(error, data) {
     if (lang != 'en') {
       setInterfaceLanguage();
     }
+<<<<<<< HEAD:app/js/main.js
+
+    // Detect IE <9
+    if (document.all && !window.atob) {
+      fallback.style('display', 'block');
+    } else {
+      sortData();
+      drawGraph();
+      registerEventListeners();
+      loading.style('display', 'none');
+      nav.style('visibility', 'visible');
+    }
+  }
+});
+
+function registerEventListeners() {
+
+  // Update graph on slider events
+  slider.on('change', episodeChanged)
+        .on('input', changingEpisode);
+
+  close.on('click', function () {
+    body.classed({'with-menu': false});
+    nav.style('padding-left', '0');
+    sidebar.style('left', '-320px');
+    open.style('left', '40px');
+  });
+
+  open.on('click', function () {
+    body.classed({'with-menu': true});
+    nav.style('padding-left', '320px');
+    sidebar.style('left', '0');
+    open.style('left', '-100px');
+=======
 
     // Detect IE <9
     if (document.all && !window.atob) {
@@ -83,6 +117,7 @@ function registerEventListeners() {
 
     setTranslationCenter(this.dataset.zoom);
     zoomed();
+>>>>>>> feature/zooming:app/js/main.js
   });
 
   d3.select(window).on('resize', function() {
@@ -186,7 +221,11 @@ function drawGraph() {
 
   zoom = d3.behavior.zoom()
       .scaleExtent([0.4, 2])
+<<<<<<< HEAD:app/js/main.js
+      .on("zoom", scale);
+=======
       .on("zoom", zoomed);
+>>>>>>> feature/zooming:app/js/main.js
 
   svg = graph.append('svg:svg')
       .attr('width', width)

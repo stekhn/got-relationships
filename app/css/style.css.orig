@@ -59,6 +59,8 @@ a {
   -moz-user-select: none;
   -o-user-select: none;
   user-select: none;
+<<<<<<< HEAD:app/css/style.css
+=======
 }
 
 .zoom {
@@ -81,6 +83,7 @@ a {
 .zoom div span {
   line-height: 36px;
   vertical-align: middle;
+>>>>>>> feature/zooming:app/css/style.css
 }
 
 aside {
@@ -396,8 +399,52 @@ nav {
 }
 
 .slider::-moz-range-track {
+<<<<<<< HEAD:app/css/style.css
+=======
   width: 100%;
   height: 9px;
+  border: none;
+  border-radius: 5px;
+  background: #ccc;
+  background: -moz-linear-gradient(left, #ccc 0%, #ccc 20%, #bbb 20%, #bbb 40%, #ccc 40%, #ccc 60%, #bbb 60%, #bbb 80%, #ccc 80%, #ccc 100%);
+  background: linear-gradient(to right, #ccc 0%, #ccc 20%, #bbb 20%, #bbb 40%, #ccc 40%, #ccc 60%, #bbb 60%, #bbb 80%, #ccc 80%, #ccc 100%);
+}
+
+.slider::-moz-range-thumb {
+  border: none;
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
+  background: #333;
+  -webkit-transition: background 0.15s ease;
+  transition: background 0.15s ease;
+}
+
+.slider::-moz-range-thumb:hover {
+  background: #A81800;
+}
+
+.slider:active::-moz-range-thumb {
+  background: #A81800;
+}
+
+.slider::-moz-focus-outer {
+  border: 0;
+}
+
+.slider::-ms-track {
+>>>>>>> feature/zooming:app/css/style.css
+  width: 100%;
+  height: 30px;
+  background: transparent;
+  border-color: transparent;
+  border: none;
+  color: transparent;
+}
+
+.slider::-ms-fill-lower {
+  height: 9px;
+<<<<<<< HEAD:app/css/style.css
   border: none;
   border-radius: 5px;
   background: #ccc;
@@ -440,6 +487,10 @@ nav {
   height: 9px;
   background: #ccc;
   border-radius: 5px;
+=======
+  background: #ccc;
+  border-radius: 5px;
+>>>>>>> feature/zooming:app/css/style.css
 }
 .slider::-ms-fill-upper {
   height: 9px;
