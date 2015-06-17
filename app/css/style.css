@@ -83,6 +83,13 @@ a {
   vertical-align: middle;
 }
 
+.zoom div:hover {
+  color: #ccc;
+  border: 2px solid #ccc;
+  -webkit-transition: all .15s ease;
+  transition: all .15s ease;
+}
+
 aside {
   width: 320px;
   position: absolute;
@@ -504,7 +511,7 @@ nav {
 .episode:after {
   position: absolute;
   top: 8px;
-  left: -7px;
+  left: -6px;
   width: 0;
   height: 0;
   border-top: 7px solid transparent;
